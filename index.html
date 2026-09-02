@@ -610,10 +610,10 @@
     <div class="main-container">
         <!-- HEADER -->
         <header>
-            <button class="settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">⚙️</button>
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
-            <h1>Main Menu</h1>
-            <p class="subtitle">Historical Anthropometric Reconstruction Simulator</p>
+            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">⚙️</button>
+            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+            <h1 data-i18n="menu.title">Main Menu</h1>
+            <p class="subtitle" data-i18n="menu.subtitle">Historical Anthropometric Reconstruction Simulator</p>
             <span class="era-badge">📜 circa 1880–1940 · Educational & Historical Reference</span>
         </header>
 
@@ -629,44 +629,44 @@
         <div class="menu-grid">
             <div class="menu-card" onclick="openCalculator()">
                <div class="icon">🧮</div>
-               <h2>Calculator</h2>
-               <p>Enter anthropometric measurements and traits to generate type classifications and scores.</p>
-               <span class="btn-link">Open Calculator →</span>
+               <h2 data-i18n="menu.calculator">Calculator</h2>
+               <p data-i18n="menu.calculatorDescription">Enter anthropometric measurements and traits to generate type classifications and scores.</p>
+               <span class="btn-link" data-i18n="menu.openCalculator">Open Calculator →</span>
             </div>
 
             <div class="menu-card" onclick="openProfile()">
                 <div class="icon">👤</div>
-                <h2>My Profile</h2>
-                <p>Choose and save your profile name for this simulator.</p>
-                <span class="btn-link">Open Profile →</span>
+                <h2 data-i18n="menu.profile">My Profile</h2>
+                <p data-i18n="menu.profileDescription">Choose and save your profile name for this simulator.</p>
+                <span class="btn-link" data-i18n="menu.openProfile">Open Profile →</span>
             </div>
 
             <div class="menu-card" onclick="scrollToInfo('about')">
                 <div class="icon">ℹ️</div>
-                <h2>About This Project</h2>
-                <p>Learn about the historical context and educational purpose of this simulator.</p>
-                <span class="btn-link">Learn More →</span>
+                <h2 data-i18n="menu.about">About This Project</h2>
+                <p data-i18n="menu.aboutDescription">Learn about the historical context and educational purpose of this simulator.</p>
+                <span class="btn-link" data-i18n="menu.learnMore">Learn More →</span>
             </div>
 
             <div class="menu-card" onclick="scrollToInfo('guide')">
                 <div class="icon">📖</div>
-                <h2>User Guide</h2>
-                <p>Instructions on how to use the calculator and interpret the results.</p>
-                <span class="btn-link">View Guide →</span>
+                <h2 data-i18n="menu.guide">User Guide</h2>
+                <p data-i18n="menu.guideDescription">Instructions on how to use the calculator and interpret the results.</p>
+                <span class="btn-link" data-i18n="menu.viewGuide">View Guide →</span>
             </div>
 
             <div class="menu-card" onclick="scrollToInfo('methodology')">
                <div class="icon">🧠</div>
-               <h2>Methodology</h2>
-               <p>Learn how trait weights, scoring matrices, indices and contribution analysis work.</p>
-               <span class="btn-link">View Methodology →</span>
+               <h2 data-i18n="menu.methodology">Methodology</h2>
+               <p data-i18n="menu.methodologyDescription">Learn how trait weights, scoring matrices, indices and contribution analysis work.</p>
+               <span class="btn-link" data-i18n="menu.viewMethodology">View Methodology →</span>
             </div>
 
             <div class="menu-card" onclick="scrollToInfo('disclaimers')">
                 <div class="icon">⚠️</div>
-                <h2>Important Disclaimers</h2>
-                <p>Critical information about what this simulator does and does not represent.</p>
-                <span class="btn-link">View Disclaimers →</span>
+                <h2 data-i18n="menu.disclaimers">Important Disclaimers</h2>
+                <p data-i18n="menu.disclaimersDescription">Critical information about what this simulator does and does not represent.</p>
+                <span class="btn-link" data-i18n="menu.viewDisclaimers">View Disclaimers →</span>
             </div>
         </div>
 
@@ -830,61 +830,13 @@
 
 
 
-    <!-- SETTINGS MODAL -->
-    <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
-    <div class="settings-modal" id="settingsModal">
-        <button class="close-settings" onclick="closeSettings()">✕</button>
-        <h2>⚙️ Settings</h2>
-        <div class="toggle-input-group">
-            <div class="toggle-label">Enable Data Reset on Site Reload</div>
-            <label class="toggle-switch" for="resetOnReloadToggle">
-                <input type="checkbox" id="resetOnReloadToggle" onchange="toggleResetOnReload(this.checked)">
-                <span class="toggle-slider"></span>
-            </label>
-            <div class="toggle-status" id="resetOnReloadStatus">Disabled</div>
-        </div>
-        <div class="toggle-input-group">
-            <div class="toggle-label">Show Developer Tools in Calculator</div>
-            <label class="toggle-switch" for="developerToolsVisibilityToggle">
-                <input type="checkbox" id="developerToolsVisibilityToggle" onchange="toggleDeveloperToolsVisibility(this.checked)">
-                <span class="toggle-slider"></span>
-            </label>
-            <div class="toggle-status" id="developerToolsVisibilityStatus">Visible</div>
-        </div>
-        <div class="color-input-group">
-            <label>Background</label>
-            <input type="color" id="bgColor" onchange="updateDarkColor('bg')">
-            <input type="text" id="bgColorText" onchange="updateDarkColorText('bg', this.value)">
-        </div>
-        <div class="color-input-group">
-            <label>Panel Background</label>
-            <input type="color" id="panelBgColor" onchange="updateDarkColor('panel-bg')">
-            <input type="text" id="panelBgColorText" onchange="updateDarkColorText('panel-bg', this.value)">
-        </div>
-        <div class="color-input-group">
-            <label>Text Color</label>
-            <input type="color" id="textColor" onchange="updateDarkColor('text')">
-            <input type="text" id="textColorText" onchange="updateDarkColorText('text', this.value)">
-        </div>
-        <div class="color-input-group">
-            <label>Text Light</label>
-            <input type="color" id="textLightColor" onchange="updateDarkColor('text-light')">
-            <input type="text" id="textLightColorText" onchange="updateDarkColorText('text-light', this.value)">
-        </div>
-        <div class="color-input-group">
-            <label>Accent Color</label>
-            <input type="color" id="accentColor" onchange="updateDarkColor('accent')">
-            <input type="text" id="accentColorText" onchange="updateDarkColorText('accent', this.value)">
-        </div>
-        <div class="color-input-group">
-            <label>Border Color</label>
-            <input type="color" id="borderColor" onchange="updateDarkColor('border')">
-            <input type="text" id="borderColorText" onchange="updateDarkColorText('border', this.value)">
-        </div>
-        <button onclick="saveDarkThemeColors()">💾 Save Theme</button>
-        <button class="reset" onclick="resetDarkThemeColors()">↻ Reset to Default</button>
-    </div>
+    <div data-settings-root></div>
 
+    <link rel="stylesheet" href="src/ui/settings.css">
+    <script src="locales/en.js"></script>
+    <script src="locales/ru.js"></script>
+    <script src="localization.js"></script>
+    <script src="src/ui/settingsView.js"></script>
     <script src="src/ui/settings.js"></script>
     <script>
 

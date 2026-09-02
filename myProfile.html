@@ -138,6 +138,21 @@
             transform: scale(1.1);
         }
 
+        .settings-btn {
+            position: absolute;
+            top: 20px;
+            right: 72px;
+            z-index: 110;
+            background: none;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+        }
+
         .quick-links {
             display: flex;
             gap: 12px;
@@ -454,6 +469,11 @@
                 right: 12px;
             }
 
+            .settings-btn {
+                top: 14px;
+                right: 64px;
+            }
+
             .profile-card {
                 padding: 18px;
             }
@@ -471,7 +491,8 @@
 
     <div class="main-container">
         <header>
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">⚙️</button>
+            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
             <h1>My Profile</h1>
             <p class="subtitle">Set your display name for this simulator</p>
             <span class="era-badge">User Information</span>
@@ -556,6 +577,12 @@
         </section>
     </div>
 
+    <div data-settings-root></div>
+    <link rel="stylesheet" href="src/ui/settings.css">
+    <script src="locales/en.js"></script>
+    <script src="locales/ru.js"></script>
+    <script src="localization.js"></script>
+    <script src="src/ui/settingsView.js"></script>
     <script src="src/ui/settings.js"></script>
     <script src="User Information/userProfile.js"></script>
     <script src="User Information/anthropometricProfiles.js"></script>
