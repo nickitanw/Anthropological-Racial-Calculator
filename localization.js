@@ -4,7 +4,7 @@
 // This module handles all text strings and translations
 
 const LOCALE = {
-    current: 'en',
+    current: localStorage.getItem('appLanguage') || 'en',
 
     strings: {
         en: {
@@ -305,6 +305,15 @@ const LOCALE = {
         console.log(`Language ${lang} added`);
     }
 };
+
+Object.entries(window.APP_LOCALES || {}).forEach(([language, strings]) => {
+    LOCALE.strings[language] = {
+        ...(LOCALE.strings[language] || {}),
+        ...strings
+    };
+});
+
+window.LOCALE = LOCALE;
 
 // Usage examples:
 // LOCALE.get('pageTitle')

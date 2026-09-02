@@ -37,6 +37,36 @@
     });
 
 }
+
+    function applyTestTranslations() {
+        if (!window.LOCALE) return;
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const value = LOCALE.get(element.dataset.i18n);
+            if (value !== element.dataset.i18n) {
+                element.textContent = value;
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(element => {
+            const value = LOCALE.get(element.dataset.i18nTitle);
+            if (value !== element.dataset.i18nTitle) {
+                element.title = value;
+                element.setAttribute('aria-label', value);
+            }
+        });
+
+        document.documentElement.lang = LOCALE.current;
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) languageSelect.value = LOCALE.current;
+    }
+
+    function changeLanguage(language) {
+        if (!window.LOCALE) return;
+        LOCALE.setLanguage(language);
+        localStorage.setItem('appLanguage', language);
+        applyTestTranslations();
+    }
     const DEFAULT_DARK_COLORS = {
         'bg': '#1a1a1a',
         'panel-bg': '#2d2d2d',
@@ -90,10 +120,7 @@
             document.body.classList.remove('dark-mode');
         }
 
-        const btn = document.getElementById('themeToggle');
-        if (btn) {
-            btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        }
+        updateThemeButtons();
 
         loadDarkThemeColors();
     }
@@ -102,12 +129,15 @@
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
 
-        const btn = document.getElementById('themeToggle');
-        if (btn) {
-            btn.innerHTML = isDarkMode ? '☀️' : '🌙';
-        }
+        updateThemeButtons();
 
         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    function updateThemeButtons() {
+        document.querySelectorAll('.theme-toggle, .settings-theme-toggle').forEach(button => {
+            button.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
     }
 
     function updateColorInputs() {
@@ -237,6 +267,10 @@
     }
 
     function openSettings() {
+        if (!document.getElementById('settingsModal') && window.renderSettingsView) {
+            renderSettingsView();
+        }
+
         const modal = document.getElementById('settingsModal');
         const overlay = document.getElementById('settingsOverlay');
         if (modal) modal.classList.add('active');
@@ -255,11 +289,13 @@
     }
 
     function initializeSettings() {
+        if (window.renderSettingsView) renderSettingsView();
         loadTheme();
         updateResetOnReloadControls();
         updateDeveloperToolsVisibilityControls();
         applyDeveloperToolsVisibility();
         initializeSettingsTabs();
+        applyTestTranslations();
     }
 
     window.DEFAULT_DARK_COLORS = DEFAULT_DARK_COLORS;
@@ -284,4 +320,5 @@
     window.openSettings = openSettings;
     window.closeSettings = closeSettings;
     window.initializeSettings = initializeSettings;
+    window.changeLanguage = changeLanguage;
 })();
