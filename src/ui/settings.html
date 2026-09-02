@@ -1,0 +1,54 @@
+<!-- SETTINGS MODAL -->
+    <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
+    <div class="settings-modal" id="settingsModal">
+        <button class="close-settings" onclick="closeSettings()">✕</button>
+        <h2>⚙️ Settings</h2>
+        <div class="toggle-input-group">
+            <div class="toggle-label">Enable Data Reset on Site Reload</div>
+            <label class="toggle-switch" for="resetOnReloadToggle">
+                <input type="checkbox" id="resetOnReloadToggle" onchange="toggleResetOnReload(this.checked)">
+                <span class="toggle-slider"></span>
+            </label>
+            <div class="toggle-status" id="resetOnReloadStatus">Disabled</div>
+        </div>
+        <div class="toggle-input-group">
+            <div class="toggle-label">Show Developer Tools</div>
+            <label class="toggle-switch" for="developerToolsVisibilityToggle">
+                <input type="checkbox" id="developerToolsVisibilityToggle" onchange="toggleDeveloperToolsVisibility(this.checked)">
+                <span class="toggle-slider"></span>
+            </label>
+            <div class="toggle-status" id="developerToolsVisibilityStatus">Hidden</div>
+        </div>
+        <div class="color-input-group">
+            <label>Background</label>
+            <input type="color" id="bgColor" onchange="updateDarkColor('bg')">
+            <input type="text" id="bgColorText" onchange="updateDarkColorText('bg', this.value)">
+        </div>
+        <div class="color-input-group">
+            <label>Panel Background</label>
+            <input type="color" id="panelBgColor" onchange="updateDarkColor('panel-bg')">
+            <input type="text" id="panelBgColorText" onchange="updateDarkColorText('panel-bg', this.value)">
+        </div>
+        <div class="color-input-group">
+            <label>Text Color</label>
+            <input type="color" id="textColor" onchange="updateDarkColor('text')">
+            <input type="text" id="textColorText" onchange="updateDarkColorText('text', this.value)">
+        </div>
+        <div class="color-input-group">
+            <label>Text Light</label>
+            <input type="color" id="textLightColor" onchange="updateDarkColor('text-light')">
+            <input type="text" id="textLightColorText" onchange="updateDarkColorText('text-light', this.value)">
+        </div>
+        <div class="color-input-group">
+            <label>Accent Color</label>
+            <input type="color" id="accentColor" onchange="updateDarkColor('accent')">
+            <input type="text" id="accentColorText" onchange="updateDarkColorText('accent', this.value)">
+        </div>
+        <div class="color-input-group">
+            <label>Border Color</label>
+            <input type="color" id="borderColor" onchange="updateDarkColor('border')">
+            <input type="text" id="borderColorText" onchange="updateDarkColorText('border', this.value)">
+        </div>
+        <button onclick="saveDarkThemeColors()">💾 Save Theme</button>
+        <button class="reset" onclick="resetDarkThemeColors()">↻ Reset to Default</button>
+    </div>

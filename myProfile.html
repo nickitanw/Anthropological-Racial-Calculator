@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Anthropometric Reconstruction Simulator - My Profile</title>
+    <style>
+        :root {
+            --bg: #f5f0e8;
+            --panel-bg: #fafaf7;
+            --border: #c4b998;
+            --text: #2c2416;
+            --text-light: #5c5240;
+            --accent: #6b4c3b;
+            --accent-light: #8b6d5c;
+            --highlight: #d4a853;
+            --warning-bg: #fdf6e3;
+            --warning-border: #c4a44a;
+            --success-bg: #eaf4e4;
+            --success-text: #2f5b2c;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --radius: 6px;
+        }
+
+        body.dark-mode {
+            --bg: #111214;
+            --panel-bg: #1b1d21;
+            --border: #3b4048;
+            --text: #f2f4f8;
+            --text-light: #b4bcc8;
+            --accent: #d1a64a;
+            --accent-light: #e4c06a;
+            --highlight: #f0cf67;
+            --warning-bg: #2a2412;
+            --warning-border: #8a6b1f;
+            --success-bg: #203324;
+            --success-text: #c7e8c2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(180, 160, 120, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 90%, rgba(160, 140, 100, 0.1) 0%, transparent 60%);
+        }
+
+        .disclaimer-banner {
+            background: #8b0000;
+            color: #ffe0e0;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 0.03em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+            border-bottom: 3px solid #600;
+        }
+
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 24px 60px;
+        }
+
+        header {
+            text-align: center;
+            padding: 36px 20px;
+            border-bottom: 3px double var(--border);
+            margin-bottom: 26px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            letter-spacing: 0.04em;
+            color: #3a2a18;
+            margin-bottom: 8px;
+            font-variant: small-caps;
+        }
+
+        body.dark-mode header h1 {
+            color: #f4f6fa;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+            letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+
+        header .era-badge {
+            display: inline-block;
+            background: #f0e6d3;
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: #5c3d2e;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: var(--bg);
+            transform: scale(1.1);
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .quick-link {
+            text-decoration: none;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            background: var(--panel-bg);
+        }
+
+        .quick-link:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .disclaimer-inline {
+            background: var(--warning-bg);
+            border: 2px solid var(--warning-border);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            margin: 18px 0 24px;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: bold;
+            color: #6b4c00;
+            letter-spacing: 0.02em;
+        }
+
+        body.dark-mode .disclaimer-inline {
+            color: #f0cf67;
+        }
+
+        .profile-card {
+            background: var(--panel-bg);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 18px;
+        }
+
+        .profile-card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            color: #3a2a18;
+        }
+
+        body.dark-mode .profile-card h2 {
+            color: #f4f6fa;
+        }
+
+        .profile-card p {
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .field-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .field-row input {
+            flex: 1;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 1rem;
+            color: var(--text);
+            background: #ffffff;
+            font-family: inherit;
+        }
+
+        body.dark-mode .field-row input {
+            background: #121418;
+            color: var(--text);
+            border-color: #4a525e;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .actions button {
+            border: 1px solid var(--border);
+            background: #f2ede2;
+            color: #3d3020;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .actions button.primary {
+            background: var(--accent);
+            color: #fefdf9;
+            border-color: transparent;
+        }
+
+        .actions button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .actions button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        body.dark-mode .actions button {
+            background: #20252c;
+            color: #f3f5f8;
+            border-color: #49535f;
+        }
+
+        body.dark-mode .actions button.primary {
+            background: var(--accent);
+            color: #111214;
+        }
+
+        #saveStatus {
+            min-height: 24px;
+            margin-top: 12px;
+            font-size: 0.92rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        #saveStatus.success {
+            color: var(--success-text);
+            background: var(--success-bg);
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+        }
+
+        #saveStatus.error,
+        #libraryStatus.error {
+            color: #a0382b;
+        }
+
+        #currentName {
+            margin-top: 18px;
+            padding: 12px;
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            background: #fffdf8;
+            color: #5c4636;
+            font-style: italic;
+        }
+
+        body.dark-mode #currentName {
+            background: #171a1f;
+            color: #d5deea;
+            border-color: #49535f;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 14px;
+            align-items: start;
+        }
+
+        .upload-controls,
+        .profile-values {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            background: #fffdf8;
+        }
+
+        body.dark-mode .upload-controls,
+        body.dark-mode .profile-values {
+            background: #171a1f;
+            border-color: #49535f;
+        }
+
+        .upload-controls label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .upload-controls input[type="text"],
+        .upload-controls input[type="file"] {
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            background: #ffffff;
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        body.dark-mode .upload-controls input[type="text"],
+        body.dark-mode .upload-controls input[type="file"] {
+            background: #121418;
+            border-color: #4a525e;
+        }
+
+        .profile-list {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 280px;
+            overflow: auto;
+            padding-right: 4px;
+        }
+
+        .profile-item {
+            width: 100%;
+            text-align: left;
+            border: 1px solid var(--border);
+            background: var(--panel-bg);
+            color: var(--text);
+            border-radius: 6px;
+            padding: 8px 10px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .profile-item.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(107, 76, 59, 0.16);
+        }
+
+        .profile-item .meta {
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+
+        .profile-values h3 {
+            margin-bottom: 8px;
+        }
+
+        #profileSourceDetails {
+            margin-top: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        #profileSourceDetails summary {
+            cursor: pointer;
+            padding: 8px 10px;
+            font-weight: bold;
+        }
+
+        #profileSourceOutput {
+            border-top: 1px dashed var(--border);
+            margin: 0;
+            padding: 10px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 280px;
+            overflow: auto;
+            font-size: 0.88rem;
+        }
+
+        body.dark-mode #profileSourceDetails {
+            background: #101217;
+            border-color: #49535f;
+        }
+
+        body.dark-mode #profileSourceOutput {
+            border-top-color: #49535f;
+        }
+
+        #libraryStatus {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            min-height: 22px;
+        }
+
+        @media (max-width: 640px) {
+            .main-container {
+                padding: 16px 14px 44px;
+            }
+
+            header {
+                padding: 26px 12px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .theme-toggle {
+                top: 14px;
+                right: 12px;
+            }
+
+            .profile-card {
+                padding: 18px;
+            }
+
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="disclaimer-banner">
+        <strong>HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> - Educational and historical reference only.
+    </div>
+
+    <div class="main-container">
+        <header>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+            <h1>My Profile</h1>
+            <p class="subtitle">Set your display name for this simulator</p>
+            <span class="era-badge">User Information</span>
+        </header>
+
+        <div class="quick-links">
+            <a class="quick-link" href="index.html">Main Menu</a>
+            <a class="quick-link" href="raceResCalc.html">Calculator</a>
+        </div>
+
+        <div class="disclaimer-inline">
+            Profile names are stored locally in your browser on this device.
+        </div>
+
+        <section class="profile-card">
+            <h2>Choose Your Name</h2>
+            <p>Enter the name you want to use in the app. You can update it any time.</p>
+
+            <div class="field-row">
+                <input id="profileNameInput" type="text" maxlength="60" placeholder="Enter your name">
+            </div>
+
+            <div class="actions">
+                <button class="primary" onclick="saveName()">Save Name</button>
+                <button onclick="clearName()">Clear Name</button>
+            </div>
+
+            <div id="saveStatus"></div>
+            <div id="currentName">No saved name yet.</div>
+        </section>
+
+        <section class="profile-card">
+            <h2>Anthropometric Profile Library</h2>
+            <p>Upload a JS profile file, assign a name, then click it in the library to view all values.</p>
+
+            <div class="upload-grid">
+                <div class="upload-controls">
+                    <label for="uploadProfileName">Library Name</label>
+                    <input id="uploadProfileName" type="text" maxlength="80" placeholder="Example: My 1912 Baseline">
+
+                    <label for="profileFileInput">Profile File (.js)</label>
+                    <input id="profileFileInput" type="file" accept=".js,text/javascript,application/javascript">
+
+                    <div class="actions">
+                        <button onclick="connectProfilesFolder()">Connect Profiles Folder</button>
+                        <button class="primary" onclick="uploadAnthropometricProfile()">Upload Profile</button>
+                    </div>
+
+                    <div id="profilesFolderStatus" class="meta" style="margin-top: 8px;"></div>
+
+                    <div id="libraryStatus"></div>
+
+                    <div class="profile-list" id="profileList"></div>
+                </div>
+
+                <div class="profile-values">
+                    <h3 id="selectedProfileTitle">Select a profile</h3>
+                    <details id="profileSourceDetails">
+                        <summary>Show Profile JavaScript</summary>
+                        <pre id="profileSourceOutput">Select a profile to preview JavaScript.</pre>
+                    </details>
+                    <div class="actions" style="margin-top: 10px;">
+                        <button class="primary" id="openInCalculatorBtn" onclick="openSelectedProfileInCalculator()">Open In Calculator</button>
+                        <button id="renameProfileBtn" onclick="openRenameDialog()">Rename</button>
+                        <button id="deleteProfileBtn" onclick="deleteSelectedProfile()">Delete Profile</button>
+                    </div>
+
+                    <!-- Rename inline dialog -->
+                    <div id="renameDialog" style="display:none; margin-top: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--panel-bg);">
+                        <label style="display:block; font-weight:bold; margin-bottom:6px;" for="renameInput">New profile name</label>
+                        <input id="renameInput" type="text" maxlength="80" placeholder="Enter new name"
+                            style="width:100%; border:1px solid var(--border); border-radius:6px; padding:8px 10px; font-family:inherit; font-size:0.95rem; background:var(--panel-bg); color:var(--text); margin-bottom:8px;"
+                            onkeydown="if(event.key==='Enter'){confirmRename();} if(event.key==='Escape'){closeRenameDialog();}">
+                        <div id="renameError" style="min-height:18px; margin-bottom:8px; color:#a0382b; font-size:0.88rem; font-weight:bold;"></div>
+                        <div class="actions">
+                            <button class="primary" onclick="confirmRename()">Save Name</button>
+                            <button onclick="closeRenameDialog()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="src/ui/settings.js"></script>
+    <script src="User Information/userProfile.js"></script>
+    <script src="User Information/anthropometricProfiles.js"></script>
+    <script>
+        let selectedLibraryProfileId = '';
+
+        function updateCurrentNameView() {
+            const name = getProfileName();
+            const currentName = document.getElementById('currentName');
+
+            if (name) {
+                currentName.textContent = `Saved name: ${name}`;
+            } else {
+                currentName.textContent = 'No saved name yet.';
+            }
+        }
+
+        function setStatus(message, isSuccess) {
+            const status = document.getElementById('saveStatus');
+            status.textContent = message;
+            status.classList.remove('success', 'error');
+            status.classList.add(isSuccess ? 'success' : 'error');
+        }
+
+        function setLibraryStatus(message, isSuccess) {
+            const status = document.getElementById('libraryStatus');
+            status.textContent = message;
+            status.classList.remove('success', 'error');
+            status.classList.add(isSuccess ? 'success' : 'error');
+        }
+
+        function setProfilesFolderStatus(message, isSuccess) {
+            const status = document.getElementById('profilesFolderStatus');
+            if (!status) return;
+
+            status.textContent = message;
+            status.style.color = isSuccess ? 'var(--success-text)' : '#a0382b';
+            status.style.fontWeight = 'bold';
+        }
+
+        async function refreshProfilesFolderStatus() {
+            if (typeof getProfilesDirectoryStatus !== 'function') {
+                setProfilesFolderStatus('Profiles folder integration is unavailable.', false);
+                return;
+            }
+
+            const status = await getProfilesDirectoryStatus();
+            if (!status.supported) {
+                setProfilesFolderStatus('Folder access is not supported in this browser context.', false);
+                return;
+            }
+
+            if (status.connected) {
+                setProfilesFolderStatus('Connected: User Information/Profiles', true);
+            } else {
+                setProfilesFolderStatus('Not connected. Click Connect Profiles Folder.', false);
+            }
+        }
+
+        async function connectProfilesFolder() {
+            if (typeof connectProfilesDirectory !== 'function') {
+                setProfilesFolderStatus('Profiles folder integration is unavailable.', false);
+                return;
+            }
+
+            try {
+                await connectProfilesDirectory();
+                await refreshProfilesFolderStatus();
+                setLibraryStatus('Profiles folder connected.', true);
+            } catch (error) {
+                setProfilesFolderStatus(error.message || 'Unable to connect folder.', false);
+            }
+        }
+
+        function saveName() {
+            const input = document.getElementById('profileNameInput');
+            const saved = saveProfileName(input.value);
+
+            if (saved) {
+                input.value = saved;
+                setStatus('Name saved successfully.', true);
+            } else {
+                setStatus('Please enter a name before saving.', false);
+            }
+
+            updateCurrentNameView();
+        }
+
+        function clearName() {
+            clearProfileName();
+            document.getElementById('profileNameInput').value = '';
+            setStatus('Saved name cleared.', true);
+            updateCurrentNameView();
+        }
+
+        function readFileAsText(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => resolve(event.target.result || '');
+                reader.onerror = () => reject(new Error('Failed to read file.'));
+                reader.readAsText(file);
+            });
+        }
+
+        function renderSelectedProfileValues(profile) {
+            const title = document.getElementById('selectedProfileTitle');
+            const sourceOutput = document.getElementById('profileSourceOutput');
+            const sourceDetails = document.getElementById('profileSourceDetails');
+            const openButton = document.getElementById('openInCalculatorBtn');
+            const renameButton = document.getElementById('renameProfileBtn');
+            const deleteButton = document.getElementById('deleteProfileBtn');
+
+            closeRenameDialog();
+
+            if (!profile) {
+                title.textContent = 'Select a profile';
+                sourceOutput.textContent = 'Select a profile to preview JavaScript.';
+                sourceDetails.open = false;
+                openButton.disabled = true;
+                renameButton.disabled = true;
+                deleteButton.disabled = true;
+                return;
+            }
+
+            title.textContent = `${profile.name} (${profile.storagePath || profile.sourceFileName || 'Manual source'})`;
+            sourceOutput.textContent = `module.exports = ${JSON.stringify(profile.data, null, 2)};`;
+            openButton.disabled = false;
+            renameButton.disabled = false;
+            deleteButton.disabled = false;
+        }
+
+        function selectLibraryProfile(profileId) {
+            selectedLibraryProfileId = profileId;
+            const profile = getAnthropometricProfileById(profileId);
+            renderLibraryList();
+            renderSelectedProfileValues(profile);
+        }
+
+        function renderLibraryList() {
+            const list = document.getElementById('profileList');
+            const profiles = getAnthropometricProfiles();
+
+            if (!profiles.length) {
+                list.innerHTML = '<div class="meta">No uploaded profiles yet.</div>';
+                renderSelectedProfileValues(null);
+                return;
+            }
+
+            const html = profiles.map((profile) => {
+                const isActive = profile.id === selectedLibraryProfileId;
+                const uploadedDate = profile.uploadedAt ? new Date(profile.uploadedAt).toLocaleString() : 'Unknown date';
+                const activeClass = isActive ? 'active' : '';
+                return `<button class="profile-item ${activeClass}" onclick="selectLibraryProfile('${profile.id}')">
+                    <div><strong>${profile.name}</strong></div>
+                    <div class="meta">${profile.storagePath || profile.sourceFileName || 'Inline source'} · ${uploadedDate}</div>
+                </button>`;
+            }).reverse().join('');
+
+            list.innerHTML = html;
+        }
+
+        async function uploadAnthropometricProfile() {
+            const nameInput = document.getElementById('uploadProfileName');
+            const fileInput = document.getElementById('profileFileInput');
+            const file = fileInput.files && fileInput.files[0];
+
+            if (!nameInput.value.trim()) {
+                setLibraryStatus('Please provide a name for this uploaded profile.', false);
+                return;
+            }
+
+            if (!file) {
+                setLibraryStatus('Please choose a JS profile file to upload.', false);
+                return;
+            }
+
+            try {
+                const source = await readFileAsText(file);
+                const saved = await saveNamedAnthropometricProfile(nameInput.value, source, file.name);
+
+                setLibraryStatus('Profile uploaded and saved in your local library.', true);
+                nameInput.value = '';
+                fileInput.value = '';
+                selectedLibraryProfileId = saved.id;
+                renderLibraryList();
+                renderSelectedProfileValues(saved);
+            } catch (error) {
+                setLibraryStatus(error.message || 'Upload failed.', false);
+            }
+        }
+
+        function openSelectedProfileInCalculator() {
+            if (!selectedLibraryProfileId) {
+                setLibraryStatus('Select a profile first.', false);
+                return;
+            }
+
+            const selected = getAnthropometricProfileById(selectedLibraryProfileId);
+            if (!selected || !selected.data) {
+                alert('Problem opening the imported profile.');
+                return;
+            }
+
+            try {
+                queueProfileForCalculator(selected.data);
+                window.location.href = 'raceResCalc.html';
+            } catch (error) {
+                alert('Problem opening the imported profile.');
+            }
+        }
+
+        function openRenameDialog() {
+            if (!selectedLibraryProfileId) return;
+            const profile = getAnthropometricProfileById(selectedLibraryProfileId);
+            if (!profile) return;
+
+            const input = document.getElementById('renameInput');
+            const error = document.getElementById('renameError');
+            const dialog = document.getElementById('renameDialog');
+
+            if (error) error.textContent = '';
+            if (input) { input.value = profile.name; input.select(); }
+            if (dialog) dialog.style.display = 'block';
+        }
+
+        function closeRenameDialog() {
+            const dialog = document.getElementById('renameDialog');
+            if (dialog) dialog.style.display = 'none';
+            const error = document.getElementById('renameError');
+            if (error) error.textContent = '';
+        }
+
+        async function confirmRename() {
+            const input = document.getElementById('renameInput');
+            const error = document.getElementById('renameError');
+            const newName = input ? input.value.trim() : '';
+
+            if (!newName) {
+                if (error) error.textContent = 'Please enter a name.';
+                return;
+            }
+
+            try {
+                const updated = await renameAnthropometricProfile(selectedLibraryProfileId, newName);
+                closeRenameDialog();
+                renderLibraryList();
+                renderSelectedProfileValues(updated);
+                setLibraryStatus(`Profile renamed to "${updated.name}".`, true);
+            } catch (err) {
+                if (error) error.textContent = err.message || 'Rename failed.';
+            }
+        }
+
+        async function deleteSelectedProfile() {
+            if (!selectedLibraryProfileId) {
+                setLibraryStatus('Select a profile first.', false);
+                return;
+            }
+
+            const selected = getAnthropometricProfileById(selectedLibraryProfileId);
+            if (!selected) {
+                setLibraryStatus('Selected profile was not found.', false);
+                return;
+            }
+
+            if (!confirm(`Delete profile "${selected.name}"?`)) {
+                return;
+            }
+
+            await removeAnthropometricProfile(selectedLibraryProfileId);
+            selectedLibraryProfileId = '';
+            renderLibraryList();
+            renderSelectedProfileValues(null);
+            setLibraryStatus('Profile deleted.', true);
+        }
+
+        async function init() {
+            initializeSettings();
+            const input = document.getElementById('profileNameInput');
+            input.value = getProfileName();
+            updateCurrentNameView();
+            renderLibraryList();
+            renderSelectedProfileValues(null);
+            await refreshProfilesFolderStatus();
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    saveName();
+                }
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>

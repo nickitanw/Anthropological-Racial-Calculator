@@ -1,0 +1,853 @@
+{
+            id: 'cranialVaultHeight',
+            number: 27,
+            weightClass: 'A',
+            customWeightClasses: {
+                hallstatt: 'A+',
+                eastNordic: 'A+',
+                tronder: 'A+',
+            },
+            title: 'Cranial Vault Height',
+            definition: 'Vertical height of the cranial vault measured from the cranial base to the vertex.',
+            measurement: 'Visual assessment of cranial vault height.',
+            unit: 'Categorical',
+            guideImage: 'cranial-vault-height.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'veryLow', label: 'Very Low',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: 2,
+                        tronder: -8,
+                        
+                                eastBaltic: -8,
+                        
+                                ladogan: -8,
+                        
+                                slavic: -8,
+                        
+                                alpine: -8,
+                        
+                                dinaric: -8,
+                        
+                                mediterranean: -8,
+                        
+                                nearEastern: -8,
+                        
+                                northAsian: 4,
+                        centralAsian: 2,
+                        
+                                eastAsian: 4,
+                        
+                                malay: 2,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: -8,
+                        
+                                amerindian: -8,
+                    } },
+                { value: 'low', label: 'Low',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: 6,
+                        tronder: -2,
+                        
+                                eastBaltic: 1,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -8,
+                        
+                                mediterranean: 2,
+                        
+                                nearEastern: 2,
+                        
+                                northAsian: 6,
+                        centralAsian: 2,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'average', label: 'Average',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 2,
+                        
+                                eastBaltic: 4,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 6,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: 4,
+                        
+                                nearEastern: 2,
+                        
+                                northAsian: 2,
+                        centralAsian: 2,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 4,
+                        
+                                subSaharan: 4,
+                        
+                                ethiopian: 4,
+                        
+                                amerindian: 4,
+                    } },
+                { value: 'high', label: 'High',
+                    contributions: {
+                        hallstatt: 6,
+                        eastNordic: -8,
+                        tronder: 6,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: -2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 6,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 2,
+                        armenoid: 2,
+                        
+                                northAsian: -8,
+                        centralAsian: 2,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'veryHigh', label: 'Very High',
+                    contributions: {
+                        hallstatt: 8,
+                        eastNordic: 3,
+                        tronder: 4,
+
+                        
+                                eastBaltic: -8,
+                        
+                                ladogan: -8,
+                        
+                                slavic: -8,
+                        
+                                alpine: -8,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: -8,
+                        
+                                nearEastern: -8,
+                        
+                                northAsian: -8,
+                        centralAsian: -8,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: -8,
+                        
+                                amerindian: -8,
+                    } },
+            ]
+        }, {
+            id: 'faceHeight',
+            number: 28,
+            weightClass: 'B',
+            title: 'Face Height',
+            definition: 'Vertical height of the face measured from the base of the nose to the chin.',
+            measurement: 'Visual assessment of face height.',
+            unit: 'Categorical',
+            guideImage: 'face-height.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'low', label: 'Low',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: -8,
+                        tronder: -8,
+                        
+                                eastBaltic: -2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 1,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -8,
+                        
+                                mediterranean: -2,
+                        
+                                nearEastern: -2,
+                        
+                                northAsian: 4,
+                        centralAsian: 2,
+                        
+                                eastAsian: 4,
+                        
+                                malay: 6,
+                        
+                                subSaharan: -2,
+                        
+                                ethiopian: -8,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'average', label: 'Average',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 2,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 6,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 2,
+                        westernMediterranean: 4,
+                        centralMediterranean: 6,
+                        easternMediterranean: 6,
+                        southernMediterranean: 2,
+                        levantine: 6,
+                        iranoAfghan: 2,
+                        armenoid: 2,
+                        
+                                northAsian: 2,
+                        centralAsian: 6,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 4,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 4,
+                    } },
+                { value: 'high', label: 'High',
+                    contributions: {
+                        hallstatt: 6,
+                        eastNordic: 6,
+                        tronder: 8,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        northernSlavic: 2,
+                        centralSlavic: 2,
+                        ponticSlavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 8,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 6,
+                        armenoid: 6,
+                        
+                                northAsian: -2,
+                        centralAsian: 2,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: -2,
+                    } },
+            ]
+        }, {
+            id: 'facialRobustness',
+            number: 29,
+            weightClass: 'B+',
+            title: 'Facial Robustness',
+            definition: 'Assessment of the robustness of facial features, including the prominence of the brow ridge, cheekbones, and jaw.',
+            measurement: 'Visual assessment of facial robustness.',
+            unit: 'Categorical',
+            guideImage: 'facial-robustness.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'veryGracile', label: 'Very Gracile',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: -2,
+                        
+                                eastBaltic: -2,
+                        
+                                ladogan: -2,
+                        
+                                slavic: 2,
+                        
+                                alpine: -2,
+                        
+                                dinaric: -2,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 2,
+                        armenoid: -2,
+                        
+                                northAsian: -8,
+                        centralAsian: -8,
+                        
+                                eastAsian: -2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: -2,
+                    } },
+                { value: 'gracile', label: 'Gracile',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: -2,
+                        
+                                eastBaltic: -2,
+                        
+                                ladogan: -2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -2,
+                        westernMediterranean: 6,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 6,
+                        levantine: 6,
+                        iranoAfghan: 2,
+                        armenoid: -2,
+                        
+                                northAsian: -8,
+                        centralAsian: -8,
+                        
+                                eastAsian: -2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: -2,
+                    } },
+                { value: 'moderate', label: 'Moderate',
+                    contributions: {
+                        hallstatt: 6,
+                        eastNordic: 6,
+                        tronder: 2,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 6,
+                        
+                                alpine: 6,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: 4,
+                        
+                                nearEastern: 4,
+                        
+                                northAsian: 2,
+                        centralAsian: 2,
+                        
+                                eastAsian: 6,
+                        
+                                malay: 6,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 6,
+                        
+                                amerindian: 6,
+                    } },
+                { value: 'robust', label: 'Robust',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 6,
+                        
+                                eastBaltic: 6,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 6,
+                        westernMediterranean: -2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: -2,
+                        levantine: -2,
+                        iranoAfghan: 2,
+                        armenoid: 4,
+                        
+                                northAsian: 6,
+                        centralAsian: 6,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'veryRobust', label: 'Very Robust',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: -2,
+                        tronder: 2,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: -8,
+                        
+                                alpine: -8,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: -8,
+                        
+                                nearEastern: -8,
+                        
+                                northAsian: 2,
+                        centralAsian: 2,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: -8,
+                        
+                                amerindian: 1,
+                    } },
+            ]
+        }, {
+            id: 'jawRobustness',
+            number: 30,
+            weightClass: 'A',
+            title: 'Jaw Robustness',
+            definition: 'Assessment of the robustness of the jaw, including the prominence and strength of the jawline.',
+            measurement: 'Visual assessment of jaw robustness.',
+            unit: 'Categorical',
+            guideImage: 'jaw-robustness.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'gracile', label: 'Gracile',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: -2,
+                        
+                                eastBaltic: -2,
+                        
+                                ladogan: -2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -2,
+                        westernMediterranean: 6,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 6,
+                        levantine: 6,
+                        iranoAfghan: 2,
+                        armenoid: -2,
+                        
+                                northAsian: -8,
+                        centralAsian: -8,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: -8,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'moderate', label: 'Moderate',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 2,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 6,
+                        
+                                alpine: 6,
+                        
+                                dinaric: 2,
+                        westernMediterranean: 2,
+                        centralMediterranean: 6,
+                        easternMediterranean: 6,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 4,
+                        armenoid: 2,
+                        
+                                northAsian: 2,
+                        centralAsian: 2,
+                        
+                                eastAsian: 6,
+                        
+                                malay: 6,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 6,
+                        
+                                amerindian: 6,
+                    } },
+                { value: 'robust', label: 'Robust',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 6,
+                        
+                                eastBaltic: 6,
+                        
+                                ladogan: 6,
+                        northernSlavic: 2,
+                        centralSlavic: 2,
+                        ponticSlavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 6,
+                        westernMediterranean: -2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: -2,
+                        levantine: -2,
+                        iranoAfghan: -2,
+                        armenoid: 4,
+                        
+                                northAsian: 6,
+                        centralAsian: 6,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: -2,
+                        
+                                amerindian: 2,
+                    } },
+            ]
+        }, {
+            id: 'chinHeight',
+            number: 31,
+            weightClass: 'A',
+            title: 'Chin Height',
+            definition: 'Assessment of the vertical height of the chin, measured from the base of the lower lip to the bottom of the chin.',
+            measurement: 'Visual assessment of chin height.',
+            unit: 'Categorical',
+            guideImage: 'chin-height.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'short', label: 'Short',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: -8,
+                        tronder: -8,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -8,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 2,
+                        armenoid: 2,
+                        
+                                northAsian: 2,
+                        centralAsian: 2,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 1,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'average', label: 'Average',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 2,
+                        
+                                eastBaltic: 4,
+                        
+                                ladogan: 4,
+                        
+                                slavic: 6,
+                        
+                                alpine: 6,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: 4,
+                        
+                                nearEastern: 4,
+                        
+                                northAsian: 4,
+                        centralAsian: 6,
+                        
+                                eastAsian: 6,
+                        
+                                malay: 6,
+                        
+                                subSaharan: 4,
+                        
+                                ethiopian: 6,
+                        
+                                amerindian: 6,
+                    } },
+                { value: 'long', label: 'Long',
+                    contributions: {
+                        hallstatt: 6,
+                        eastNordic: 6,
+                        tronder: 6,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: -8,
+                        
+                                slavic: -2,
+                        
+                                alpine: -2,
+                        
+                                dinaric: 6,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: 2,
+                        iranoAfghan: 6,
+                        armenoid: 6,
+                        
+                                northAsian: -2,
+                        centralAsian: -2,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: -2,
+                    } },
+            ]
+        }, {
+            id: 'noseHeight',
+            number: 32,
+            weightClass: 'A',
+            title: 'Nose Height',
+            definition: 'Assessment of the vertical height of the nose, measured from the base to the bridge of the nose.',
+            measurement: 'Visual assessment of nose height.',
+            unit: 'Categorical',
+            guideImage: 'nose-height.png',
+            type: 'select',
+            options: [
+                { value: '', label: '— Select —', contributions: {} },
+                { value: 'short', label: 'Short',
+                    contributions: {
+                        hallstatt: -8,
+                        eastNordic: -8,
+                        tronder: -8,
+                        
+                                eastBaltic: 2,
+                        
+                                ladogan: 6,
+                        northernSlavic: 2,
+                        centralSlavic: 6,
+                        ponticSlavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: -8,
+                        westernMediterranean: 2,
+                        centralMediterranean: 2,
+                        easternMediterranean: 2,
+                        southernMediterranean: 2,
+                        levantine: -2,
+                        iranoAfghan: -8,
+                        armenoid: -8,
+                        
+                                northAsian: 6,
+                        centralAsian: 2,
+                        
+                                eastAsian: 6,
+                        
+                                malay: 6,
+                        
+                                subSaharan: 6,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+                { value: 'average', label: 'Average',
+                    contributions: {
+                        hallstatt: 2,
+                        eastNordic: 2,
+                        tronder: 2,
+                        
+                                eastBaltic: 4,
+                        
+                                ladogan: 2,
+                        
+                                slavic: 6,
+                        
+                                alpine: 6,
+                        
+                                dinaric: 2,
+                        
+                                mediterranean: 4,
+                        
+                                nearEastern: 2,
+                        
+                                northAsian: 2,
+                        centralAsian: 4,
+                        
+                                eastAsian: 2,
+                        
+                                malay: 2,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 4,
+                    } },
+                { value: 'long', label: 'Long',
+                    contributions: {
+                        hallstatt: 6,
+                        eastNordic: 6,
+                        tronder: 6,
+                        
+                                eastBaltic: -2,
+                        
+                                ladogan: -8,
+                        
+                                slavic: 2,
+                        
+                                alpine: 2,
+                        
+                                dinaric: 6,
+                        westernMediterranean: 4,
+                        centralMediterranean: 2,
+                        easternMediterranean: 4,
+                        southernMediterranean: 2,
+                        levantine: 4,
+                        iranoAfghan: 8,
+                        armenoid: 8,
+                        
+                                northAsian: -8,
+                        centralAsian: 2,
+                        
+                                eastAsian: -8,
+                        
+                                malay: -8,
+                        
+                                subSaharan: 2,
+                        
+                                ethiopian: 2,
+                        
+                                amerindian: 2,
+                    } },
+            ]
+        },
