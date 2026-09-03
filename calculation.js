@@ -17,6 +17,9 @@ const TEST_PRESETS = {
     dinaric: {},
     mediterranean: {},
     nearEastern: {},
+    northCaucasian: {},
+    caucasion: {},
+    caspian: {},
     eastAsian: {},
     mongolian: {},
     malay: {},
@@ -49,6 +52,7 @@ Object.keys(TEST_PRESETS).forEach(type => {
                 dinaric: '#8b4a6b',
                 mediterranean: '#9f6b3b',
                 nearEastern: '#9f5a3b',
+                northCaucasian: '#3d6828',
                 asian: '#9f6b4a',
                 african: '#8b5a2a'
             };
@@ -71,6 +75,8 @@ Object.keys(TEST_PRESETS).forEach(type => {
                 levantine: '#9f5a3b',
                 iranoAfghan: '#b56d47',
                 armenoid: '#84452c',
+                caucasion: '#2a5511',
+                caspian: '#4c9a43',
                 northAsian: '#8d6847',
                 centralAsian: '#aa8050',
                 eastAsian: '#9f6b4a',

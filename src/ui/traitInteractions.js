@@ -128,13 +128,15 @@ function handleMeasurementInput(traitId) {
 function generatePreviewHTML(contributions) {
     if (!contributions || Object.keys(contributions).length === 0) return '';
     const items = [];
-    for (const [key, val] of Object.entries(contributions)) {
-        if (val !== 0) {
+    Object.entries(contributions)
+        .filter(([, value]) => value !== 0)
+        .map(([key, value], originalIndex) => ({ key, value, originalIndex }))
+        .sort((left, right) => right.value - left.value || left.originalIndex - right.originalIndex)
+        .forEach(({ key, value }) => {
             const typeName = getSubtypeName(key);
-            const cls = val > 0 ? 'pos' : 'neg';
-            const sign = val > 0 ? '+' : '';
-            items.push(`<span class="${cls}">${typeName}: ${sign}${val}</span>`);
-        }
-    }
+            const cls = value > 0 ? 'pos' : 'neg';
+            const sign = value > 0 ? '+' : '';
+            items.push(`<span class="${cls}">${typeName}: ${sign}${value}</span>`);
+        });
     return items.join(' ');
 }

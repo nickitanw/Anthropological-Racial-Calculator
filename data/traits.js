@@ -31,7 +31,9 @@
             options: [
                 { value: '', label: '— Select Eye Color —', contributions: {} },
                 { value: 'veryLightBlue', label: 'Very Light Blue (Martin 1)', 
-                    contributions: { 
+                    contributions: {
+                                caucasion: -7,
+                                caspian: -7, 
                         hallstatt: 8,eastNordic: +5,tronder: +3, 
                         
                                 ladogan: +5, 
@@ -58,7 +60,9 @@
 
                 },
                 { value: 'lightBlue', label: 'Light Blue (Martin 2-3)',
-                    contributions: { hallstatt: 7,eastNordic: +6,tronder: +4, 
+                    contributions: {
+                                caucasion: -4,
+                                caspian: -3.5, hallstatt: 7,eastNordic: +6,tronder: +4, 
                         
                                 ladogan: +5, 
                         northernSlavic: +4, centralSlavic: +3, ponticSlavic: -1, 
@@ -78,7 +82,9 @@
                                 alpine: -1, 
                                 dinaric: 0 } },
                 { value: 'grey', label: 'Grey (Martin 4)',
-                    contributions: { hallstatt: +3,eastNordic: +4,tronder: +3, 
+                    contributions: {
+                                caucasion: -1,
+                                caspian: 0, hallstatt: +3,eastNordic: +4,tronder: +3, 
                         
                                 ladogan: +5, 
                         northernSlavic: +5, centralSlavic: +3, ponticSlavic: +1, 
@@ -98,7 +104,9 @@
                                 alpine: 0, 
                                 dinaric: 0 } },
                 { value: 'greyGreen', label: 'Grey-Green (Martin 5-6)',
-                    contributions: { hallstatt: +2,eastNordic: +3,tronder: +2, 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 2, hallstatt: +2,eastNordic: +3,tronder: +2, 
                         
                                 ladogan: +3, 
                         northernSlavic: +3, centralSlavic: +4, ponticSlavic: +3, 
@@ -118,7 +126,9 @@
                                 alpine: +3, 
                                 dinaric: +2 } },
                 { value: 'green', label: 'Green (Martin 7-8)',
-                    contributions: { hallstatt: 0,eastNordic: +1,tronder: +2, 
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 2, hallstatt: 0,eastNordic: +1,tronder: +2, 
                         
                                 ladogan: +1, 
                         northernSlavic: +2, centralSlavic: +3, ponticSlavic: +3, 
@@ -138,7 +148,9 @@
                                 alpine: +3, 
                                 dinaric: +2 } },
                 { value: 'hazel', label: 'Hazel (Martin 9-10)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 1.5,
+                                caspian: 2.5,   
                                 nordic: -2, 
                                 ladogan: -1, 
                                 eastBaltic: 0, 
@@ -157,7 +169,9 @@
                                 subSaharan: 0, 
                                 amerindian: +1 } },
                 { value: 'lightBrown', label: 'Light Brown (Martin 11)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 4,
+                                caspian: 4,   
                                 nordic: -4, 
                                 ladogan: -3, 
                                 eastBaltic: -2, 
@@ -177,7 +191,9 @@
                                 ethiopian: +2, 
                                 subSaharan: +1,} },
                 { value: 'mediumBrown', label: 'Medium Brown (Martin 12-13)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 4,   
                                 nordic: -6, 
                                 ladogan: -5, 
                                 eastBaltic: -4, 
@@ -196,7 +212,9 @@
                                 subSaharan: +3, 
                                 amerindian: +4 } },
                 { value: 'darkBrown', label: 'Dark Brown (Martin 14-15)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 4,   
                                 nordic: -8, 
                                 ladogan: -7, 
                                 eastBaltic: -6, 
@@ -216,7 +234,9 @@
                                 ethiopian: +4.5, 
                                 subSaharan: +4,} },
                 { value: 'blackBrown', label: 'Black-Brown (Martin 16)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 4,   
                                 nordic: -9, 
                                 ladogan: -8, 
                                 eastBaltic: -7, 
@@ -250,7 +270,9 @@
             options: [
                 { value: '', label: '— Select Hair Color —', contributions: {} },
                 { value: 'platinumBlonde', label: 'Platinum Blonde (F–S A)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -6,
+                                caspian: -6, 
                         hallstatt: +9,eastNordic: +6,tronder: +2,
                         
                                 ladogan: +6,
@@ -284,7 +306,9 @@
                                 dinaric: -3 },
                     positiveSynergy: { hallstatt: 0.20 } },
                 { value: 'lightBlonde', label: 'Light Blonde (F–S B–C)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -4,
+                                caspian: -3, 
                         hallstatt: +7,
                         eastNordic: +7,
                         tronder: +4,
@@ -318,7 +342,9 @@
                         
                                 dinaric: -2 } },
                 { value: 'goldenBlonde', label: 'Golden Blonde (F–S D)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 0.5, 
                         hallstatt: +6,
                         eastNordic: +4,
                         tronder: +7,
@@ -360,7 +386,9 @@
                         
                                 dinaric: 0 } },
                 { value: 'darkBlonde', label: 'Dark Blonde (F–S E–F)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 2, 
                         hallstatt: +3,
                         eastNordic: +4,
                         tronder: +3,
@@ -402,6 +430,8 @@
                                 dinaric: +2 } },
                 { value: 'lightBrown', label: 'Light Brown (F–S G–H)',
                     contributions: {
+                                caucasion: 3,
+                                caspian: 3,
                         hallstatt: -1,
                         eastNordic: 0,
                         tronder: 1,
@@ -444,6 +474,8 @@
                                 dinaric: +2 } },
                 { value: 'brown', label: 'Brown (F–S I–K)',
                     contributions: {
+                                caucasion: 4,
+                                caspian: 4,
                           
                                 nordic: -4, 
                         
@@ -476,7 +508,9 @@
                         
                                 dinaric: +3 } },
                 { value: 'darkBrown', label: 'Dark Brown (F–S L–M)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 4, 
                           
                                 nordic: -7, 
                         
@@ -529,7 +563,9 @@ negativeSynergy: {
                     }
                 },
                 { value: 'black', label: 'Black (F–S N–P)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 4,   
                                 nordic: -9, 
                                 ladogan: -7, 
                                 eastBaltic: -5, 
@@ -571,7 +607,9 @@ negativeSynergy: {
                                                 centralAsian: -0.05
                     }  },
                 { value: 'red', label: 'Red (F–S R)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 1, 
                         hallstatt: +3,
                         eastNordic: +1,
                         tronder: +4,
@@ -610,7 +648,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Hair Form —', contributions: {} },
                 { value: 'straight', label: 'Straight',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 2, 
                         hallstatt: +3,
                         eastNordic: +2,
                         tronder: +1,
@@ -647,7 +687,9 @@ negativeSynergy: {
                                 subSaharan: -5, 
                                 dinaric: 0 } },
                 { value: 'wavy', label: 'Wavy',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 3, 
                         hallstatt: +2,
                         eastNordic: +2,
                         tronder: +3,
@@ -686,7 +728,9 @@ negativeSynergy: {
                                 subSaharan: -3, 
                                 dinaric: +2 } },
                 { value: 'curly', label: 'Curly',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 1, 
                         hallstatt: -1,
                         eastNordic: -1,
                         tronder: 0,
@@ -724,7 +768,9 @@ negativeSynergy: {
                                 subSaharan: +6, 
                                 dinaric: +1 } },
                 { value: 'tightlyCurled', label: 'Coily/Tightly Curled',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -1,
+                                caspian: -2, 
                         hallstatt: -4,
                         eastNordic: -4,
                         tronder: -4,
@@ -778,7 +824,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Skin Color —', contributions: {} },
                 { value: 'typeI', label: 'Type I — Very Fair (von Luschan 1–5)', 
-                    contributions: { 
+                    contributions: {
+                                caucasion: -4,
+                                caspian: -4, 
                         hallstatt: +9,
                         eastNordic: +8,
                         tronder: +6,
@@ -831,7 +879,9 @@ negativeSynergy: {
                                   },
                         },
                 { value: 'typeII', label: 'Type II — Fair (von Luschan 6–10)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2, 
                         hallstatt: +6,
                         eastNordic: +6,
                         tronder: +6,
@@ -892,7 +942,9 @@ negativeSynergy: {
                                   },
                  },
                 { value: 'typeIII', label: 'Type III — Medium Fair (von Luschan 11–15)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 3,
+                                caspian: 3, 
                         hallstatt: -0.5,
                         eastNordic: 0,
                         tronder: +1,
@@ -932,7 +984,9 @@ negativeSynergy: {
                                 dinaric: +3 },
                     balanceSynergy: { mediterranean: 0.10, nearEastern: 0.10 } },
                 { value: 'typeIV', label: 'Type IV — Olive/Moderate (von Luschan 16–21)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 3,
+                                caspian: 3, 
                         hallstatt: -4,
                         eastNordic: -4,
                         tronder: -3,
@@ -991,7 +1045,9 @@ negativeSynergy: {
                         
                         },
                 { value: 'typeV', label: 'Type V — Brown (von Luschan 22–28)',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 0,   
                                 nordic: -8, 
                         
                                 ladogan: -6, 
@@ -1061,7 +1117,9 @@ negativeSynergy: {
                         
                         },
                 { value: 'typeVI', label: 'Type VI — Dark Brown/Black (von Luschan 29–36)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -4,
+                                caspian: -5, 
                           
                                 nordic: -10, 
                         
@@ -1105,6 +1163,7 @@ negativeSynergy: {
                         slavic: 0.5,
                         mediterranean: 0.5,
                         nearEastern: 0.25,
+                        northCaucasian: 0.25,
                         eastBaltic: 0.5,
                         ladogan: 0.5,
                         dinaric: 0.5,
@@ -1118,6 +1177,7 @@ negativeSynergy: {
                         slavic: 0.25,
                         mediterranean: 0.20,
                         nearEastern: 0.10,
+                        northCaucasian: 0.10,
                         eastBaltic: 0.25,
                         ladogan: 0.25,
                         dinaric: 0.25,
@@ -1151,7 +1211,9 @@ options: [
     { 
         value: 'hyperdolichocephalic', 
         label: 'Hyperdolichocephalic (< 72)',
-        contributions: { 
+        contributions: {
+                                caucasion: -6,
+                                caspian: -1, 
             hallstatt: +8,
             eastNordic: +7,
             tronder: +3,
@@ -1192,7 +1254,9 @@ options: [
     { 
         value: 'dolichocephalic', 
         label: 'Dolichocephalic (72–75)',
-        contributions: { 
+        contributions: {
+                                caucasion: -4,
+                                caspian: +1, 
             hallstatt: +7,
             eastNordic: +6,
             tronder: +2,
@@ -1233,7 +1297,9 @@ options: [
     { 
         value: 'sub-dolichocephalic', 
         label: 'Sub-dolichocephalic (75–77.5)',
-        contributions: { 
+        contributions: {
+                                caucasion: -3,
+                                caspian: +4, 
             hallstatt: +4.5,
             eastNordic: +4.5,
             tronder: +3.5,
@@ -1274,7 +1340,9 @@ options: [
     { 
         value: 'mesocephalic', 
         label: 'Mesocephalic (77.5–80)',
-        contributions: { 
+        contributions: {
+                                caucasion: 0,
+                                caspian: 3, 
             hallstatt: +2,
             eastNordic: +3,
             tronder: +5,
@@ -1314,7 +1382,9 @@ options: [
     { 
         value: 'sub-brachycephalic', 
         label: 'Sub-brachycephalic (80–82.5)',
-        contributions: { 
+        contributions: {
+                                caucasion: 3,
+                                caspian: -3.5, 
             hallstatt: -1,
             eastNordic: -0.5,
             tronder: +1,
@@ -1354,7 +1424,9 @@ options: [
     { 
         value: 'brachycephalic', 
         label: 'Brachycephalic (82.5–85)',
-        contributions: { 
+        contributions: {
+                                caucasion: 6,
+                                caspian: -5, 
             hallstatt: -3.5,
             eastNordic: -2.5,
             tronder: -1,
@@ -1387,14 +1459,17 @@ options: [
         },
 
         positiveSynergy: {
-            alpine: 0.20
+            alpine: 0.05,
+            dinaric: 0.05
         }
     },
 
     { 
         value: 'hyperbrachycephalic', 
         label: 'Hyperbrachycephalic (> 85)',
-        contributions: { 
+        contributions: {
+                                caucasion: 4,
+                                caspian: -5, 
             hallstatt: -6,
             eastNordic: -5,
             tronder: -3,
@@ -1430,6 +1505,11 @@ options: [
             nordic: 0.25,
             iranoAfghan: 0.15,
             levantine: 0.10
+        },
+
+         positiveSynergy: {
+            alpine: 0.05,
+            dinaric: 0.05
         }
     }
 ],
@@ -1470,7 +1550,9 @@ categorizeIndex: function(val) {
             options: [
                 { value: '', label: '— Select Face Shape —', contributions: {} },
                 { value: 'veryNarrow', label: 'Very Narrow (Leptoprosopic)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -4,
+                                caspian: -2, 
                         hallstatt: +6,
                         eastNordic: +5,
                         tronder: +3,
@@ -1512,7 +1594,9 @@ categorizeIndex: function(val) {
                                 dinaric: +3.25 },
                     positiveSynergy: { hallstatt: 0.15 } },
                 { value: 'narrow', label: 'Narrow',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -2,
+                                caspian: 1, 
                         hallstatt: +4,
                         eastNordic: +3,
                         tronder: +3,
@@ -1554,7 +1638,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: +2.25 } },
                 { value: 'oval', label: 'Oval',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 3, 
                         hallstatt: +2,
                         eastNordic: +2,
                         tronder: +2,
@@ -1598,7 +1684,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: +1 } },
                 { value: 'round', label: 'Round (Euryprosopic)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 3,
+                                caspian: 2, 
                         hallstatt: -2,
                         eastNordic: -1,
                         tronder: 0,
@@ -1639,7 +1727,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: 0 } },
                 { value: 'broad', label: 'Broad',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 2, 
                         hallstatt: -4,
                         eastNordic: -3,
                         tronder: -1,
@@ -1682,7 +1772,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: -1 } },
                 { value: 'veryBroad', label: 'Very Broad',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 6,
+                                caspian: -2, 
                         hallstatt: -6,
                         eastNordic: -5,
                         tronder: -3,
@@ -1733,7 +1825,9 @@ categorizeIndex: function(val) {
             options: [
                 { value: '', label: '— Select Cheekbone Type —', contributions: {} },
                 { value: 'low', label: 'Low / Flat',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -2,
+                                caspian: 0, 
                         hallstatt: +1,
                         eastNordic: +1,
                         tronder: +1,
@@ -1775,7 +1869,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: 0 } },
                 { value: 'moderate', label: 'Moderate',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2.5,
+                                caspian: 1.5, 
                         hallstatt: +2,
                         eastNordic: +2,
                         tronder: +2,
@@ -1816,7 +1912,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: +1 } },
                 { value: 'high', label: 'High / Prominent',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 4,
+                                caspian: 1, 
                         hallstatt: -1,
                         eastNordic: -1,
                         tronder: 0,
@@ -1860,7 +1958,9 @@ categorizeIndex: function(val) {
                         
                                 dinaric: +1.5 } },
                 { value: 'veryHigh', label: 'Very High / Very Prominent',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 5,
+                                caspian: -1, 
                         hallstatt: -3,
                         eastNordic: -3,
                         tronder: -2,
@@ -1916,7 +2016,9 @@ categorizeIndex: function(val) {
             options: [
                 { value: '', label: '— Select —', contributions: {} },
                 { value: 'absent', label: 'Absent',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 1, 
                         hallstatt: +2,
                         eastNordic: +2,
                         tronder: +2,
@@ -1927,7 +2029,7 @@ categorizeIndex: function(val) {
                                 eastBaltic: +1, 
                         northernSlavic: +1,
                         centralSlavic: +1,
-                        ponticSlavic: +2,
+                        ponticSlavic: +1,
  
                         
                                 alpine: +1,
@@ -1983,6 +2085,8 @@ negativeSynergy: {
             value: 'slight',
             label: 'Slight / Vestigial',
             contributions: {
+                                caucasion: -2,
+                                caspian: -2,
                 hallstatt: -2,
                 eastNordic: -2,
                 tronder: -2,
@@ -2028,14 +2132,16 @@ negativeSynergy: {
                                                 northAsian: -0.10,
                                                 malay: -0.10,
                                                 amerindian: -0.10,
-                                                centralAsian: -0.15
+                                                centralAsian: -0.15,
+                                                northCaucasian: 0.05,
                                         },
 negativeSynergy: {
                                                 eastAsian: -0.10,
                                                 northAsian: -0.10,
                                                 malay: -0.10,
                                                 amerindian: -0.10,
-                                                centralAsian: -0.15
+                                                centralAsian: -0.15,
+                                                northCaucasian: 0.50,
                     }   
         },
 
@@ -2043,6 +2149,8 @@ negativeSynergy: {
             value: 'moderate',
             label: 'Moderate',
             contributions: {
+                                caucasion: -3,
+                                caspian: -3,
                 hallstatt: -3,
                 eastNordic: -3,
                 tronder: -3,
@@ -2087,14 +2195,17 @@ negativeSynergy: {
                                                 northAsian: -0.20,
                                                 malay: -0.20,
                                                 amerindian: -0.20,
-                                                centralAsian: -0.20
+                                                centralAsian: -0.20,
+                                                northCaucasian: 0.05,
                                         },
 negativeSynergy: {
                                                 eastAsian: -0.20,
                                                 northAsian: -0.20,
                                                 malay: -0.20,
                                                 amerindian: -0.20,
-                                                centralAsian: -0.20
+                                                centralAsian: -0.20,                                                
+                                                northCaucasian: 0.5
+
                     }   
         },
 
@@ -2102,6 +2213,8 @@ negativeSynergy: {
             value: 'strong',
             label: 'Strong / Pronounced',
             contributions: {
+                                caucasion: -3,
+                                caspian: -4,
                 hallstatt: -5,
                 eastNordic: -5,
                 tronder: -5,
@@ -2148,14 +2261,17 @@ negativeSynergy: {
                                                 northAsian: -0.50,
                                                 malay: -0.30,
                                                 amerindian: -0.20,
-                                                centralAsian: -0.20
+                                                centralAsian: -0.20,
+                                                northCaucasian: 0.15,
                                         },
 negativeSynergy: {
                                                 eastAsian: -0.50,
                                                 northAsian: -0.50,
                                                 malay: -0.30,
                                                 amerindian: -0.20,
-                                                centralAsian: -0.20
+                                                centralAsian: -0.20,
+                                                northCaucasian: 0.25,
+
                     }   
         }   
                         
@@ -2174,7 +2290,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Eye Shape —', contributions: {} },
                 { value: 'round', label: 'Round',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                         hallstatt: -1,
                         eastNordic: -1,
                         tronder: 0,
@@ -2214,7 +2332,9 @@ negativeSynergy: {
                                 dinaric: 0 } },
 
                 { value: 'almond', label: 'Almond',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2, 
                         hallstatt: +3,
                         eastNordic: +3,
                         tronder: +2,
@@ -2259,7 +2379,9 @@ negativeSynergy: {
                         
                                 dinaric: +2 } },
                 { value: 'horizontal', label: 'Horizontal / Narrow',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 2, 
                         hallstatt: +1,
                         eastNordic: +1,
                         tronder: +1,
@@ -2299,6 +2421,8 @@ negativeSynergy: {
                                 dinaric: +1 } },
                 { value: 'upturned', label: 'Upturned (Lateral Canthus Higher)',
                     contributions: {
+                                caucasion: 0,
+                                caspian: 1,
                         hallstatt: 0,
                         eastNordic: 0,
                         tronder: +1,
@@ -2340,7 +2464,9 @@ negativeSynergy: {
                         
                                 dinaric: +1 } },
                 { value: 'downturned', label: 'Downturned (Lateral Canthus Lower)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                         hallstatt: 0,
                         eastNordic: 0,
                         tronder: 0,
@@ -2395,7 +2521,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Inner Canthal Distance —', contributions: {} },
                 { value: 'narrow', label: 'Narrow (< 30 mm)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                         hallstatt: +2,
                         eastNordic: +2,
                         tronder: +1,
@@ -2438,7 +2566,9 @@ negativeSynergy: {
                         
                                 dinaric: +1 } },
                 { value: 'average', label: 'Average (30–35 mm)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2, 
                         hallstatt: +1,
                         eastNordic: +1,
                         tronder: +1,
@@ -2482,7 +2612,9 @@ negativeSynergy: {
                         
                                 dinaric: +1 } },
                 { value: 'wide', label: 'Wide (> 35 mm)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 3,
+                                caspian: 2, 
                         hallstatt: -2,
                         eastNordic: -2,
                         tronder: -1,
@@ -2539,7 +2671,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Enter measurements or select category —', contributions: {} },
                 { value: 'leptorrhine', label: 'Leptorrhine — Narrow Nose (< 70)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: 5,
+                                caspian: 5, 
                         hallstatt: +7,
                         eastNordic: +6,
                         tronder: +5,
@@ -2582,6 +2716,8 @@ negativeSynergy: {
                                 dinaric: +5 } },
                 { value: 'mesorrhine', label: 'Mesorrhine — Medium Nose (70–85)',
                     contributions: {
+                                caucasion: 1,
+                                caspian: 2,
                         hallstatt: 0,
                         eastNordic: 1,
                         tronder: 2,
@@ -2623,7 +2759,9 @@ negativeSynergy: {
                                 dinaric: +2 },
                         balanceSynergy: { alpine: 0.10 } },
                 { value: 'platyrrhine', label: 'Platyrrhine — Broad Nose (> 85)',
-                    contributions: { 
+                    contributions: {
+                                caucasion: -3,
+                                caspian: -2, 
                         hallstatt: -5,
                         eastNordic: -5,
                         tronder: -4,
@@ -2697,6 +2835,8 @@ negativeSynergy: {
       value: 'straight',
       label: 'Straight',
       contributions: {
+                                caucasion: 2,
+                                caspian: 3,
         hallstatt: +4,
         eastNordic: +3,
         tronder: +3,
@@ -2742,6 +2882,8 @@ negativeSynergy: {
       value: 'concave',
       label: 'Concave (Saddle/Retroussé)',
       contributions: {
+                                caucasion: 0,
+                                caspian: 1,
         hallstatt: -2,
         eastNordic: -1,
         tronder: 0,
@@ -2791,6 +2933,8 @@ negativeSynergy: {
       value: 'convex',
       label: 'Convex (Aquiline/Roman)',
       contributions: {
+                                caucasion: 3,
+                                caspian: 1,
         hallstatt: -2,
         eastNordic: -2,
         tronder: -1,
@@ -2839,6 +2983,8 @@ negativeSynergy: {
       value: 'wavy',
       label: 'Wavy / Irregular',
       contributions: {
+                                caucasion: 1,
+                                caspian: 2,
         hallstatt: -2,
         eastNordic: -2,
         tronder: -1,
@@ -2902,7 +3048,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'low', label: 'Low',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 1,
+                                caspian: 0, 
                                 hallstatt: -3,
                                 eastNordic: -2,
                                 tronder: -1,
@@ -2944,49 +3092,47 @@ negativeSynergy: {
                                 
                                 dinaric: 0 } },
                         { value: 'average', label: 'Average',
-                            contributions: { 
-                                hallstatt: +1,
-                                eastNordic: +1,
-                                tronder: +2,
+                            contributions: {
+                                caucasion: 0,
+        caspian: 0,
 
+        hallstatt: 0,
+        eastNordic: 0,
+        tronder: 0,
 
-                                
-                                ladogan: +1, 
-                                
-                                eastBaltic: +1, 
-                                northSlavic: +2,
-                                centralSlavic: +2,
-                                ponticSlavic: +2,
- 
-                                
-                                alpine: +1,
-                                westernMediterranean: +1,
-                                centralMediterranean: +1,
-                                easternMediterranean: +1,
-                                southernMediterranean: +1,
+        ladogan: 0,
 
-                                levantine: +1,
-                                iranoAfghan: +1,
-                                armenoid: +1,
+        eastBaltic: 0,
+        northSlavic: 0,
+        centralSlavic: 0,
+        ponticSlavic: 0,
 
-                                
-                                northAsian: +1,
-                                centralAsian: +1,
-                                
-                                eastAsian: +1,
+        alpine: 0,
 
-                                
-                                malay: +1,
-                                
-                                ethiopian: +1, 
-                                
-                                subSaharan: +1, 
-                                
-                                amerindian: +1, 
-                                
-                                dinaric: +1 } },
+        westernMediterranean: 0,
+        centralMediterranean: 0,
+        easternMediterranean: 0,
+        southernMediterranean: 0,
+
+        levantine: 0,
+        iranoAfghan: 0,
+        armenoid: 0,
+
+        northAsian: 0,
+        centralAsian: 0,
+        eastAsian: 0,
+
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: 0,
+
+        dinaric: 0 } },
                         { value: 'high', label: 'High',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 3,
+                                caspian: 3, 
                                 hallstatt: +4,
                                 eastNordic: +3,
                                 tronder: +2,
@@ -3031,7 +3177,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'narrow', label: 'Narrow',
-                            contributions: { 
+                            contributions: {
+                                caucasion: -2,
+                                caspian: 1, 
                                 hallstatt: +3,
                                 eastNordic: +2,
                                 tronder: +1,
@@ -3076,42 +3224,45 @@ negativeSynergy: {
                                 
                                 dinaric: +1 } },
                         { value: 'average', label: 'Average',
-                            contributions: { 
-                                hallstatt: +1,
-                                eastNordic: +1,
-                                tronder: +1,
-                                
-                                ladogan: +1, 
-                                
-                                eastBaltic: +1, 
-                                northernSlavic: +2, 
-                                centralSlavic: +2,
-                                ponticSlavic: +2,
-                                
-                                alpine: +1,
-                                westernMediterranean: +1, 
-                                centralMediterranean: +1,
-                                easternMediterranean: +1,
-                                southernMediterranean: +1,
-                                levantine: +1,
-                                iranoAfghan: +1,
-                                armenoid: +1, 
-                                
-                                eastAsian: +1, 
-                                
-                                northAsian: +1, 
-                                
-                                malay: +1,
-                                
-                                ethiopian: +1, 
-                                
-                                subSaharan: +1, 
-                                
-                                amerindian: +1, 
-                                
-                                dinaric: +1 } },
+                            contributions: {
+                                caucasion: 0,
+        caspian: 0,
+
+        hallstatt: 0,
+        eastNordic: 0,
+        tronder: 0,
+
+        ladogan: 0,
+
+        eastBaltic: 0,
+        northernSlavic: 0,
+        centralSlavic: 0,
+        ponticSlavic: 0,
+
+        alpine: 0,
+
+        westernMediterranean: 0,
+        centralMediterranean: 0,
+        easternMediterranean: 0,
+        southernMediterranean: 0,
+
+        levantine: 0,
+        iranoAfghan: 0,
+        armenoid: 0,
+
+        eastAsian: 0,
+        northAsian: 0,
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: 0,
+
+        dinaric: 0 } },
                         { value: 'broad', label: 'Broad',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 3.5,
+                                caspian: 2, 
                                 hallstatt: -1,
                                 eastNordic: 0,
                                 tronder: +1,
@@ -3155,7 +3306,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'vertical', label: 'Vertical',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 3,
+                                caspian: 2, 
                                 hallstatt: +2,
                                 eastNordic: +3,
                                 tronder: +2,
@@ -3197,37 +3350,41 @@ negativeSynergy: {
                                 
                                 dinaric: +1 } },
                         { value: 'moderate', label: 'Moderate Slope',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                                   
-                                nordic: +1, 
+                                nordic: 0, 
                                 
-                                ladogan: +1, 
+                                ladogan: 0, 
                                 
-                                eastBaltic: +1, 
+                                eastBaltic: 0, 
                                 
-                                slavic: +1, 
+                                slavic: 0, 
                                 
-                                alpine: +2,
+                                alpine: 0,
                                 
-                                mediterranean: +1, 
+                                mediterranean: 0, 
                                 
-                                nearEastern: +1, 
+                                nearEastern: 0, 
                                 
-                                eastAsian: +1, 
+                                eastAsian: 0, 
                                 
-                                northAsian: +1, 
+                                northAsian: 0, 
                                 
-                                malay: +1,
+                                malay: 0,
                                 
-                                ethiopian: +1, 
+                                ethiopian: 0, 
                                 
-                                subSaharan: +1, 
+                                subSaharan: 0, 
                                 
-                                amerindian: +1, 
+                                amerindian: 0, 
                                 
                                 dinaric: +1 } },
                         { value: 'sloping', label: 'Sloping',
-                            contributions: { 
+                            contributions: {
+                                caucasion: -1,
+                                caspian: 1, 
                                 hallstatt: +2,
                                 eastNordic: 0,
                                 tronder: +1,
@@ -3287,7 +3444,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'weak', label: 'Weak / Receding',
-                            contributions: { 
+                            contributions: {
+                                caucasion: -1,
+                                caspian: -1, 
                                 hallstatt: -2,
                                 eastNordic: -1,
                                 tronder: 0,
@@ -3331,47 +3490,43 @@ negativeSynergy: {
                                 dinaric: 0 } },
                         { value: 'moderate', label: 'Moderate',
                             contributions: {
-                                hallstatt: +1,
-                                eastNordic: +1,
-                                tronder: +2,
+                                caucasion: 0,
+        caspian: 0,
 
-                                
-                                ladogan: +1, 
-                                
-                                eastBaltic: +1, 
-                                northernSlavic: +2,
-                                centralSlavic: +2,
-                                ponticSlavic: +2,
- 
-                                
-                                alpine: +1,
-                                westernMediterranean: +1,
-                                centralMediterranean: +1,
-                                easternMediterranean: +1,
-                                southernMediterranean: +1,
+        hallstatt: 0,
+        eastNordic: 0,
+        tronder: 0,
+        ladogan: 0,
+        eastBaltic: 0,
 
-                                levantine: +1,
-                                iranoAfghan: +1,
-                                armenoid: +1,
+        northernSlavic: 0,
+        centralSlavic: 0,
+        ponticSlavic: 0,
 
-                                
-                                northAsian: +1,
-                                centralAsian: +1,
-                                
-                                eastAsian: +1,
+        alpine: 0,
 
-                                
-                                malay: +1,
-                                
-                                ethiopian: +1, 
-                                
-                                subSaharan: +1, 
-                                
-                                amerindian: +1, 
-                                
-                                dinaric: +1 } },
+        westernMediterranean: 0,
+        centralMediterranean: 0,
+        easternMediterranean: 0,
+        southernMediterranean: 0,
+
+        levantine: 0,
+        iranoAfghan: 0,
+        armenoid: 0,
+
+        northAsian: 0,
+        centralAsian: 0,
+        eastAsian: 0,
+        malay: 0,
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: 0,
+
+        dinaric: 0 } },
                         { value: 'strong', label: 'Strong / Projecting',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 4,
+                                caspian: 3, 
                                 hallstatt: +4,
                                 eastNordic: +3,
                                 tronder: +2,
@@ -3415,7 +3570,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'absent', label: 'Absent',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                                   
                                 nordic: 0, 
                                 ladogan: 0, 
@@ -3434,7 +3591,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0 } },
                         { value: 'present', label: 'Present (Cleft Chin)',
-                            contributions: { 
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0, 
                                 hallstatt: +2,
                                 eastNordic: +2,
                                 tronder: +1,
@@ -3481,7 +3640,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'narrow', label: 'Narrow',
-                            contributions: { 
+                            contributions: {
+                                caucasion: -2,
+                                caspian: 1, 
                             hallstatt: +3,
                             eastNordic: +2,
                             tronder: +1,
@@ -3520,7 +3681,9 @@ negativeSynergy: {
                                 
                                 dinaric: +1 } },
                         { value: 'average', label: 'Average',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -3538,7 +3701,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0 } },
                         { value: 'broad', label: 'Broad',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 4,
+                                caspian: 2,   
                                 hallstatt: -1,
                                 eastNordic: 0,
                                 tronder: +1,
@@ -3587,7 +3752,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'straight', label: 'Straight',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 2,
+                                caspian: 2,   
                                 hallstatt: 0,
                                 eastNordic: 0,
                                 tronder: +1,
@@ -3619,68 +3786,87 @@ negativeSynergy: {
                                 amerindian: +2, 
                                 dinaric: +1 } },
                         { value: 'arched', label: 'Arched',
-                            contributions: {   
-                                hallstatt: +2,
-                                eastNordic: +2,
-                                tronder: +2,
+                            contributions: {
+                                caucasion: 0,
+        caspian: +1,
 
+        hallstatt: +1,
+        eastNordic: +1,
+        tronder: +1,
 
-                                ladogan: +1, 
-                                northernSlavic: +2,
-                                centralSlavic: +2,
-                                ponticSlavic: +2,
-                                slavic: +2, 
-                                alpine: +1,
-                                
-                                westernMediterranean: +2,
-                                centralMediterranean: +2,
-                                easternMediterranean: +2,
-                                southernMediterranean: +1,
+        ladogan: 0,
 
-                                levantine: +2,
-                                iranoAfghan: +2,
-                                armenoid: +1,
+        northernSlavic: +1,
+        centralSlavic: +1,
+        ponticSlavic: +1,
 
-                                northAsian: -1,
-                                centralAsian: 0,
-                                eastAsian: -1,
+        alpine: 0,
 
-                                malay: 0,
-                                
-                                ethiopian: +1, 
-                                subSaharan: 0, 
-                                amerindian: -1, 
-                                dinaric: +2 } },
+        westernMediterranean: +1,
+        centralMediterranean: +1,
+        easternMediterranean: +1,
+        southernMediterranean: 0,
+
+        levantine: +1,
+        iranoAfghan: +1,
+        armenoid: 0,
+
+        northAsian: -1,
+        centralAsian: 0,
+        eastAsian: -1,
+
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: -1,
+
+        dinaric: +1 } },
                         { value: 'angled', label: 'Angled',
-                            contributions: {   
-                                hallstatt: +1,
-                                eastNordic: +1,
-                                tronder: +1,
+                            contributions: {
+                                caucasion: +1,
+        caspian: +1,
 
-                                ladogan: +1, 
-                                eastBaltic: 0, 
-                                northernSlavic: 0, 
-                                centralSlavic: 0,
-                                ponticSlavic: +1,
-                                alpine: 0,
-                                
-                                mediterranean: +1, 
-                                levantine: +1,
-                                iranoAfghan: +1,
-                                armenoid: +1,
-                                eastAsian: +1, 
-                                northAsian: +1, 
-                                malay: +1,
-                                
-                                ethiopian: 0, 
-                                subSaharan: 0, 
-                                amerindian: +1, 
-                                dinaric: +1 } }
+        hallstatt: +1,
+        eastNordic: +1,
+        tronder: +1,
+
+        ladogan: +1,
+        eastBaltic: 0,
+
+        northernSlavic: 0,
+        centralSlavic: 0,
+        ponticSlavic: +1,
+
+        alpine: 0,
+
+        westernMediterranean: +1,
+        centralMediterranean: +1,
+        easternMediterranean: +1,
+        southernMediterranean: 0,
+
+        levantine: +1,
+        iranoAfghan: +1,
+        armenoid: +1,
+
+        northAsian: +1,
+        centralAsian: 0,
+        eastAsian: +1,
+
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: +1,
+
+        dinaric: +1 } }
                     ] }, { id: 'eyebrowDensity', label: 'Density',
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'sparse', label: 'Sparse',
-                            contributions: {   
+                            contributions: {
+                                caucasion: -1,
+                                caspian: 0,   
                                 hallstatt: +2,
                                 eastNordic: +1,
                                 tronder: +1,
@@ -3707,25 +3893,32 @@ negativeSynergy: {
                                 amerindian: -1, 
                                 dinaric: 0 } },
                         { value: 'moderate', label: 'Moderate',
-                            contributions: {   
-                                nordic: +1, 
-                                ladogan: +1, 
-                                eastBaltic: +1, 
-                                slavic: +2, 
-                                alpine: +1,
-                                
-                                mediterranean: +1, 
-                                nearEastern: +1, 
-                                eastAsian: +1, 
-                                northAsian: +1, 
-                                malay: +1,
-                                
-                                ethiopian: +1, 
-                                subSaharan: +1, 
-                                amerindian: +1, 
-                                dinaric: +1 } },
+                            contributions: {
+                                caucasion: 0,
+        caspian: 0,
+
+        nordic: 0,
+        ladogan: 0,
+        eastBaltic: 0,
+        slavic: 0,
+        alpine: 0,
+
+        mediterranean: 0,
+        nearEastern: 0,
+
+        eastAsian: 0,
+        northAsian: 0,
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: 0,
+
+        dinaric: 0 } },
                         { value: 'dense', label: 'Dense / Bushy',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 3,
+                                caspian: 2,   
                                 hallstatt: -1,
                                 eastNordic: 0,
                                 tronder: 0,
@@ -3760,7 +3953,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'low', label: 'Low (Close to Orbit)',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 2,
+                                caspian: 1,   
                                 hallstatt: -1,
                                 eastNordic: 0,
                                 tronder: 0,
@@ -3794,26 +3989,33 @@ negativeSynergy: {
                                 amerindian: +1, 
                                 dinaric: +1 } },
                         { value: 'average', label: 'Average',
-                            contributions: {   
-                                nordic: +1, 
-                                ladogan: +1, 
-                                eastBaltic: +1, 
-                                slavic: +2, 
-                                alpine: +1,
-                                
-                                mediterranean: +1, 
-                                nearEastern: +1, 
-                                eastAsian: +1, 
-                                centralAsian: +1,
-                                northAsian: +1, 
-                                malay: +1,
-                                
-                                ethiopian: +1, 
-                                subSaharan: +1, 
-                                amerindian: +1, 
-                                dinaric: +1 } },
+                            contributions: {
+                                 caucasion: 0,
+        caspian: 0,
+
+        nordic: 0,
+        ladogan: 0,
+        eastBaltic: 0,
+        slavic: 0,
+        alpine: 0,
+
+        mediterranean: 0,
+        nearEastern: 0,
+
+        eastAsian: 0,
+        centralAsian: 0,
+        northAsian: 0,
+        malay: 0,
+
+        ethiopian: 0,
+        subSaharan: 0,
+        amerindian: 0,
+
+        dinaric: 0 } },
                         { value: 'high', label: 'High (Above Orbit)',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 1,
+                                caspian: 1,   
                                 hallstatt: +3,
                                 eastNordic: +2,
                                 tronder: +1,
@@ -3844,6 +4046,8 @@ negativeSynergy: {
             value: 'none',
             label: 'Absent',
             contributions: {
+                                caucasion: 0.5,
+                                caspian: 0,
                   
                                 hallstatt: +2,
                                 eastNordic: +2,
@@ -3863,6 +4067,8 @@ negativeSynergy: {
             value: 'slight',
             label: 'Slight',
             contributions: {
+                                caucasion: 1,
+                                caspian: 1,
                 
                                 westernMediterranean: +1,
                                 centralMediterranean: +1,
@@ -3882,6 +4088,8 @@ negativeSynergy: {
             value: 'moderate',
             label: 'Moderate',
             contributions: {
+                                caucasion: 1,
+                                caspian: 2,
                 
                                 westernMediterranean: +2,
                                 centralMediterranean: +2,
@@ -3903,6 +4111,8 @@ negativeSynergy: {
             value: 'strong',
             label: 'Strong / Complete',
             contributions: {
+                                caucasion: 0,
+                                caspian: 1,
                 
                                 westernMediterranean: +2,
                                 centralMediterranean: +2,
@@ -3940,7 +4150,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Brow Ridge Type —', contributions: {} },
                 { value: 'weak', label: 'Weak / Smooth',
-                    contributions: {   
+                    contributions: {
+                                caucasion: -3.5,
+                                caspian: 0,   
                                 hallstatt: +2,
                                 eastNordic: +1,
                                 tronder: +1,
@@ -3972,7 +4184,9 @@ negativeSynergy: {
                                 amerindian: +2, 
                                 dinaric: 0 } },
                 { value: 'moderate', label: 'Moderate',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2,   
                                 nordic: +2, 
                                 ladogan: +1, 
                                 eastBaltic: +1, 
@@ -3991,7 +4205,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: +2 } },
                 { value: 'strong', label: 'Strong / Pronounced',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 4,
+                                caspian: 3,   
                                 hallstatt: 0,
                                 eastNordic: +1,
                                 tronder: +1,
@@ -4023,7 +4239,9 @@ negativeSynergy: {
                                 amerindian: -1, 
                                 dinaric: +1 } },
                 { value: 'veryStrong', label: 'Very Strong / Heavy',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 3,
+                                caspian: 2,   
                                 hallstatt: -2,
                                 eastNordic: -2,
                                 tronder: -1,
@@ -4074,7 +4292,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'small', label: 'Small',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4093,7 +4313,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0 } },
                         { value: 'average', label: 'Average',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4112,7 +4334,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0 } },
                         { value: 'large', label: 'Large',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: -1, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4134,7 +4358,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'flat', label: 'Flat / Close to Head',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4153,7 +4379,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0  } },
                         { value: 'moderate', label: 'Moderate',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4172,7 +4400,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0  } },
                         { value: 'protruding', label: 'Protruding',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4194,7 +4424,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'attached', label: 'Attached',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4213,7 +4445,9 @@ negativeSynergy: {
                                 amerindian: 1, 
                                 dinaric: 0 } },
                         { value: 'free', label: 'Free / Pendulous',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4235,7 +4469,9 @@ negativeSynergy: {
                     options: [
                         { value: '', label: '—', contributions: {} },
                         { value: 'regular', label: 'Regular / Rolled',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4254,7 +4490,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0  } },
                         { value: 'flat', label: 'Flat / Unrolled',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4272,7 +4510,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: 0 } },
                         { value: 'prominent', label: 'Prominent Antihelix',
-                            contributions: {   
+                            contributions: {
+                                caucasion: 0,
+                                caspian: 0,   
                                 nordic: 0, 
                                 ladogan: 0, 
                                 eastBaltic: 0, 
@@ -4304,7 +4544,9 @@ negativeSynergy: {
             options: [
                 { value: '', label: '— Select Height Category —', contributions: {} },
                 { value: 'veryShort', label: 'Very Short (< 155 cm / < 5\'1")',
-                    contributions: {   
+                    contributions: {
+                                caucasion: -1,
+                                caspian: 0,   
                                 hallstatt: -5,
                                 eastNordic: -4,
                                 tronder: -3,
@@ -4338,7 +4580,9 @@ negativeSynergy: {
                                 amerindian: 0, 
                                 dinaric: -3 } },
                 { value: 'short', label: 'Short (155–164 cm / 5\'1"–5\'5")',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 0,
+                                caspian: 1,   
                                 hallstatt: -3,
                                 eastNordic: -2,
                                 tronder: -1,
@@ -4370,7 +4614,9 @@ negativeSynergy: {
                                 amerindian: +1, 
                                 dinaric: -1 } },
                 { value: 'average', label: 'Average (165–174 cm / 5\'5"–5\'9")',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2,   
                                 hallstatt: 0,
                                 eastNordic: +1,
                                 tronder: +2,
@@ -4403,7 +4649,9 @@ negativeSynergy: {
                                 amerindian: +2, 
                                 dinaric: +3 } },
                 { value: 'tall', label: 'Tall (175–184 cm / 5\'9"–6\'0")',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 2,
+                                caspian: 2,   
                                 hallstatt: +5,
                                 eastNordic: +4,
                                 tronder: +5,
@@ -4436,7 +4684,9 @@ negativeSynergy: {
                                 amerindian: +1, 
                                 dinaric: +5 } },
                 { value: 'veryTall', label: 'Very Tall (> 184 cm / > 6\'0")',
-                    contributions: {   
+                    contributions: {
+                                caucasion: 1,
+                                caspian: 1,   
                                 hallstatt: +6,
                                 eastNordic: +5,
                                 tronder: +7,
@@ -4488,6 +4738,8 @@ negativeSynergy: {
       value: 'thin',
       label: 'Thin / Compressed',
       contributions: {
+                                caucasion: 0,
+                                caspian: 1,
           
                                 hallstatt: +3,
                                 eastNordic: +2,
@@ -4523,6 +4775,8 @@ negativeSynergy: {
       value: 'medium',
       label: 'Medium / Moderate',
       contributions: {
+                                caucasion: 2,
+                                caspian: 2,
           
                                 hallstatt: 0,
                                 eastNordic: +1,
@@ -4562,6 +4816,8 @@ negativeSynergy: {
       value: 'thick',
       label: 'Thick / Full',
       contributions: {
+                                caucasion: 1,
+                                caspian: 1,
           
                                 hallstatt: -2,
                                 eastNordic: -2,
@@ -4600,6 +4856,8 @@ negativeSynergy: {
       value: 'veryThick',
       label: 'Very Thick / Everted',
       contributions: {
+                                caucasion: -1,
+                                caspian: -1,
           
                                 hallstatt: -4,
                                 eastNordic: -4,
@@ -4652,6 +4910,8 @@ negativeSynergy: {
       value: 'orthognathous',
       label: 'Orthognathous (Flat/Straight profile)',
       contributions: {
+                                caucasion: 2,
+                                caspian: 2,
           
                                 hallstatt: +6,
                                 eastNordic: +5,
@@ -4698,6 +4958,8 @@ negativeSynergy: {
       value: 'mesognathous',
       label: 'Mesognathous (Moderate projection)',
       contributions: {
+                                caucasion: 1,
+                                caspian: 1,
           
                                 nordic: 0, 
                                 ladogan: +1, 
@@ -4733,6 +4995,8 @@ negativeSynergy: {
       value: 'prognathous',
       label: 'Prognathous (Marked projection)',
       contributions: {
+                                caucasion: -3,
+                                caspian: -3,
           
                                 hallstatt: -6,
                                 eastNordic: -5,
@@ -4791,6 +5055,8 @@ negativeSynergy: {
       value: 'flat',
       label: 'Flat / Planoccipital',
       contributions: {
+                                caucasion: 1.5,
+                                caspian: -1,
           
                                 hallstatt: -4,
                                 eastNordic: -2,
@@ -4829,6 +5095,8 @@ negativeSynergy: {
       value: 'rounded',
       label: 'Rounded / Curved',
       contributions: {
+                                caucasion: 0.5,
+                                caspian: 2,
           
                                 hallstatt: +1,
                                 eastNordic: +2,
@@ -4867,6 +5135,8 @@ negativeSynergy: {
       value: 'projecting',
       label: 'Projecting / Bun',
       contributions: {
+                                caucasion: -1,
+                                caspian: 4,
           
                                 hallstatt: +6,
                                 eastNordic: +5,
@@ -4920,6 +5190,8 @@ negativeSynergy: {
             value: 'deepSet',
             label: 'Deep-set',
             contributions: {
+                                caucasion: 3,
+                                caspian: 2,
                   
                                 hallstatt: +5,
                                 eastNordic: +4,
@@ -4961,6 +5233,8 @@ negativeSynergy: {
             value: 'average',
             label: 'Average',
             contributions: {
+                                caucasion: 2,
+                                caspian: 2,
                   
                                 nordic: +1, 
                                 ladogan: +1, 
@@ -4990,6 +5264,8 @@ negativeSynergy: {
             value: 'prominent',
             label: 'Prominent / Protruding',
             contributions: {
+                                caucasion: 0,
+                                caspian: 0,
                   
                                 hallstatt: -2,
                                 eastNordic: -2,
@@ -5043,6 +5319,8 @@ negativeSynergy: {
             value: 'low',
             label: 'Low Bridge',
             contributions: {
+                                caucasion: -5,
+                                caspian: -4,
                   
                                 hallstatt: -4,
                                 eastNordic: -3,
@@ -5051,11 +5329,11 @@ negativeSynergy: {
                                 ladogan: -1, 
                                 eastBaltic: 0, 
                                 northernSlavic: -1,
-                                centralSlavic: 0,
-                                ponticSlavic: +1,
+                                centralSlavic: -1,
+                                ponticSlavic: -2,
 
                 
-                                alpine: +1, 
+                                alpine: +4, 
                                 westernMediterranean: -2,
                                 centralMediterranean: -2,
                                 easternMediterranean: -2,
@@ -5067,7 +5345,7 @@ negativeSynergy: {
 
                                 eastAsian: +6,
                                 northAsian: +7,
-                                centralAsian: +4,
+                                centralAsian: +5,
 
                                 malay: +5,
                 
@@ -5084,6 +5362,8 @@ negativeSynergy: {
             value: 'medium',
             label: 'Medium Bridge',
             contributions: {
+                                caucasion: 2,
+                                caspian: 2,
                   
                                 hallstatt: +1,
                                 eastNordic: +2,
@@ -5124,6 +5404,8 @@ negativeSynergy: {
             value: 'high',
             label: 'High Bridge',
             contributions: {
+                                caucasion: 6,
+                                caspian: 5,
                   
                                 hallstatt: +6,
                                 eastNordic: +5,
@@ -5174,7 +5456,9 @@ negativeSynergy: {
     options: [
         { value: '', label: '— Enter measurements or select category —', contributions: {} },
         { value: 'hypereuryprosopic', label: 'Hypereuryprosopic (< 80)',
-            contributions: {   
+            contributions: {
+                                caucasion: 5,
+                                caspian: -1,   
                                 hallstatt: -5,
                                 eastNordic: -4,
                                 tronder: -3,
@@ -5204,7 +5488,9 @@ negativeSynergy: {
                                 dinaric: -3 },
             positiveSynergy: { northAsian: 0.15 } },
         { value: 'euryprosopic', label: 'Euryprosopic (80-85)',
-            contributions: {   
+            contributions: {
+                                caucasion: 4,
+                                caspian: 0,   
                                 hallstatt: -3,
                                 eastNordic: -2,
                                 tronder: -1,
@@ -5236,7 +5522,9 @@ negativeSynergy: {
 
                                 dinaric: -1 } },
         { value: 'mesoprosopic', label: 'Mesoprosopic (85-90)',
-            contributions: {   
+            contributions: {
+                                caucasion: -2,
+                                caspian: 3.5,   
                                 hallstatt: +1,
                                 eastNordic: +2,
                                 tronder: +2,
@@ -5270,7 +5558,9 @@ amerindian: +2,
 ethiopian: +2,
 subSaharan: +2 } },
         { value: 'leptoprosopic', label: 'Leptoprosopic (90-95)',
-            contributions: {   
+            contributions: {
+                                caucasion: -2,
+                                caspian: 2,   
                                 hallstatt: +4,
                                 eastNordic: +4,
                                 tronder: +3,
@@ -5304,7 +5594,9 @@ subSaharan: +2 } },
                                 ethiopian: +2,
                                 subSaharan: +2 } },
         { value: 'hyperleptoprosopic', label: 'Hyperleptoprosopic (> 95)',
-            contributions: {   
+            contributions: {
+                                caucasion: -4,
+                                caspian: 0,   
                                 hallstatt: +6,
                                 eastNordic: +5,
                                 tronder: +4,
@@ -5350,11 +5642,12 @@ subSaharan: +2 } },
         if (v < 80) return 'hypereuryprosopic';
         if (v < 85) return 'euryprosopic';
         if (v <= 90) return 'mesoprosopic';
-        if (v <= 95) return 'leptoprosopic';
-        return 'hyperleptoprosopic';
-    }
+                if (v <= 95) return 'leptoprosopic';
+                return 'hyperleptoprosopic';
+        }
 },
 
+        
 {
     id: 'orbitalIndex',
     number: 25,
@@ -5368,7 +5661,9 @@ subSaharan: +2 } },
     options: [
         { value: '', label: '— Enter measurements or select category —', contributions: {} },
         { value: 'chamaeconch', label: 'Chamaeconch (< 83)',
-            contributions: {   
+            contributions: {
+                                caucasion: 3,
+                                caspian: 1,   
                                 hallstatt: -3,
                                 eastNordic: -2,
                                 tronder: -1,
@@ -5400,10 +5695,11 @@ subSaharan: +2 } },
                                 amerindian: +2,
 
                                 ethiopian: +1,
-                                subSaharan: +2 },
-            positiveSynergy: { northAsian: 0.15 } },
+                                subSaharan: +2 } },
         { value: 'mesoconch', label: 'Mesoconch (83-89)',
-            contributions: {   
+            contributions: {
+                                caucasion: 2,
+                                caspian: 3,   
                                 hallstatt: +1,
                                 eastNordic: +2,
                                 tronder: +2,
@@ -5438,6 +5734,8 @@ subSaharan: +2 } },
                                 subSaharan: +2 } },
         { value: 'hypsiconch', label: 'Hypsiconch (> 89)',
             contributions: {
+                                caucasion: 0,
+                                caspian: 2,
                                 hallstatt: +4,
                                 eastNordic: +3,
                                 tronder: +3,
@@ -5469,8 +5767,7 @@ subSaharan: +2 } },
                                 amerindian: -2,
 
                                 ethiopian: -1,
-                                subSaharan: -2 },
-            positiveSynergy: { dinaric: 0.15 } }
+                                subSaharan: -2 } }
     ],
     hasMeasurements: true,
     measurementFields: [
@@ -5485,9 +5782,6 @@ subSaharan: +2 } },
         return 'hypsiconch';
     }
 },
-
-
-
 
 {
     id: 'nasalTipMorphology',
@@ -5512,6 +5806,8 @@ subSaharan: +2 } },
             value: 'fine',
             label: 'Fine / Narrow Tip',
             contributions: {
+                                caucasion: -2,
+                                caspian: 0,
                   
                                 hallstatt: +3,
                                 eastNordic: +2,
@@ -5552,6 +5848,8 @@ subSaharan: -2
             value: 'moderate',
             label: 'Moderate Tip',
             contributions: {
+                                caucasion: 2,
+                                caspian: 3,
                   
                                 hallstatt: +1,
                                 eastNordic: +1,
@@ -5592,6 +5890,8 @@ subSaharan: -2
             value: 'bulbous',
             label: 'Bulbous / Rounded Tip',
             contributions: {
+                                caucasion: 3,
+                                caspian: 2,
                   
                                 allstatt: -2,
                                 eastNordic: -2,
@@ -5632,6 +5932,8 @@ subSaharan: -2
             value: 'hooked',
             label: 'Hooked / Drooping Tip',
             contributions: {
+                                caucasion: 3,
+                                caspian: 3,
                   
                                 hallstatt: -2,
                                 eastNordic: -2,
@@ -5665,13 +5967,14 @@ subSaharan: -2
 
                                 ethiopian: 0,
                                 subSaharan: 0
-            },
-            positiveSynergy: { armenoid: 0.20 }
+            }
         },
         {
               value: 'upturned',
               label: 'Upturned Tip',
               contributions: {
+                                caucasion: -2,
+                                caspian: -1,
           
                                 hallstatt: -2,
                                 eastNordic: -1,
@@ -5705,17 +6008,10 @@ subSaharan: -2
 
                                 ethiopian: 0,
                                 subSaharan: 0
-                    }, positiveSynergy: { eastBaltic: 0.15 } },
-            ]
-        }, 
-    
-    
-    
-    
-    
-    
-    
-        ];
+                    } },
+                        ]
+                }
+];
 
 const OPTION_CUSTOM_WEIGHT_CLASSES = {
         eyeColor: {
@@ -5759,7 +6055,7 @@ const OPTION_CUSTOM_WEIGHT_CLASSES = {
                 tightlyCurled: { ethiopian: 'A', subSaharan: 'A+' }
         },
         skinColor: {
-                typeI: { hallstatt: 'A+', eastNordic: 'A', eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A' },
+                typeI: { hallstatt: 'A+', eastNordic: 'A', eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', northCaucasian: 'A' },
                 typeIV: {
                         westernMediterranean: 'B', centralMediterranean: 'B', easternMediterranean: 'B', southernMediterranean: 'B',
                         levantine: 'B+', iranoAfghan: 'B+', armenoid: 'B+', ethiopian: 'B'
@@ -5932,6 +6228,51 @@ traits.forEach(trait => {
                         if (optionOverrides[option.value]) {
                                 option.customWeightClasses = optionOverrides[option.value];
                         }
+                });
+        });
+});
+
+const NORTH_CAUCASIAN_CUSTOM_WEIGHTS = {
+        eyeColor: 'B',
+        hairColor: 'B',
+        hairForm: 'B',
+        skinColor: 'A',
+        cephalicIndex: 'A+',
+        faceShape: 'A+',
+        cheekbones: 'A',
+        epicanthus: 'C+',
+        eyeShape: 'B',
+        innerCanthalDistance: 'B',
+        noseType: 'A+',
+        forehead: 'B+',
+        chin: 'B+',
+        eyebrows: 'C+',
+        browRidges: 'B+',
+        ears: 'C',
+        height: 'C',
+        nasalProfile: 'B+',
+        lipFullness: 'B',
+        prognathism: 'B+',
+        occipitalContour: 'B',
+        eyeDepth: 'B',
+        nasalBridgeHeight: 'B+',
+        facialIndex: 'A+',
+        orbitalIndex: 'A+',
+        nasalTipMorphology: 'B+'
+};
+
+Object.entries(NORTH_CAUCASIAN_CUSTOM_WEIGHTS).forEach(([traitId, weightClass]) => {
+        const trait = traits.find(item => item.id === traitId);
+        if (!trait) return;
+
+        const optionGroups = trait.type === 'composite' ? trait.subTraits : [trait];
+        optionGroups.forEach(optionGroup => {
+                optionGroup.options.forEach(option => {
+                        option.customWeightClasses = {
+                                ...(option.customWeightClasses || {}),
+                                caucasion: weightClass,
+                                caspian: weightClass
+                        };
                 });
         });
 });

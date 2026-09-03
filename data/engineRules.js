@@ -2182,7 +2182,9 @@
             ["mesocephalic", "sub-brachycephalic"].includes(userSelections.cephalicIndex) &&
             ["leptoprosopic", "mesoprosopic"].includes(userSelections.facialIndex) &&
             userSelections.nasalProfile === "straight" &&
-            ["typeII", "typeIII"].includes(userSelections.skinColor)
+            ["typeII", "typeIII"].includes(userSelections.skinColor) &&
+            userSelections.epicanthus === "absent"
+
         );
     },
     effects: [
@@ -2228,7 +2230,8 @@
             userSelections.nasalProfile === "straight" &&
             ["hazel", "lightBrown", "mediumBrown","darkBrown"].includes(userSelections.eyeColor) &&
             ["brown", "darkBrown"].includes(userSelections.hairColor) &&
-            ["typeII", "typeIII"].includes(userSelections.skinColor)
+            ["typeII", "typeIII"].includes(userSelections.skinColor) &&
+            userSelections.epicanthus === "absent"
         );
     },
     effects: [

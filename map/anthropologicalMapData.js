@@ -16,6 +16,8 @@ export const TYPE_REGIONS = {
 
     nearEastern: ['nearEastern-region'],
 
+    northCaucasian: ['nearEastern-region'],
+
     eastAsian: ['eastAsian-region'],
 
     mongolian: ['mongolian-region'],

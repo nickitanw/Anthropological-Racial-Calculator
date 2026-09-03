@@ -33,6 +33,10 @@ const SUBTYPE_KEYS = [
     "iranoAfghan",
     "armenoid",
 
+    // North Caucasian
+    "caucasion",
+    "caspian",
+
     // Asian
     "northAsian",
     "centralAsian",
@@ -81,6 +85,10 @@ const SUBTYPE_NAMES = {
     iranoAfghan: "Irano-Afghan",
 
     armenoid: "Armenoid",
+
+    caucasion: "Caucasion",
+
+    caspian: "Caspian",
 
     northAsian: "North Asian",
 
@@ -209,6 +217,14 @@ const GROUPS = {
 
     ],
 
+    northCaucasian: [
+
+        "caucasion",
+
+        "caspian"
+
+    ],
+
     asian: [
 
         "northAsian",
@@ -251,6 +267,8 @@ const GROUP_NAMES = {
     dinaric: "Dinaric",
 
     nearEastern: "Near Eastern",
+
+    northCaucasian: "North Caucasian",
 
     asian: "Asian",
 
@@ -344,6 +362,10 @@ const SUBTYPE_TO_GROUP = {
 
     armenoid: "nearEastern",
 
+    caucasion: "northCaucasian",
+
+    caspian: "northCaucasian",
+
     northAsian: "asian",
 
     centralAsian: "asian",
@@ -395,6 +417,10 @@ const DISPLAY_ORDER = [
     "iranoAfghan",
 
     "armenoid",
+
+    "caucasion",
+
+    "caspian",
 
     "northAsian",
 
