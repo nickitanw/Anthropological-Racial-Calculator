@@ -218,7 +218,7 @@
                                 nordic: -8, 
                                 ladogan: -7, 
                                 eastBaltic: -6, 
-                        northernSlavic: -3, centralSlavic: -2, ponticSlavic: +0.15,
+                        northernSlavic: -3, centralSlavic: -2, ponticSlavic: 0,
                         
                                 alpine: -3,
                         westernMediterranean: +1, centralMediterranean: +2, easternMediterranean: +5, southernMediterranean: +6,
@@ -1299,7 +1299,7 @@ options: [
         label: 'Sub-dolichocephalic (75–77.5)',
         contributions: {
                                 caucasion: -3,
-                                caspian: +4, 
+                                caspian: +3, 
             hallstatt: +4.5,
             eastNordic: +4.5,
             tronder: +3.5,
@@ -1342,7 +1342,7 @@ options: [
         label: 'Mesocephalic (77.5–80)',
         contributions: {
                                 caucasion: 0,
-                                caspian: 3, 
+                                caspian: 3.25, 
             hallstatt: +2,
             eastNordic: +3,
             tronder: +5,
@@ -5524,7 +5524,7 @@ negativeSynergy: {
         { value: 'mesoprosopic', label: 'Mesoprosopic (85-90)',
             contributions: {
                                 caucasion: -2,
-                                caspian: 3.5,   
+                                caspian: 3,   
                                 hallstatt: +1,
                                 eastNordic: +2,
                                 tronder: +2,
@@ -5560,7 +5560,7 @@ subSaharan: +2 } },
         { value: 'leptoprosopic', label: 'Leptoprosopic (90-95)',
             contributions: {
                                 caucasion: -2,
-                                caspian: 2,   
+                                caspian: 3,   
                                 hallstatt: +4,
                                 eastNordic: +4,
                                 tronder: +3,
@@ -6114,10 +6114,10 @@ hyperbrachycephalic: {
 }
         },
         faceShape: {
-                veryNarrow: { hallstatt: 'A-', southernMediterranean: 'A', iranoAfghan: 'A' },
+                veryNarrow: { hallstatt: 'A-', southernMediterranean: 'A', iranoAfghan: 'A', caspian: 'A-', caucasion: 'B+' },
                 round: { eastBaltic: 'A-', centralSlavic: 'A-', alpine: 'A' },
-                broad: { northAsian: 'A', eastAsian: 'A-', amerindian: 'A-' },
-                veryBroad: { northAsian: 'A+', eastAsian: 'A', amerindian: 'A' }
+                broad: { northAsian: 'A', eastAsian: 'A-', amerindian: 'A-', caspian: 'A-', caucasion: 'A' },
+                veryBroad: { northAsian: 'A+', eastAsian: 'A', amerindian: 'A',caspian: 'A-', caucasion: 'A' }
         },
         cheekbones: {
                 low: { northAsian: 'A-', eastAsian: 'A-', amerindian: 'A-' },
@@ -6193,9 +6193,9 @@ hyperbrachycephalic: {
                         centralSlavic: 'B+', ponticSlavic: 'B+', alpine: 'B+', dinaric: 'B+', westernMediterranean: 'B+',
                         centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
                         iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B+', eastAsian: 'B+', malay: 'B+',
-                        amerindian: 'B+', subSaharan: 'B+', ethiopian: 'B+'
+                        amerindian: 'B+', subSaharan: 'B+', ethiopian: 'B+',caspian: 'B+', caucasion: 'B+'
                 },
-                leptoprosopic: { hallstatt: 'A', dinaric: 'A', westernMediterranean: 'A', southernMediterranean: 'A', levantine: 'A', iranoAfghan: 'A' },
+                leptoprosopic: { hallstatt: 'A', dinaric: 'A', westernMediterranean: 'A', southernMediterranean: 'A', levantine: 'A', iranoAfghan: 'A',caspian: 'A+' },
                 hyperleptoprosopic: { hallstatt: 'A+', dinaric: 'A', southernMediterranean: 'A+', levantine: 'A', iranoAfghan: 'A+', ethiopian: 'A' }
         },
         orbitalIndex: {
@@ -6238,7 +6238,6 @@ const NORTH_CAUCASIAN_CUSTOM_WEIGHTS = {
         hairForm: 'B',
         skinColor: 'A',
         cephalicIndex: 'A+',
-        faceShape: 'A+',
         cheekbones: 'A',
         epicanthus: 'C+',
         eyeShape: 'B',
@@ -6256,7 +6255,6 @@ const NORTH_CAUCASIAN_CUSTOM_WEIGHTS = {
         occipitalContour: 'B',
         eyeDepth: 'B',
         nasalBridgeHeight: 'B+',
-        facialIndex: 'A+',
         orbitalIndex: 'A+',
         nasalTipMorphology: 'B+'
 };

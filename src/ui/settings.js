@@ -66,6 +66,39 @@
         LOCALE.setLanguage(language);
         localStorage.setItem('appLanguage', language);
         applyTestTranslations();
+
+        // Rebuild runtime-generated content so it uses the newly selected locale.
+        if (typeof buildAllTraitCards === 'function' && typeof traits !== 'undefined') {
+            const openCards = [...document.querySelectorAll('.trait-card.open')]
+                .map(card => card.id.replace('traitCard-', ''));
+            const currentData = {
+                userSelections: typeof userSelections !== 'undefined' ? userSelections : {},
+                userSubSelections: typeof userSubSelections !== 'undefined' ? userSubSelections : {},
+                userMeasurements: typeof userMeasurements !== 'undefined' ? userMeasurements : {}
+            };
+
+            buildAllTraitCards();
+
+            if (typeof restoreUIFromData === 'function') {
+                restoreUIFromData(currentData);
+            }
+
+            openCards.forEach(traitId => {
+                document.getElementById(`traitCard-${traitId}`)?.classList.add('open', 'active');
+            });
+
+            if (typeof updateAllScores === 'function') updateAllScores();
+        }
+
+        if (typeof populateDevTools === 'function') {
+            populateDevTools();
+        }
+        if (typeof devUpdateComparisonAnalysis === 'function') {
+            devUpdateComparisonAnalysis();
+        }
+        if (typeof devRefreshDiagnostics === 'function') {
+            devRefreshDiagnostics();
+        }
     }
     const DEFAULT_DARK_COLORS = {
         'bg': '#1a1a1a',

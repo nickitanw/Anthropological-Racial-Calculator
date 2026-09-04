@@ -16,7 +16,95 @@ function getWeightLabel(weightClass) {
     return map[weightClass] || '';
 }
 
+function getLocalizedTraitValue(traitId, path, fallback) {
+    if (!window.LOCALE || !traitId) return fallback;
+    const key = `traits.${traitId}.${path}`;
+    const value = window.LOCALE.get(key);
+    return value && value !== key ? value : fallback;
+}
+
+function getLocalizedTraitOption(traitId, value, fallback) {
+    if (!window.LOCALE) return fallback;
+    if (value === '') return window.LOCALE.get('common.select', fallback);
+
+    const specificKey = `traits.${traitId}.options.${value}`;
+    const specificValue = window.LOCALE.get(specificKey);
+    if (specificValue && specificValue !== specificKey) return specificValue;
+
+    const commonKey = `traits.commonOptions.${value}`;
+    const commonValue = window.LOCALE.get(commonKey);
+    return commonValue && commonValue !== commonKey ? commonValue : fallback;
+}
+
+function getLocalizedSubTraitLabel(traitId, subTrait, fallback) {
+    const specific = getLocalizedTraitValue(`${traitId}.subTraits.${subTrait.id}`, 'label', fallback);
+    if (specific !== fallback) return specific;
+
+    if (window.LOCALE) {
+        let labelId = subTrait.id;
+        const prefix = traitId.toLowerCase().replace(/s$/, '');
+        if (labelId.toLowerCase().startsWith(prefix)) labelId = labelId.slice(prefix.length);
+        labelId = labelId.replace(/^[A-Z]/, match => match.toLowerCase());
+        const commonKey = `traits.commonOptions.${labelId}`;
+        const commonValue = window.LOCALE.get(commonKey);
+        if (commonValue && commonValue !== commonKey) return commonValue;
+    }
+
+    return fallback;
+}
+
+function applyTraitLocale() {
+    if (!Array.isArray(traits)) return;
+
+    traits.forEach(trait => {
+        if (!trait || !trait.id) return;
+
+        trait.title = getLocalizedTraitValue(trait.id, 'title', trait.title);
+        trait.definition = getLocalizedTraitValue(trait.id, 'definition', trait.definition);
+        trait.measurement = getLocalizedTraitValue(
+            trait.id,
+            'measurement',
+            getLocalizedTraitValue(trait.id, 'measurementNote', trait.measurement)
+        );
+        trait.unit = getLocalizedTraitValue(
+            trait.id,
+            'unit',
+            getLocalizedTraitValue('commonOptions', 'categorical', trait.unit)
+        );
+
+        if (Array.isArray(trait.measurementFields)) {
+            trait.measurementFields.forEach(field => {
+                if (!field || !field.id) return;
+                field.label = getLocalizedTraitValue(`${trait.id}.fields.${field.id}`, 'label', field.label);
+                field.placeholder = getLocalizedTraitValue(`${trait.id}.fields.${field.id}`, 'placeholder', field.placeholder);
+            });
+        }
+
+        if (Array.isArray(trait.options)) {
+            trait.options.forEach(option => {
+                if (!option || option.value === undefined || option.value === null) return;
+                option.label = getLocalizedTraitOption(trait.id, option.value, option.label);
+            });
+        }
+
+        if (Array.isArray(trait.subTraits)) {
+            trait.subTraits.forEach(subTrait => {
+                if (!subTrait || !subTrait.id) return;
+                subTrait.label = getLocalizedSubTraitLabel(trait.id, subTrait, subTrait.label);
+
+                if (Array.isArray(subTrait.options)) {
+                    subTrait.options.forEach(option => {
+                        if (!option || option.value === undefined || option.value === null) return;
+                        option.label = getLocalizedTraitOption(trait.id, option.value, option.label);
+                    });
+                }
+            });
+        }
+    });
+}
+
 function buildAllTraitCards() {
+    applyTraitLocale();
     traitsContainer.innerHTML = '';
     traits.forEach((trait, index) => {
         const card = document.createElement('div');
@@ -25,9 +113,9 @@ function buildAllTraitCards() {
 
         let bodyHTML = '';
         bodyHTML +=
-            `<div class="definition">📖 <strong>Definition:</strong> ${trait.definition}</div>`;
+            `<div class="definition">📖 <strong>${t('traitsLabels.definition', 'Definition:')}</strong> ${trait.definition}</div>`;
         bodyHTML +=
-            `<div class="measurement-note">📏 <strong>Measurement:</strong> ${trait.measurement} | <strong>Unit:</strong> ${trait.unit}</div>`;
+            `<div class="measurement-note">📏 <strong>${t('traitsLabels.measurement', 'Measurement:')}</strong> ${trait.measurement} | <strong>${t('traitsLabels.unit', 'Unit:')}</strong> ${trait.unit}</div>`;
 
         if (trait.type === 'select') {
             bodyHTML +=

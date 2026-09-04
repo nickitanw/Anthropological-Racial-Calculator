@@ -839,13 +839,6 @@ function generateReport() {
     const html = `
         <h2>📜 Historical Anthropometric Reconstruction Report</h2>
         <p style="text-align:center;font-size:0.8rem;color:#5c5240;">Simulated Classification — circa 1880–1940 Typological Framework</p>
-        <div class="report-disclaimer">
-            ⚠️ <strong>CRITICAL DISCLAIMER:</strong> This simulator reconstructs <em>historical</em> anthropological
-            classification systems and does <strong>NOT</strong> represent modern scientific ancestry analysis,
-            genetics, ethnicity prediction, race determination, or biological reality. The categories, scores,
-            and classifications herein reflect obsolete typological frameworks studied solely for their
-            historical and educational value. No biological or genetic inference should be drawn.
-        </div>
         <div class="report-view-switch">
             <button id="analysisTab" class="report-tab active" onclick="showReportAnalysis()">📊 Analysis</button>
             <button id="mapTab" class="report-tab" onclick="showReportMap()">🌍 Map</button>

@@ -600,29 +600,30 @@
     <!-- ============ STICKY DISCLAIMER BANNER ============ -->
     <div class="disclaimer-banner">
         <span class="icon">⚠</span>
-        <strong>HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> —
-        This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
+        <strong data-i18n="pageTitle">HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> —
+        <span data-i18n="disclaimerBanner">This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
         It does <u>NOT</u> represent modern scientific ancestry analysis, genetics, ethnicity prediction,
-        race determination, or biological reality. For educational and historical study purposes only.
+        race determination, or biological reality. For educational and historical study purposes only.</span>
         <span class="icon">⚠</span>
     </div>
 
     <div class="main-container">
         <!-- HEADER -->
         <header>
-            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">⚙️</button>
-            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings">⚙️</button>
+            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
             <h1 data-i18n="menu.title">Main Menu</h1>
             <p class="subtitle" data-i18n="menu.subtitle">Historical Anthropometric Reconstruction Simulator</p>
-            <span class="era-badge">📜 circa 1880–1940 · Educational & Historical Reference</span>
+            <span class="era-badge" data-i18n="eraBadge">📜 circa 1880–1940 · Educational & Historical Reference</span>
         </header>
 
         <!-- INLINE DISCLAIMER -->
         <div class="disclaimer-inline">
             <span class="warn-icon">⚠</span>
-            <strong>IMPORTANT HISTORICAL NOTICE:</strong> This simulator reconstructs <em>historical</em> anthropological
+            <strong data-i18n="messages.notRepresentative">IMPORTANT HISTORICAL NOTICE:</strong>
+            <span data-i18n="disclaimerNotice">This simulator reconstructs <em>historical</em> anthropological
             classification methods. It does <strong>NOT</strong> constitute modern genetics, scientific ancestry estimation,
-            ethnicity prediction, race determination, or any statement of biological reality.
+            ethnicity prediction, race determination, or any statement of biological reality.</span>
         </div>
 
         <!-- MENU CARDS -->
@@ -673,7 +674,7 @@
         <!-- INFO SECTIONS -->
 
         <div class="info-section" id="about">
-            <h3>📜 About This Project</h3>
+            <h3 data-i18n="menu.about">📜 About This Project</h3>
             <p>
                 This Historical Anthropometric Reconstruction Simulator is an educational tool designed to explore and understand
                 the anthropological classification systems that were developed during the late 19th and early 20th centuries
@@ -697,7 +698,7 @@
         </div>
 
         <div class="info-section" id="guide">
-            <h3>📖 User Guide</h3>
+            <h3 data-i18n="menu.guide">📖 User Guide</h3>
             <p>
                 <strong>Getting Started:</strong> Click the "Calculator" button to access the main measurement interface. You will see
                 a series of expandable trait cards, each corresponding to a different anthropometric measurement.
@@ -732,7 +733,7 @@
 
             <div class="info-section" id="methodology">
 
-    <h3>🧠 Calculation Methodology</h3>
+    <h3 data-i18n="menu.methodology">🧠 Calculation Methodology</h3>
 
     <p>
         The simulator evaluates each selected trait against a historical
@@ -792,7 +793,7 @@
 
 
         <div class="info-section" id="disclaimers">
-            <h3>⚠️ Critical Disclaimers</h3>
+            <h3 data-i18n="menu.disclaimers">⚠️ Critical Disclaimers</h3>
             <p>
                 <strong>This simulator does NOT represent:</strong>
             </p>

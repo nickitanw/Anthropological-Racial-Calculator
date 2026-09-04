@@ -55,8 +55,11 @@ function updateProgress(result) {
 
     const { filledCount, totalCount } = result.progress;
     const percentage = totalCount > 0 ? Math.round((filledCount / totalCount) * 100) : 0;
-
-    progressText.textContent = `${percentage}% (${filledCount}/${totalCount})`;
+    const template = window.LOCALE ? window.LOCALE.get('scorePanel.progressText', '{percent}% ({filled}/{total})') : '{percent}% ({filled}/{total})';
+    progressText.textContent = template
+        .replace('{percent}', String(percentage))
+        .replace('{filled}', String(filledCount))
+        .replace('{total}', String(totalCount));
 
     if (percentage === 0) {
         progressContainer.style.background = '#f5f0e5';

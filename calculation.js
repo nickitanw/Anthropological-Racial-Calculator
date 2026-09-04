@@ -151,8 +151,8 @@ function getTypeBadgeStyle(typeKey) {
 function resetAll() {
             resetAllScores();
             updateAllScores();
-            closestTypeName.textContent = '—';
-            secondaryTypes.textContent = 'No traits selected';
+            closestTypeName.textContent = t('scorePanel.closestDefault', '—');
+            secondaryTypes.textContent = t('scorePanel.noTraitsSelected', 'No traits selected');
         }
 
 
@@ -194,12 +194,12 @@ function loadPreset(presetName) {
             const typeKeyB = selectB.value;
 
             if (!typeKeyA || !typeKeyB) {
-                container.innerHTML = '<p style="color: #5c5240; text-align: center; padding: 20px;">Select both types to compare</p>';
+                container.innerHTML = `<p style="color: #5c5240; text-align: center; padding: 20px;">${t('comparison.selectBoth', 'Select both types to compare')}</p>`;
                 return;
             }
 
             if (typeKeyA === typeKeyB) {
-                container.innerHTML = '<p style="color: #8b5a3b; text-align: center; padding: 20px;">Select different types to compare</p>';
+                container.innerHTML = `<p style="color: #8b5a3b; text-align: center; padding: 20px;">${t('comparison.selectDifferent', 'Select different types to compare')}</p>`;
                 return;
             }
 
@@ -210,10 +210,10 @@ function loadPreset(presetName) {
             let html = `
                 <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
                     <tr style="background: #3a2a18; color: #fefdf9;">
-                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #c49a3c;">Trait</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #c49a3c;">${t('comparison.trait', 'Trait')}</th>
                         <th style="padding: 12px; text-align: center; border-bottom: 2px solid #c49a3c;">${typeNameA}</th>
                         <th style="padding: 12px; text-align: center; border-bottom: 2px solid #c49a3c;">${typeNameB}</th>
-                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #c49a3c;">Difference</th>
+                        <th style="padding: 12px; text-align: center; border-bottom: 2px solid #c49a3c;">${t('comparison.difference', 'Difference')}</th>
                     </tr>
             `;
 

@@ -277,14 +277,24 @@ const LOCALE = {
     },
 
     // Get a localized string
-    get(key, lang = null) {
-        const language = lang || this.current;
+    get(key, langOrFallback = null) {
+        let language = this.current;
+        let fallback = null;
+
+        if (typeof langOrFallback === 'string' && this.strings[langOrFallback]) {
+            language = langOrFallback;
+        } else if (typeof langOrFallback === 'string') {
+            fallback = langOrFallback;
+        }
+
         const keys = key.split('.');
         let value = this.strings[language];
 
         for (const k of keys) {
             value = value?.[k];
-            if (!value) return key; // Fallback to key if not found
+            if (value === undefined || value === null) {
+                return fallback ?? key;
+            }
         }
         return value;
     },
@@ -314,6 +324,14 @@ Object.entries(window.APP_LOCALES || {}).forEach(([language, strings]) => {
 });
 
 window.LOCALE = LOCALE;
+
+function t(key, fallback = key) {
+    if (!window.LOCALE) return fallback;
+    const value = window.LOCALE.get(key);
+    return value && value !== key ? value : fallback;
+}
+
+window.t = t;
 
 // Usage examples:
 // LOCALE.get('pageTitle')

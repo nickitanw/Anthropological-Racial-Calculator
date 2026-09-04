@@ -50,7 +50,15 @@ const SUBTYPE_KEYS = [
 
 ];
 
-const SUBTYPE_NAMES = {
+const getLocalizedLabel = (key, fallback) => {
+    if (window.LOCALE && typeof window.LOCALE.get === 'function') {
+        const value = window.LOCALE.get(key);
+        if (value && value !== key) return value;
+    }
+    return fallback;
+};
+
+const BASE_SUBTYPE_NAMES = {
 
     hallstatt: "Hallstatt Nordic",
 
@@ -106,9 +114,17 @@ const SUBTYPE_NAMES = {
 
 };
 
+const SUBTYPE_NAMES = BASE_SUBTYPE_NAMES;
+
 const SUBTYPE_KEY_SET = new Set(SUBTYPE_KEYS);
 
 function getSubtypeName(typeKey) {
+    if (window.LOCALE && typeof window.LOCALE.get === 'function') {
+        const localized = window.LOCALE.get(`subtypes.${typeKey}`);
+        if (localized && localized !== `subtypes.${typeKey}`) {
+            return localized;
+        }
+    }
     return SUBTYPE_NAMES[typeKey] || GROUP_NAMES[typeKey] || typeKey;
 }
 
@@ -250,7 +266,7 @@ const GROUPS = {
 };
 
 
-const GROUP_NAMES = {
+const BASE_GROUP_NAMES = {
 
     nordic: "Nordic",
 
@@ -276,9 +292,17 @@ const GROUP_NAMES = {
 
 };
 
+const GROUP_NAMES = BASE_GROUP_NAMES;
+
 const GROUP_KEYS = Object.keys(GROUP_NAMES);
 
 function getGroupName(groupKey) {
+    if (window.LOCALE && typeof window.LOCALE.get === 'function') {
+        const localized = window.LOCALE.get(`groups.${groupKey}`);
+        if (localized && localized !== `groups.${groupKey}`) {
+            return localized;
+        }
+    }
     return GROUP_NAMES[groupKey] || groupKey;
 }
 

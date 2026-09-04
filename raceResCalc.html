@@ -2910,10 +2910,9 @@ body.dark-mode .preset-panel {
     <!-- ============ STICKY DISCLAIMER BANNER ============ -->
     <div class="disclaimer-banner">
         <span class="icon">⚠</span>
-        <strong>HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> —
-        This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
+        <span data-i18n="disclaimerBanner">This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
         It does <u>NOT</u> represent modern scientific ancestry analysis, genetics, ethnicity prediction,
-        race determination, or biological reality. For educational and historical study purposes only.
+        race determination, or biological reality. For educational and historical study purposes only.</span>
         <span class="icon">⚠</span>
     </div>
 
@@ -2932,16 +2931,16 @@ body.dark-mode .preset-panel {
             </div>
             <h1 data-i18n="pageTitle">Historical Anthropometric Reconstruction Simulator</h1>
             <p class="subtitle" data-i18n="pageSubtitle">Reconstructing Late 19th &amp; Early 20th Century Morphological Classification Systems</p>
-            <span class="era-badge">📜 circa 1880–1940 · Physical Anthropology · Racial Typology · Craniometry</span>
+            <span class="era-badge" data-i18n="eraBadge">📜 circa 1880–1940 · Physical Anthropology · Racial Typology · Craniometry</span>
         </header>
 
         <!-- INLINE DISCLAIMER -->
         <div class="disclaimer-inline">
             <span class="warn-icon">⚠</span>
-            <strong>IMPORTANT HISTORICAL NOTICE:</strong> This simulator reconstructs <em>historical</em> anthropological
+            <strong data-i18n="messages.notRepresentative">IMPORTANT HISTORICAL NOTICE:</strong> <span data-i18n="disclaimerInline">This simulator reconstructs <em>historical</em> anthropological
             classification methods. It does <strong>NOT</strong> constitute modern genetics, scientific ancestry estimation,
             ethnicity prediction, race determination, or any statement of biological reality. The categories and scoring
-            reflect obsolete typological frameworks studied here solely for their historical and educational value.
+            reflect obsolete typological frameworks studied here solely for their historical and educational value.</span>
         </div>
 
 
@@ -3044,69 +3043,69 @@ body.dark-mode .preset-panel {
 
             <!-- SCORE PANEL -->
             <div class="score-panel" id="scorePanel">
-                <h2>📊 Live Type Scores</h2>
-                <p class="score-disclaimer">Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group.
+                <h2 data-i18n="scorePanel.title">📊 Live Type Scores</h2>
+                <p class="score-disclaimer" data-i18n="scorePanel.disclaimer">Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group.
                     <br>Higher score = greater morphological alignment in this historical framework.</p>
-                <div class="imported-profile-badge" id="importedProfileBadge">✓ Imported profile loaded</div>
+                <div class="imported-profile-badge" id="importedProfileBadge" data-i18n="scorePanel.importedBadge">✓ Imported profile loaded</div>
                 <div id="progressContainer" style="margin-bottom: 12px; padding: 10px; background: #f5f0e5; border-radius: 6px; text-align: center; font-size: 0.9rem; color: #4a3828; font-weight: bold;">
-                    <span id="progressText">0% (0/0)</span>
+                    <span id="progressText" data-i18n="scorePanel.progressText">0% (0/0)</span>
                 </div>
                 <div id="scoreRows"></div>
                 <div class="closest-type-box" id="closestTypeBox">
-                    <div class="closest-label">Closest Historical Group</div>
-                    <div class="closest-type" id="closestTypeName">—</div>
-                    <div class="secondary" id="secondaryTypes">Select traits to begin</div>
+                    <div class="closest-label" data-i18n="scorePanel.closestLabel">Closest Historical Group</div>
+                    <div class="closest-type" id="closestTypeName" data-i18n="scorePanel.closestDefault">—</div>
+                    <div class="secondary" id="secondaryTypes" data-i18n="scorePanel.secondaryDefault">Select traits to begin</div>
                 </div>
                 <div class="btn-row">
-                    <button class="btn primary" onclick="generateReport()">📋 Generate Full Report</button>
-                    <button class="btn" id="openDevPanelButton" onclick="openDevPanel()">🔧 Open Developer Panel</button>
-                    <button class="btn" onclick="exportProfile()">💾 Export Profile</button>
-                    <button class="btn" onclick="openSaveProfileAsDialog()">🗂️ Save Profile As...</button>
-                    <button class="btn" onclick="importProfile()">📂 Import Profile</button>
-                    <button class="btn" onclick="resetAll()">🔄 Reset All Traits</button>
+                    <button class="btn primary" onclick="generateReport()" data-i18n="buttons.generateReport">📋 Generate Full Report</button>
+                    <button class="btn" id="openDevPanelButton" onclick="openDevPanel()" data-i18n="buttons.openDevPanel">🔧 Open Developer Panel</button>
+                    <button class="btn" onclick="exportProfile()" data-i18n="buttons.exportProfile">💾 Export Profile</button>
+                    <button class="btn" onclick="openSaveProfileAsDialog()" data-i18n="buttons.saveProfileAs">🗂️ Save Profile As...</button>
+                    <button class="btn" onclick="importProfile()" data-i18n="buttons.importProfile">📂 Import Profile</button>
+                    <button class="btn" onclick="resetAll()" data-i18n="buttons.resetAll">🔄 Reset All Traits</button>
                 </div>
-                <div class="reset-link" onclick="resetAll()">Clear all selections and start over</div>
+                <div class="reset-link" onclick="resetAll()" data-i18n="buttons.clearAll">Clear all selections and start over</div>
             </div>
         </div>
 
         <!-- DEVELOPER TOOLS SECTION -->
         <div class="dev-tools-section collapsed" id="devToolsSection">
             <div class="dev-tools-header">
-                <div class="dev-tools-title">🔧 DEVELOPER TOOLS</div>
+                <div class="dev-tools-title" data-i18n="devTools.sectionTitle">🔧 DEVELOPER TOOLS</div>
                 <button class="dev-tools-toggle" onclick="toggleDevPanel()" id="devToolsToggle">+</button>
             </div>
             <div class="dev-tools-content" id="devToolsContent">
                 <div class="nav-tabs">
-                    <button class="nav-tab active" onclick="switchTab('comparison')">Trait Comparison</button>
-                    <button class="nav-tab" onclick="switchTab('diagnostics')">Trait Diagnostics</button>
-                    <button class="nav-tab" onclick="switchTab('advisor')">Missing Trait Advisor</button>
+                    <button class="nav-tab active" onclick="switchTab('comparison')" data-i18n="devTools.tabComparison">Trait Comparison</button>
+                    <button class="nav-tab" onclick="switchTab('diagnostics')" data-i18n="devTools.tabDiagnostics">Trait Diagnostics</button>
+                    <button class="nav-tab" onclick="switchTab('advisor')" data-i18n="devTools.tabAdvisor">Missing Trait Advisor</button>
                 </div>
 
             <!-- TAB: Trait Comparison -->
             <div id="comparison" class="tab-content active">
                 <div class="dev-tools-container">
                     <div class="dev-tool-card">
-                        <h3>⚖️ Compare Types</h3>
+                        <h3 data-i18n="devTools.comparison.title">⚖️ Compare Types</h3>
                         <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
                             <div style="flex: 1; min-width: 200px;">
-                                <label>Type A:</label>
+                                <label data-i18n="devTools.comparison.typeA">Type A:</label>
                                 <select id="devComparisonTypeA" onchange="devUpdateComparisonAnalysis()">
-                                    <option value="">-- Select Type --</option>
+                                    <option value="" data-i18n="common.select">-- Select Type --</option>
                                     <!-- Populated by JavaScript -->
                                 </select>
                             </div>
                             <div style="flex: 1; min-width: 200px;">
-                                <label>Type B:</label>
+                                <label data-i18n="devTools.comparison.typeB">Type B:</label>
                                 <select id="devComparisonTypeB" onchange="devUpdateComparisonAnalysis()">
-                                    <option value="">-- Select Type --</option>
+                                    <option value="" data-i18n="common.select">-- Select Type --</option>
                                     <!-- Populated by JavaScript -->
                                 </select>
                             </div>
                         </div>
                         <div id="devComparisonOutput" class="dev-output"></div>
                         <div style="display: flex; gap: 10px; margin-top: 12px;">
-                            <button onclick="exportComparisonAs('png')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as PNG</button>
-                            <button onclick="exportComparisonAs('jpg')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as JPG</button>
+                            <button onclick="exportComparisonAs('png')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;" data-i18n="devTools.comparison.exportPng">📥 Export as PNG</button>
+                            <button onclick="exportComparisonAs('jpg')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;" data-i18n="devTools.comparison.exportJpg">📥 Export as JPG</button>
                         </div>
                     </div>
                 </div>
@@ -3116,25 +3115,25 @@ body.dark-mode .preset-panel {
             <div id="diagnostics" class="tab-content">
                 <div class="dev-tools-container">
                     <div class="dev-tool-card">
-                        <h3>🔬 Trait Diagnostics</h3>
+                        <h3 data-i18n="devTools.diagnostics.title">🔬 Trait Diagnostics</h3>
                         <div style="display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
                             <div style="flex: 1; min-width: 220px;">
-                                <label>Diagnostics Mode:</label>
+                                <label data-i18n="devTools.diagnostics.modeLabel">Diagnostics Mode:</label>
                                 <select id="devDiagnosticsMode" onchange="devRefreshDiagnostics()">
-                                    <option value="trait">Traits</option>
-                                    <option value="rule">Rules</option>
+                                    <option value="trait" data-i18n="devTools.diagnostics.modeTrait">Traits</option>
+                                    <option value="rule" data-i18n="devTools.diagnostics.modeRule">Rules</option>
                                 </select>
                             </div>
                         </div>
-                        <label id="devDiagnosticsSelectLabel">Select Trait to Inspect:</label>
+                        <label id="devDiagnosticsSelectLabel" data-i18n="devTools.diagnostics.selectTrait">Select Trait to Inspect:</label>
                         <select id="devTraitDiagnosticsSelect" onchange="devUpdateTraitDiagnostics()">
-                            <option value="">-- Select Trait --</option>
+                            <option value="" data-i18n="common.select">-- Select Trait --</option>
                             <!-- Populated by JavaScript -->
                         </select>
                         <div id="devTraitDiagnosticsOutput" class="dev-output"></div>
                         <div style="display: flex; gap: 10px; margin-top: 12px;">
-                            <button onclick="exportDiagnosticsAs('png')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as PNG</button>
-                            <button onclick="exportDiagnosticsAs('jpg')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as JPG</button>
+                            <button onclick="exportDiagnosticsAs('png')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;" data-i18n="devTools.diagnostics.exportPng">📥 Export as PNG</button>
+                            <button onclick="exportDiagnosticsAs('jpg')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;" data-i18n="devTools.diagnostics.exportJpg">📥 Export as JPG</button>
                         </div>
                     </div>
                 </div>
@@ -3144,8 +3143,8 @@ body.dark-mode .preset-panel {
             <div id="advisor" class="tab-content">
                 <div class="dev-tools-container">
                     <div class="dev-tool-card">
-                        <h3>💡 Missing Trait Advisor</h3>
-                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">Identify which unfilled traits would most improve classification accuracy.</p>
+                        <h3 data-i18n="devTools.advisor.title">💡 Missing Trait Advisor</h3>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;" data-i18n="devTools.advisor.description">Identify which unfilled traits would most improve classification accuracy.</p>
                         <div id="devMissingTraitOutput" class="dev-output"></div>
                     </div>
                 </div>
@@ -3156,13 +3155,13 @@ body.dark-mode .preset-panel {
 
         <div class="save-profile-overlay" id="saveProfileAsOverlay" onclick="closeSaveProfileAsDialog()"></div>
         <div class="save-profile-modal" id="saveProfileAsModal">
-            <h3>Save Profile As...</h3>
-            <p>Enter a profile name. It will be saved to My Profile as <strong>[name].json</strong>.</p>
+            <h3 data-i18n="modals.saveProfileAs.title">Save Profile As...</h3>
+            <p data-i18n="modals.saveProfileAs.description">Enter a profile name. It will be saved to My Profile as <strong>[name].json</strong>.</p>
             <input id="saveProfileAsInput" type="text" maxlength="80" placeholder="Profile name" onkeydown="if(event.key==='Enter'){confirmSaveProfileAs();}">
             <div id="saveProfileAsError"></div>
             <div class="save-profile-actions">
-                <button onclick="closeSaveProfileAsDialog()">Cancel</button>
-                <button class="save" onclick="confirmSaveProfileAs()">Save</button>
+                <button onclick="closeSaveProfileAsDialog()" data-i18n="common.cancel">Cancel</button>
+                <button class="save" onclick="confirmSaveProfileAs()" data-i18n="common.save">Save</button>
             </div>
         </div>
 
@@ -3181,35 +3180,40 @@ body.dark-mode .preset-panel {
         <div class="settings-sidebar">
 
             <button class="settings-tab active"
-                    data-page="appearancePage">
+                    data-page="appearancePage"
+                    data-i18n="settings.appearance">
 
                 🎨 Appearance
 
             </button>
 
             <button class="settings-tab"
-                    data-page="enginePage">
+                    data-page="enginePage"
+                    data-i18n="settings.engine">
 
                 ⚙ Engine
 
             </button>
 
             <button class="settings-tab"
-                    data-page="themePage">
+                    data-page="themePage"
+                    data-i18n="settings.theme">
 
                 🎛 Theme
 
             </button>
 
             <button class="settings-tab"
-                    data-page="developerPage">
+                    data-page="developerPage"
+                    data-i18n="settings.developer">
 
                 🧪 Developer
 
             </button>
 
             <button class="settings-tab"
-                    data-page="storagePage">
+                    data-page="storagePage"
+                    data-i18n="settings.storage">
 
                 💾 Storage
 
@@ -3228,7 +3232,7 @@ body.dark-mode .preset-panel {
 
                 <div class="toggle-input-group">
 
-                    <div class="toggle-label">
+                    <div class="toggle-label" data-i18n="settings.darkTheme">
 
                         Dark Theme
 
@@ -3260,9 +3264,9 @@ body.dark-mode .preset-panel {
             <div class="settings-page"
                  id="enginePage">
 
-                <h2>⚙ Engine</h2>
+                <h2 data-i18n="settings.engine">⚙ Engine</h2>
 
-                <p>
+                <p data-i18n="common.info">
 
                     Engine settings will appear here.
 
@@ -3276,7 +3280,7 @@ body.dark-mode .preset-panel {
             <div class="settings-page"
                  id="themePage">
 
-                <h2>🎛 Theme Editor</h2>
+                <h2 data-i18n="settings.themeEditor">🎛 Theme Editor</h2>
 
                 <!-- ВСТАВИ СЮДА ВСЕ Color Picker -->
 
@@ -3288,13 +3292,13 @@ body.dark-mode .preset-panel {
             <div class="settings-page"
                  id="developerPage">
 
-                <h2>🧪 Developer</h2>
+                <h2 data-i18n="settings.developer">🧪 Developer</h2>
 
                 <!-- ВСТАВИ СЮДА -->
 
                 <div class="toggle-input-group">
 
-                    <div class="toggle-label">
+                    <div class="toggle-label" data-i18n="settings.showDevTools">
 
                         Show Developer Tools
 
@@ -3326,11 +3330,11 @@ body.dark-mode .preset-panel {
             <div class="settings-page"
                  id="storagePage">
 
-                <h2>💾 Storage</h2>
+                <h2 data-i18n="settings.storage">💾 Storage</h2>
 
                 <div class="toggle-input-group">
 
-                    <div class="toggle-label">
+                    <div class="toggle-label" data-i18n="settings.resetOnReload">
 
                         Reset Data On Reload
 

@@ -65,10 +65,10 @@ function populateDiagnosticsItems() {
 
     if (mode === 'rule') {
         if (label) {
-            label.textContent = 'Select Rule to Inspect:';
+            label.textContent = t('devTools.diagnostics.selectRule', 'Select Rule to Inspect:');
         }
 
-        select.innerHTML = '<option value="">-- Select Rule --</option>';
+        select.innerHTML = `<option value="">${t('common.select', '-- Select --')}</option>`;
 
         const rules = getAllEngineRules();
         rules.forEach(item => {
@@ -81,10 +81,10 @@ function populateDiagnosticsItems() {
     }
 
     if (label) {
-        label.textContent = 'Select Trait to Inspect:';
+        label.textContent = t('devTools.diagnostics.selectTrait', 'Select Trait to Inspect:');
     }
 
-    select.innerHTML = '<option value="">-- Select Trait --</option>';
+    select.innerHTML = `<option value="">${t('common.select', '-- Select --')}</option>`;
 
     traits.forEach(trait => {
         const option = document.createElement('option');
@@ -386,21 +386,27 @@ function populateDevTools() {
     const traitDiag = document.getElementById('devTraitDiagnosticsSelect');
 
     if (compTypeA) {
+        const selectedValue = compTypeA.value;
+        compTypeA.querySelectorAll('option:not(:first-child)').forEach(option => option.remove());
         SUBTYPE_KEYS.forEach(key => {
             const option = document.createElement('option');
             option.value = key;
             option.textContent = getSubtypeName(key);
             compTypeA.appendChild(option);
         });
+        compTypeA.value = selectedValue;
     }
 
     if (compTypeB) {
+        const selectedValue = compTypeB.value;
+        compTypeB.querySelectorAll('option:not(:first-child)').forEach(option => option.remove());
         SUBTYPE_KEYS.forEach(key => {
             const option = document.createElement('option');
             option.value = key;
             option.textContent = getSubtypeName(key);
             compTypeB.appendChild(option);
         });
+        compTypeB.value = selectedValue;
     }
 
     if (traitDiag) {
