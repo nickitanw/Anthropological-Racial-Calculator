@@ -125,4 +125,5 @@ function restoreUIFromData(data) {
             });
         }
     });
+    if (typeof refreshTraitPresentation === 'function') refreshTraitPresentation();
 }

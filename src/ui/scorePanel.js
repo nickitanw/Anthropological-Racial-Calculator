@@ -1,10 +1,14 @@
 // ============================================================
 // SCORE PANEL SYSTEM
 // ============================================================
-function animateValue(element, start, end, duration = 850) {
+function animateValue(element, start, end, duration = 220) {
 
-    if (start === end) {
-        element.textContent = Math.round(end);
+    if (element._scoreAnimationFrame)
+        cancelAnimationFrame(element._scoreAnimationFrame);
+
+    if (start === end || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+        element.textContent = formatScoreValue(end);
+        element._scoreAnimationFrame = null;
         return;
     }
 
@@ -21,14 +25,18 @@ function animateValue(element, start, end, duration = 850) {
         const value =
             start + (end - start) * eased;
 
-        element.textContent = Math.round(value);
+        element.textContent = formatScoreValue(value);
 
         if (progress < 1)
-            requestAnimationFrame(update);
+            element._scoreAnimationFrame = requestAnimationFrame(update);
+        else {
+            element.textContent = formatScoreValue(end);
+            element._scoreAnimationFrame = null;
+        }
 
     }
 
-    requestAnimationFrame(update);
+    element._scoreAnimationFrame = requestAnimationFrame(update);
 
 }
 
@@ -41,8 +49,8 @@ function buildScoreRows() {
         row.id = 'scoreRow-' + key;
         row.innerHTML = `
             <span class="type-name">${getGroupName(key)}</span>
-            <div class="score-bar"><div class="score-bar-fill" id="scoreBar-${key}" style="width:50%;"></div></div>
-            <span class="type-score" id="scoreVal-${key}">50</span>
+            <div class="score-bar"><div class="score-bar-fill" id="scoreBar-${key}" style="left:50%;width:0;"></div></div>
+            <span class="type-score" id="scoreVal-${key}">0</span>
         `;
         scoreRowsDiv.appendChild(row);
     });
@@ -55,24 +63,19 @@ function updateProgress(result) {
 
     const { filledCount, totalCount } = result.progress;
     const percentage = totalCount > 0 ? Math.round((filledCount / totalCount) * 100) : 0;
-    const template = window.LOCALE ? window.LOCALE.get('scorePanel.progressText', '{percent}% ({filled}/{total})') : '{percent}% ({filled}/{total})';
+    const template = window.LOCALE ? window.LOCALE.get('scorePanel.progressText', '{filled}/{total} traits · {percent}%') : '{filled}/{total} traits · {percent}%';
     progressText.textContent = template
         .replace('{percent}', String(percentage))
         .replace('{filled}', String(filledCount))
         .replace('{total}', String(totalCount));
 
-    if (percentage === 0) {
-        progressContainer.style.background = '#f5f0e5';
-        progressText.style.color = '#4a3828';
-    } else if (percentage < 50) {
-        progressContainer.style.background = '#ffe8e8';
-        progressText.style.color = '#8b2020';
-    } else if (percentage < 100) {
-        progressContainer.style.background = '#fff8e8';
-        progressText.style.color = '#8b6914';
-    } else {
-        progressContainer.style.background = '#e8f5e8';
-        progressText.style.color = '#2d6b1e';
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) progressFill.style.width = percentage + '%';
+    if (progressBar) {
+        progressBar.setAttribute('aria-valuenow', String(filledCount));
+        progressBar.setAttribute('aria-valuemax', String(totalCount));
+        progressBar.setAttribute('aria-valuetext', progressText.textContent);
     }
 }
 
@@ -110,11 +113,8 @@ console.count("updateScoreRows");
         oldPositions[row.id] = row.getBoundingClientRect();
     });
 
-    // Максимальный положительный балл
-    const maxScore = Math.max(
-        ...Object.values(result.groupScores).map(v => Math.max(0, v)),
-        1
-    );
+    const displayRange = getScoreDisplayRange(result.groupScores);
+    updateScoreScale(displayRange);
 
     // Сортировка типов по очкам
     const orderedGroups = [...GROUP_KEYS].sort((a, b) => {
@@ -137,7 +137,7 @@ console.count("updateScoreRows");
             document.getElementById("scoreRow-" + key);
         
         if (scoreValEl)
-            scoreValEl.textContent = Math.round(val);
+            scoreValEl.textContent = formatScoreValue(val);
         const oldValue =
     Number(scoreValEl.dataset.value || 0);
 if (scoreRowEl) {
@@ -173,45 +173,8 @@ animateValue(
 
 scoreValEl.dataset.value = val;
 
-        if (scoreBarEl) {
-
-            scoreBarEl.style.background = getTypeColor(key);
-
-            const maxPositive = Math.max(
-    ...Object.values(result.groupScores)
-        .map(v=>Math.max(0,v)),
-    1
-);
-
-const maxNegative = Math.max(
-    ...Object.values(result.groupScores)
-        .map(v=>Math.abs(Math.min(0,v))),
-    1
-);
-
-let pct;
-
-if(val>=0){
-
-    pct=(val/maxPositive)*100;
-
-}else{
-
-    pct=(Math.abs(val)/maxNegative)*100;
-
-}
-if(val>=0){
-
-    scoreBarEl.style.background=getTypeColor(key);
-
-}else{
-
-    scoreBarEl.style.background="#cf5b5b";
-
-}
-
-            scoreBarEl.style.width = pct + "%";
-        }
+        if (scoreBarEl)
+            renderSignedScoreBar(scoreBarEl, val, displayRange, getTypeColor(key), getGroupName(key));
 
         if (scoreRowEl) {
             scoreRowEl.classList.remove("top-score");
@@ -264,7 +227,7 @@ previousSubtypeScores[key] = val;
         // Форсируем перерасчет layout
         void row.offsetWidth;
 
-        row.style.transition = "transform .45s ease";
+        row.style.transition = "transform .22s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease";
         row.style.transform = "";
 
     });

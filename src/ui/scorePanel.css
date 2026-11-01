@@ -1,0 +1,288 @@
+/* Live results presentation; all selectors stay inside the calculator score panel. */
+body.hars-calculator .score-panel {
+    padding: 16px;
+    color: #e9e0d0;
+    background: linear-gradient(145deg, rgba(35, 34, 32, .93), rgba(22, 23, 24, .96)), url('../../assets/textures/2.png') center / 460px;
+    border: 1px solid #786b53;
+    border-radius: 10px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .3), inset 0 1px rgba(241, 214, 158, .08);
+}
+body.hars-calculator .score-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    padding: 0 0 12px;
+    margin-bottom: 9px;
+    background: url('../../assets/textures/5.png') center bottom / 210px 8px no-repeat;
+}
+body.hars-calculator .score-panel h2,
+body.hars-calculator.dark-mode .score-panel h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #e6d1a4;
+    font-size: 1.2rem;
+    line-height: 1.35;
+    letter-spacing: .075em;
+}
+body.hars-calculator .score-info { position: static; }
+body.hars-calculator .score-info summary {
+    list-style: none;
+    cursor: pointer;
+    color: #c1a974;
+    font: 700 1.12rem/1.35 Georgia, serif;
+    border-radius: 50%;
+    transition: color 180ms ease;
+}
+body.hars-calculator .score-info summary::-webkit-details-marker { display: none; }
+body.hars-calculator .score-info summary:hover,
+body.hars-calculator .score-info[open] summary { color: #f1d38f; }
+body.hars-calculator .score-info .score-disclaimer,
+body.hars-calculator.dark-mode .score-info .score-disclaimer {
+    position: absolute;
+    z-index: 12;
+    top: 27px;
+    right: 0;
+    width: min(320px, calc(100vw - 48px));
+    padding: 11px 13px;
+    margin: 0;
+    color: #d6c7a9;
+    background: linear-gradient(rgba(31, 29, 27, .96), rgba(31, 29, 27, .96)), url('../../assets/textures/7.png') center / 270px;
+    border: 1px solid #8d7750;
+    border-radius: 7px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .44);
+    font-size: .87rem;
+    font-style: normal;
+    line-height: 1.5;
+    text-align: left;
+}
+body.hars-calculator .score-panel #progressContainer,
+body.hars-calculator.dark-mode .score-panel #progressContainer {
+    display: grid;
+    gap: 6px;
+    margin: 0 0 11px;
+    padding: 6px 1px 2px;
+    color: #d4c6ae;
+    background: transparent !important;
+    text-align: left;
+    font-size: .87rem;
+    font-weight: 600;
+    letter-spacing: .025em;
+}
+body.hars-calculator .score-panel #progressText { color: #d6c5a4; }
+body.hars-calculator .score-panel .imported-profile-badge { font-size: .9rem; }
+body.hars-calculator .score-progress-track {
+    height: 5px;
+    overflow: hidden;
+    background: #151718;
+    border: 1px solid #655846;
+    border-radius: 99px;
+}
+body.hars-calculator .score-progress-track span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(140, 112, 67, .83), rgba(221, 187, 119, .87)), url('../../assets/textures/3.png') center / 240px;
+    border-radius: inherit;
+    transition: width 220ms ease;
+}
+body.hars-calculator .score-scale-guide {
+    display: grid;
+    grid-template-columns: minmax(112px, 1.25fr) minmax(72px, 1.15fr) 44px;
+    gap: 9px;
+    margin: 0 0 4px;
+    padding: 0 9px 0 12px;
+    color: #a89c89;
+    font: 600 .74rem/1.2 Georgia, serif;
+    font-variant-numeric: tabular-nums;
+}
+body.hars-calculator .score-scale-labels { display: flex; justify-content: space-between; }
+body.hars-calculator .score-panel #scoreRows { display: grid; gap: 5px; }
+body.hars-calculator .score-panel .score-row,
+body.hars-calculator.dark-mode .score-panel .score-row {
+    display: grid;
+    grid-template-columns: minmax(112px, 1.25fr) minmax(72px, 1.15fr) 44px;
+    align-items: center;
+    gap: 9px;
+    min-height: 37px;
+    margin: 0;
+    padding: 6px 9px 6px 12px;
+    color: #e2d8c6;
+    background: linear-gradient(110deg, rgba(49, 45, 39, .69), rgba(26, 27, 28, .88));
+    border: 1px solid #5b554c;
+    border-radius: 6px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .035);
+    transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+body.hars-calculator .score-panel .score-row:hover,
+body.hars-calculator.dark-mode .score-panel .score-row:hover {
+    background: linear-gradient(110deg, rgba(66, 57, 43, .82), rgba(33, 34, 34, .94));
+    border-color: #978160;
+}
+body.hars-calculator .score-panel .score-row::after { width: 3px; top: 7px; bottom: 7px; opacity: .75; }
+body.hars-calculator .score-panel .score-row.rank-gold,
+body.hars-calculator .score-panel .score-row.rank-silver,
+body.hars-calculator .score-panel .score-row.rank-bronze {
+    min-height: 45px;
+    background: linear-gradient(110deg, rgba(46, 41, 34, .91), rgba(27, 27, 27, .94)), url('../../assets/textures/2.png') center / 380px !important;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .2), inset 0 1px rgba(255, 255, 255, .045);
+}
+body.hars-calculator .score-panel .score-row.rank-gold { border-color: #c4a15f; }
+body.hars-calculator .score-panel .score-row.rank-silver { border-color: #a8acb0; }
+body.hars-calculator .score-panel .score-row.rank-bronze { border-color: #a87555; }
+body.hars-calculator .score-panel .score-row.rank-gold:hover { border-color: #ebc681; }
+body.hars-calculator .score-panel .score-row.rank-silver:hover { border-color: #d2d6db; }
+body.hars-calculator .score-panel .score-row.rank-bronze:hover { border-color: #cf9b78; }
+body.hars-calculator .score-panel .score-row .type-name,
+body.hars-calculator.dark-mode .score-panel .score-row .type-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: #e8ded0;
+    font-size: .9rem;
+    line-height: 1.16;
+    letter-spacing: .01em;
+}
+body.hars-calculator .score-panel .score-row .type-score,
+body.hars-calculator .score-panel .score-row.top-score .type-score,
+body.hars-calculator.dark-mode .score-panel .score-row .type-score {
+    min-width: 0;
+    color: #eee4cf;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+body.hars-calculator .score-panel .score-row .score-bar,
+body.hars-calculator.dark-mode .score-panel .score-row .score-bar {
+    position: relative;
+    width: 100%;
+    height: 9px;
+    margin: 0;
+    overflow: visible;
+    background: linear-gradient(#17191a, #343330);
+    border: 1px solid #5c5447;
+    border-radius: 99px;
+}
+body.hars-calculator .score-panel .score-row .score-bar::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: -3px;
+    bottom: -3px;
+    width: 1px;
+    background: #d3bc8a;
+    box-shadow: 0 0 3px #171817;
+}
+body.hars-calculator .score-panel .score-row .score-bar-fill,
+body.hars-calculator .score-panel .score-row.top-score .score-bar-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 99px;
+    transition: left 220ms ease, width 220ms ease, background 220ms ease;
+}
+body.hars-calculator .score-panel .closest-type-box,
+body.hars-calculator.dark-mode .score-panel .closest-type-box {
+    position: relative;
+    margin-top: 11px;
+    padding: 10px 12px;
+    text-align: left;
+    color: #e9dfcd;
+    background: linear-gradient(rgba(34, 33, 31, .94), rgba(27, 28, 29, .96)), url('../../assets/textures/7.png') center / 320px;
+    border: 1px solid #72654f;
+    border-radius: 7px;
+}
+body.hars-calculator .score-panel .closest-type-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 64px;
+    height: 64px;
+    pointer-events: none;
+    opacity: .13;
+    background: url('../../assets/textures/6.png') center / contain no-repeat;
+    transform: scaleX(-1);
+}
+body.hars-calculator .score-panel .closest-label,
+body.hars-calculator.dark-mode .score-panel .closest-label { color: #bca47a; font-size: .79rem; letter-spacing: .1em; }
+body.hars-calculator .score-panel .closest-type,
+body.hars-calculator.dark-mode .score-panel .closest-type { margin-top: 2px; color: #eadab5; font-size: 1.12rem; line-height: 1.25; }
+body.hars-calculator .score-panel .secondary,
+body.hars-calculator.dark-mode .score-panel .secondary { margin-top: 3px; color: #c1b5a3; font-size: .83rem; line-height: 1.35; }
+body.hars-calculator .score-panel .score-actions { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 8px; margin-top: 11px; }
+body.hars-calculator .score-panel .score-actions .btn {
+    min-width: 0;
+    width: 100%;
+    min-height: 40px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: .85rem;
+    line-height: 1.2;
+    transition: border-color 180ms ease, color 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+}
+body.hars-calculator .score-panel .score-actions .score-report-action,
+body.hars-calculator .score-panel .score-actions .score-report-action:hover {
+    color: #201a12;
+    background: linear-gradient(rgba(218, 182, 111, .34), rgba(164, 121, 59, .38)), url('../../assets/textures/10.png') center / 230px;
+    border: 1px solid #d0a95e;
+    box-shadow: inset 0 1px rgba(255, 240, 185, .35), 0 2px 7px rgba(0, 0, 0, .22);
+}
+body.hars-calculator .score-panel .score-actions .score-report-action:hover { filter: brightness(1.13); }
+body.hars-calculator .score-panel .score-actions-wrap { position: relative; min-width: 0; }
+body.hars-calculator .score-panel .score-actions .score-more-trigger,
+body.hars-calculator .score-panel .score-actions .score-more-trigger:hover {
+    color: #e6d8ba;
+    background: linear-gradient(rgba(28, 27, 25, .2), rgba(28, 27, 25, .2)), url('../../assets/textures/9.png') center / 230px;
+    border: 1px solid #8e7957;
+    white-space: nowrap;
+}
+body.hars-calculator .score-panel .score-actions .score-more-trigger:hover,
+body.hars-calculator .score-panel .score-actions .score-more-trigger[aria-expanded="true"] { border-color: #c6a46a; box-shadow: 0 0 0 1px rgba(198, 164, 106, .15); }
+body.hars-calculator .score-panel .score-more-menu[hidden] { display: none; }
+body.hars-calculator .score-panel .score-more-menu {
+    position: absolute;
+    z-index: 15;
+    right: 0;
+    bottom: calc(100% + 6px);
+    width: max(210px, 100%);
+    padding: 5px;
+    background: linear-gradient(rgba(30, 29, 27, .94), rgba(30, 29, 27, .94)), url('../../assets/textures/9.png') center / 250px;
+    border: 1px solid #8e7957;
+    border-radius: 7px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .46);
+}
+body.hars-calculator .score-panel .score-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 8px 9px;
+    color: #e7dac3;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    font: 600 .85rem/1.25 Georgia, serif;
+    text-align: left;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
+}
+body.hars-calculator .score-panel .score-menu-item span:first-child { width: 18px; text-align: center; font-size: 1rem; }
+body.hars-calculator .score-panel .score-menu-item:hover,
+body.hars-calculator .score-panel .score-menu-item:focus-visible { color: #f1dcab; background: rgba(187, 151, 89, .15); }
+body.hars-calculator .score-panel .score-menu-separator { height: 1px; margin: 4px 8px; background: rgba(181, 157, 113, .24); }
+body.hars-calculator .score-panel .score-menu-reset { color: #d39b93; }
+body.hars-calculator .score-panel .score-menu-reset:hover { color: #f0b3a9; background: rgba(154, 67, 58, .16); }
+@media (max-width: 410px) {
+    body.hars-calculator .score-panel .score-actions { grid-template-columns: 1fr; }
+    body.hars-calculator .score-panel .score-row,
+    body.hars-calculator.dark-mode .score-panel .score-row { grid-template-columns: minmax(96px, 1.2fr) minmax(50px, 1.1fr) 40px; gap: 6px; padding-right: 7px; }
+    body.hars-calculator .score-scale-guide { grid-template-columns: minmax(96px, 1.2fr) minmax(50px, 1.1fr) 40px; gap: 6px; padding-right: 7px; }
+    body.hars-calculator .score-panel .score-row .type-name,
+    body.hars-calculator.dark-mode .score-panel .score-row .type-name { font-size: .82rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.hars-calculator .score-panel :is(.score-row, .score-bar-fill, .score-progress-track span, .btn, .score-menu-item) { transition: none; }
+}

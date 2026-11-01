@@ -199,23 +199,7 @@ function normalizeWeightValue(weightValue) {
 }
 
 function getWeightForSubtype(weightClass, customWeightClasses, subtypeKey, optionCustomWeight = null) {
-    const optionWeight = normalizeWeightValue(
-        resolveWeightOverride(optionCustomWeight, subtypeKey)
-    );
-
-    if (optionWeight !== undefined) {
-        return optionWeight;
-    }
-
-    const traitWeight = normalizeWeightValue(
-        resolveWeightOverride(customWeightClasses, subtypeKey)
-    );
-
-    if (traitWeight !== undefined) {
-        return traitWeight;
-    }
-
-    return WEIGHT_CLASSES[weightClass] || 1;
+    return 1;
 }
 
 function applyCategories(
@@ -248,13 +232,7 @@ function applyCategories(
 
     SUBTYPE_KEYS.forEach(key => {
         if (contributions[key] !== undefined) {
-            const weight = getWeightForSubtype(
-                weightClass,
-                customWeightClasses,
-                key,
-                optionCustomWeight
-            );
-            const weightedValue = contributions[key] * weight;
+            const weightedValue = contributions[key];
 
             contributionStore.push({
                 subtypeKey: key,

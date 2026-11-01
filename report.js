@@ -1,197 +1,28 @@
 let currentReportResult = null;
+let currentReportAnalysis = null;
+let reportReturnFocus = null;
+const reportState = {
+    mode: 'group',
+    section: 'overview',
+    rankingQuery: '',
+    rankingSort: 'score-desc',
+    rankingExpanded: false,
+    contributionSort: 'magnitude'
+};
+let reportPrintState = null;
 
-function toggleSubtypeBreakdown() {
-    const groupPanels = [
-        document.getElementById('groupModePanel'),
-        document.getElementById('groupHighlightsPanel'),
-        document.getElementById('groupRankingPanel')
-    ].filter(Boolean);
-    const subtypePanels = [
-        document.getElementById('subtypeBreakdownPanel'),
-        document.getElementById('subtypeRankingPanel'),
-        document.getElementById('subtypeContributionPanel')
-    ].filter(Boolean);
-    const button = document.getElementById('subtypeBreakdownButton');
-    const label = document.getElementById('subtypeBreakdownLabel');
-    const title = document.getElementById('subtypeToggleTitle');
-    const description = document.getElementById('subtypeToggleDescription');
-    const kicker = document.getElementById('subtypeToggleKicker');
-
-    if (
-        groupPanels.length === 0 ||
-        subtypePanels.length === 0 ||
-        !label ||
-        !button ||
-        !title ||
-        !description ||
-        !kicker
-    ) {
-        return;
-    }
-
-    const willShowSubtypeMode = subtypePanels[0].style.display === 'none';
-
-    groupPanels.forEach(section => {
-        section.style.display = willShowSubtypeMode ? 'none' : 'block';
-    });
-
-    subtypePanels.forEach(section => {
-        section.style.display = willShowSubtypeMode ? 'block' : 'none';
-    });
-
-    button.classList.toggle('active', willShowSubtypeMode);
-    button.setAttribute('aria-pressed', willShowSubtypeMode ? 'true' : 'false');
-
-    kicker.textContent = willShowSubtypeMode
-        ? 'Subtype Mode'
-        : 'Group Mode';
-
-    title.textContent = willShowSubtypeMode
-        ? 'Subtype mode is active'
-        : 'Need the fine-grained subtype view?';
-
-    description.textContent = willShowSubtypeMode
-        ? 'You are now viewing subtype-level charts, rankings, and contribution analysis in the same report area.'
-        : 'Switch the report into subtype mode to inspect the fine-grained ranking and contribution detail in-place.';
-
-    label.textContent = willShowSubtypeMode
-        ? 'Switch to Group Mode'
-        : 'Switch to Subtype Mode';
-}
-
-function closeReport() {
-            document.getElementById('reportOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-            // Clean up tooltip
-            const tooltip = document.getElementById('pie-tooltip');
-            if (tooltip) {
-                tooltip.remove();
-            }
-        }
-
-function showReportAnalysis(){
-
-    document.getElementById(
-        'reportAnalysisView'
-    ).style.display = 'block';
-
-    document.getElementById(
-        'reportMapView'
-    ).style.display = 'none';
-
-    document
-        .querySelectorAll(
-            '.report-tab'
-        )
-        .forEach(
-            x => x.classList.remove(
-                'active'
-            )
-        );
-
-    document
-        .getElementById(
-            'analysisTab'
-        )
-        .classList.add(
-            'active'
-        );
-}
-
-function showReportMap(){
-
-    document.getElementById(
-        'reportAnalysisView'
-    ).style.display = 'none';
-
-    document.getElementById(
-        'reportMapView'
-    ).style.display = 'block';
-
-    document
-        .querySelectorAll(
-            '.report-tab'
-        )
-        .forEach(
-            x => x.classList.remove(
-                'active'
-            )
-        );
-
-    document
-        .getElementById(
-            'mapTab'
-        )
-        .classList.add(
-            'active'
-        );
-}
-
-function showTypeTooltip(event, typeName, score, percentage) {
-            // Make the hovered segment more opaque
-            event.target.style.opacity = '1';
-
-            let tooltip = document.getElementById('pie-tooltip');
-            if (!tooltip) {
-                tooltip = document.createElement('div');
-                tooltip.id = 'pie-tooltip';
-                tooltip.style.cssText = `
-                    position: fixed;
-                    background: #3a2a18;
-                    color: #fefdf9;
-                    padding: 12px 16px;
-                    border-radius: 8px;
-                    font-size: 0.95rem;
-                    font-weight: bold;
-                    pointer-events: none;
-                    z-index: 10000;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                    white-space: nowrap;
-                    border: 2px solid #c49a3c;
-                `;
-                document.body.appendChild(tooltip);
-            }
-
-            tooltip.innerHTML = `
-                <div style="font-size: 1.1rem; margin-bottom: 4px;">${typeName}</div>
-                <div style="font-size: 0.9rem; color: #d4b86c;">Score: ${score} (${percentage}%)</div>
-            `;
-
-            // Position tooltip near cursor
-            const rect = event.target.getBoundingClientRect();
-            const x = event.clientX + 10;
-            const y = event.clientY - 10;
-
-            tooltip.style.left = x + 'px';
-            tooltip.style.top = y + 'px';
-            tooltip.style.display = 'block';
-
-            // Keep tooltip on screen
-            setTimeout(() => {
-                const tooltipRect = tooltip.getBoundingClientRect();
-                if (tooltipRect.right > window.innerWidth) {
-                    tooltip.style.left = (window.innerWidth - tooltipRect.width - 10) + 'px';
-                }
-                if (tooltipRect.bottom > window.innerHeight) {
-                    tooltip.style.top = (window.innerHeight - tooltipRect.height - 10) + 'px';
-                }
-            }, 0);
-        }
-
-function hideTypeTooltip() {
-            const tooltip = document.getElementById('pie-tooltip');
-            if (tooltip) {
-                tooltip.style.display = 'none';
-            }
-            // Reset all segments to normal opacity
-            document.querySelectorAll('#reportInner svg path').forEach(path => {
-                path.style.opacity = '0.85';
-            });
-        }
-
+const REPORT_SECTIONS = [
+    ['overview', 'Overview'],
+    ['categories', 'Pigmentation & Morphology'],
+    ['rankings', 'Complete Rankings'],
+    ['contributions', 'Trait Contributions'],
+    ['selections', 'Trait Selections'],
+    ['rules', 'Rules & Diagnostics'],
+    ['map', 'Map']
+];
 
 function escapeReportHtml(value) {
-    return String(value)
+    return String(value ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -199,685 +30,472 @@ function escapeReportHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
-function renderTypeBadge(typeKey, label, scoreText = '') {
-    return `<span class="type-badge" style="${getTypeBadgeStyle(typeKey)}">${escapeReportHtml(label)}${scoreText}</span>`;
+function reportScore(value) {
+    const rounded = Math.round(Math.abs(value) * 2) / 2 * (value < 0 ? -1 : 1);
+    return String(rounded || 0);
 }
 
-function splitTopLevelAndClauses(expression) {
-    const clauses = [];
-    let depthParen = 0;
-    let depthBracket = 0;
-    let depthBrace = 0;
-    let inSingle = false;
-    let inDouble = false;
-    let current = '';
+function reportSignedScore(value) {
+    const displayed = reportScore(value);
+    return displayed === '0' ? '0' : `${value > 0 ? '+' : ''}${displayed}`;
+}
 
-    for (let i = 0; i < expression.length; i++) {
-        const char = expression[i];
-        const next = expression[i + 1];
+function reportRanking(mode = reportState.mode, category = null) {
+    if (category) {
+        const subset = currentReportAnalysis.categories[category];
+        return mode === 'group' ? subset.groupRanking : subset.subtypeRanking;
+    }
+    return mode === 'group' ? currentReportResult.groupRanking : currentReportResult.ranking;
+}
 
-        if (char === "'" && !inDouble && expression[i - 1] !== '\\') {
-            inSingle = !inSingle;
-        } else if (char === '"' && !inSingle && expression[i - 1] !== '\\') {
-            inDouble = !inDouble;
-        }
+function reportCard(label, value, detail = '') {
+    return `<div class="report-summary-card"><div class="report-card-label">${escapeReportHtml(label)}</div><div class="report-card-value">${escapeReportHtml(value)}</div>${detail ? `<div class="report-card-detail">${escapeReportHtml(detail)}</div>` : ''}</div>`;
+}
 
-        if (!inSingle && !inDouble) {
-            if (char === '(') depthParen++;
-            if (char === ')') depthParen--;
-            if (char === '[') depthBracket++;
-            if (char === ']') depthBracket--;
-            if (char === '{') depthBrace++;
-            if (char === '}') depthBrace--;
+function reportBar(score, range, color = '#b89a60') {
+    const width = Math.min(Math.abs(score) / (range || 1), 1) * 50;
+    const left = score < 0 ? 50 - width : 50;
+    return `<div class="report-score-bar" aria-hidden="true"><span class="report-score-fill" style="left:${left}%;width:${width}%;background:${score < 0 ? '#ac706b' : color}"></span></div>`;
+}
 
-            const atTopLevel = depthParen === 0 && depthBracket === 0 && depthBrace === 0;
-            if (atTopLevel && char === '&' && next === '&') {
-                if (current.trim()) {
-                    clauses.push(current.trim());
-                }
-                current = '';
-                i++;
-                continue;
+function reportAlignmentLabel(score, maximum) {
+    const ratio = score / Math.max(maximum, 1);
+    return ratio >= .85 ? 'Strong' : ratio >= .65 ? 'Moderate' : ratio >= .40 ? 'Neutral' : 'Weak';
+}
+
+function reportScoreTable(entries, limit = entries.length) {
+    if (!entries.length) return '<p class="report-empty">No calculated matches are available.</p>';
+    const range = Math.max(1, ...entries.map(item => Math.abs(item.score)));
+    const maximum = Math.max(1, ...entries.map(item => item.score));
+    return `<div class="report-table-scroll"><table class="report-data-table"><thead><tr><th>Rank</th><th>Historical ${reportState.mode === 'group' ? 'Group' : 'Subtype'}</th><th>Score comparison</th><th>Score</th><th>Alignment</th></tr></thead><tbody>${entries.slice(0, limit).map((item, index) => `
+        <tr class="${index < 3 ? 'report-leading-row' : ''}"><td>${index + 1}</td><td><strong>${escapeReportHtml(item.name)}</strong>${item.leadSubtypeName && reportState.mode === 'group' ? `<small>Lead subtype: ${escapeReportHtml(item.leadSubtypeName)}</small>` : ''}</td><td>${reportBar(item.score, range, TYPE_COLORS[item.key] || '#b89a60')}</td><td class="report-number">${escapeReportHtml(reportScore(item.score))}</td><td>${reportAlignmentLabel(item.score, maximum)}</td></tr>
+    `).join('')}</tbody></table></div>`;
+}
+
+function renderReportOverview() {
+    const groups = currentReportResult.groupRanking;
+    const subtypes = currentReportResult.ranking;
+    const count = currentReportResult.progress;
+    const hasProfile = count.filledCount > 0;
+    const alternatives = hasProfile ? reportRanking().slice(1, 3) : [];
+    const pct = count.totalCount ? Math.round(count.filledCount / count.totalCount * 100) : 0;
+    const pigmentLead = currentReportAnalysis.categoryCounts.pigmentation.selected ? reportRanking(reportState.mode, 'pigmentation')[0] : null;
+    const morphologyLead = currentReportAnalysis.categoryCounts.morphological.selected ? reportRanking(reportState.mode, 'morphological')[0] : null;
+    return `<div class="report-section-heading"><h2>Classification Summary</h2><p>Results within the historical typological framework</p></div>
+        <div class="report-summary-grid">
+            ${reportCard('Leading historical group', hasProfile ? groups[0]?.name || '—' : '—', hasProfile ? `Score: ${reportScore(groups[0]?.score ?? 0)}` : 'Select traits to begin')}
+            ${reportCard('Leading historical subtype', hasProfile ? subtypes[0]?.name || '—' : '—', hasProfile ? `Score: ${reportScore(subtypes[0]?.score ?? 0)}` : 'Select traits to begin')}
+            ${reportCard(`Closest ${reportState.mode === 'group' ? 'group' : 'subtype'} alternatives`, alternatives.map(x => `${x.name} (${reportScore(x.score)})`).join(' · ') || '—')}
+            ${reportCard('Pigmentation leader', pigmentLead?.name || '—', pigmentLead ? `Subset score: ${reportScore(pigmentLead.score)}` : 'No pigmentation traits selected')}
+            ${reportCard('Morphology leader', morphologyLead?.name || '—', morphologyLead ? `Subset score: ${reportScore(morphologyLead.score)}` : 'No morphology traits selected')}
+            <div class="report-summary-card"><div class="report-card-label">Profile completeness</div><div class="report-card-value">${count.filledCount}/${count.totalCount} traits</div><div class="report-progress" role="progressbar" aria-label="Completed traits" aria-valuemin="0" aria-valuemax="${count.totalCount}" aria-valuenow="${count.filledCount}"><span style="width:${pct}%"></span></div><div class="report-card-detail">${pct}% completed</div></div>
+        </div>
+        <p class="report-explainer">Scores express relative alignment with obsolete historical classification models. They do not measure ancestry, ethnicity, genetics, or biological race. Displayed scores are rounded to the nearest 0.5; rankings and visualizations retain full precision. Category subset scores describe different numbers of selected traits and should be read within each category only.</p>`;
+}
+
+function reportCategoryDrivers(category, mode, leadKey, sign) {
+    const entries = getReportTargetEntries(currentReportAnalysis, mode, leadKey)
+        .filter(item => item.category === category && (sign === 'positive' ? item.value > 0 : item.value < 0))
+        .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
+        .slice(0, 6);
+    return entries.length ? `<ul class="report-driver-list">${entries.map(item => `<li><span>${escapeReportHtml(item.traitName)} <small>${escapeReportHtml(item.selection)}</small></span><strong class="${item.value < 0 ? 'negative' : 'positive'}">${escapeReportHtml(reportSignedScore(item.value))}</strong></li>`).join('')}</ul>` : '<p class="report-empty">No contributions in this direction.</p>';
+}
+
+function reportCategoryRankingList(ranking) {
+    return `<ol class="report-category-ranking">${ranking.map(item => `<li><span>${escapeReportHtml(item.name)}</span><strong>${escapeReportHtml(reportScore(item.score))}</strong></li>`).join('')}</ol>`;
+}
+
+function renderReportCategories() {
+    const mode = reportState.mode;
+    const cards = ['pigmentation', 'morphological'].map(category => {
+        const ranking = reportRanking(mode, category);
+        const count = currentReportAnalysis.categoryCounts[category];
+        const lead = count.selected ? ranking[0] : null;
+        const title = category === 'pigmentation' ? 'Pigmentation' : 'Morphology';
+        return `<article class="report-category-card">
+            <div class="report-card-label">${title} · ${count.selected}/${count.total} traits selected</div>
+            <h3>${escapeReportHtml(lead?.name || '—')}</h3><div class="report-category-score">${lead ? `Subset score: ${escapeReportHtml(reportScore(lead.score))}` : 'No category score yet'}</div>
+            <h4>Ranked alternatives</h4>${lead ? reportCategoryRankingList(ranking.slice(0, 5)) : '<p class="report-empty">No traits selected in this category.</p>'}
+            <div class="report-driver-grid"><div><h4>Strongest positive traits</h4>${reportCategoryDrivers(category, mode, lead?.key, 'positive')}</div><div><h4>Strongest negative traits</h4>${reportCategoryDrivers(category, mode, lead?.key, 'negative')}</div></div>
+        </article>`;
+    }).join('');
+    const pigment = currentReportAnalysis.categoryCounts.pigmentation.selected ? reportRanking(mode, 'pigmentation')[0] : null;
+    const morphology = currentReportAnalysis.categoryCounts.morphological.selected ? reportRanking(mode, 'morphological')[0] : null;
+    const comparison = !pigment || !morphology
+        ? 'Select traits in both categories to compare their leading historical matches.'
+        : pigment.key === morphology.key
+        ? `Both categories favor ${pigment?.name || 'the same historical match'}.`
+        : `Pigmentation favors ${pigment?.name || '—'}; morphology favors ${morphology?.name || '—'}.`;
+    return `<div class="report-section-heading"><h2>Pigmentation & Morphology</h2><p>Separate views of existing final trait contributions</p></div>
+        <div class="report-category-grid">${cards}</div>
+        <div class="report-comparison"><strong>Comparison</strong><p>${escapeReportHtml(comparison)}</p><small>Subset scores use the same existing contribution values, but the categories contain different numbers of traits. Their raw totals are not directly comparable. Rule effects stay separate; per-trait values already include any cross-trait synergy applied by the engine.</small></div>`;
+}
+
+function renderReportRankings() {
+    return `<div class="report-section-heading"><h2>Complete Rankings</h2><p>Signed scores rounded to the nearest 0.5 for display</p></div>
+        <div class="report-controls"><label>Filter <input id="reportRankingSearch" type="search" placeholder="Search names" value="${escapeReportHtml(reportState.rankingQuery)}" oninput="updateReportRankings()"></label><label>Sort <select id="reportRankingSort" onchange="updateReportRankings()"><option value="score-desc">Highest score</option><option value="score-asc">Lowest score</option><option value="name">Name</option></select></label></div>
+        <div id="reportRankingTable"></div><button type="button" class="report-secondary-button" id="reportRankingExpand" onclick="toggleReportRankings()">Show all results</button>`;
+}
+
+function renderReportContributions() {
+    const ranking = reportRanking();
+    return `<div id="subtypeContributionPanel"><div class="report-section-heading"><h2>Trait Contributions</h2><p>Final contribution values, rounded to the nearest 0.5 for display</p></div>
+        <div class="report-controls"><label>Analyze <select id="contributionTypeSelect" onchange="updateContributionAnalysis()">${ranking.map(item => `<option value="${escapeReportHtml(item.key)}">${escapeReportHtml(item.name)}</option>`).join('')}</select></label><label>Direction <select id="reportContributionSign" onchange="updateContributionAnalysis()"><option value="all">All</option><option value="positive">Positive</option><option value="negative">Negative</option></select></label><label>Category <select id="reportContributionCategory" onchange="updateContributionAnalysis()"><option value="all">All</option><option value="pigmentation">Pigmentation</option><option value="morphological">Morphology</option></select></label><label>Sort score <select id="reportContributionSort" onchange="updateContributionAnalysis()"><option value="magnitude">Largest magnitude</option><option value="positive-first">Highest positive first</option><option value="negative-first">Most negative first</option></select></label></div>
+        <div id="contributionAnalysisContainer"></div><p class="report-footnote">Group contributions are averaged over the same subtype set as the main group score. Rule effects and entries without a matched trait are shown separately in the All view.</p>
+        <div class="report-inline-actions"><button type="button" onclick="exportReportAs('png')">Export contribution PNG</button><button type="button" onclick="exportReportAs('jpg')">Export contribution JPG</button></div></div>`;
+}
+
+function reportSelectionBreakdown(contributions) {
+    const rows = Object.entries(contributions).filter(([, value]) => value !== 0);
+    if (!rows.length) return '<span class="report-empty">No subtype contribution recorded.</span>';
+    return `<div class="report-table-scroll"><table class="report-data-table"><thead><tr><th>Subtype</th><th>Contribution</th></tr></thead><tbody>${rows.map(([key, value]) => `<tr><td>${escapeReportHtml(getSubtypeName(key))}</td><td class="report-number ${value < 0 ? 'negative' : 'positive'}">${escapeReportHtml(reportSignedScore(value))}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function renderReportSelections() {
+    const rows = traits.map(trait => {
+        let selected = '— Not selected —';
+        const contributions = {};
+        if (trait.subTraits) {
+            const parts = [];
+            trait.subTraits.forEach(sub => {
+                const value = userSubSelections[sub.id];
+                if (!value) return;
+                const option = sub.options.find(item => item.value === value);
+                parts.push(`${sub.label}: ${option?.label || value}`);
+                Object.entries(getOptionContributions(option)).forEach(([key, amount]) => {
+                    contributions[key] = (contributions[key] || 0) + amount;
+                });
+            });
+            if (parts.length) selected = parts.join('; ');
+        } else {
+            const value = userSelections[trait.id];
+            if (value) {
+                const option = trait.options.find(item => item.value === value);
+                selected = option?.label || value;
+                Object.assign(contributions, getOptionContributions(option));
             }
+            if (userMeasurements[trait.id]) selected += ` [Index: ${userMeasurements[trait.id].index}]`;
         }
-
-        current += char;
-    }
-
-    if (current.trim()) {
-        clauses.push(current.trim());
-    }
-
-    return clauses;
+        const affected = Object.values(contributions).filter(value => value !== 0).length;
+        const summary = affected ? `<details class="report-trait-details"><summary>${affected} subtype contributions</summary>${reportSelectionBreakdown(contributions)}</details>` : '—';
+        return `<tr><td>${trait.number}</td><td><strong>${escapeReportHtml(trait.title)}</strong></td><td>${escapeReportHtml(selected)}</td><td>${trait.category === 'pigmentation' ? 'Pigmentation' : 'Morphology'}</td><td>${summary}</td></tr>`;
+    }).join('');
+    return `<div class="report-section-heading"><h2>Trait Selections</h2><p>All traits, including those left unselected</p></div><div class="report-table-scroll"><table class="report-data-table report-trait-table"><thead><tr><th>#</th><th>Trait</th><th>Selected Value</th><th>Category</th><th>Contribution / Summary</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-function extractConditionExpression(conditionFn) {
-    if (!conditionFn) {
-        return '';
-    }
-
-    const source = conditionFn.toString();
-    const body = source
-        .replace(/^condition\s*\(\)\s*\{/, '')
-        .replace(/^function\s*\(\)\s*\{/, '')
-        .replace(/\}\s*$/, '')
-        .trim();
-
-    const returnWrapped = body.match(/return\s*\(([^]*)\)\s*;?$/);
-    if (returnWrapped) {
-        return returnWrapped[1].trim();
-    }
-
-    const returnSimple = body.match(/return\s+([^;]+)\s*;?$/);
-    if (returnSimple) {
-        return returnSimple[1].trim();
-    }
-
-    return body;
+function reportRuleEffects(rule) {
+    return (rule.effects || []).map(effect => `${GROUP_KEYS.includes(effect.type) ? getGroupName(effect.type) : getSubtypeName(effect.type)} ${reportSignedScore(effect.value)}`).join(' · ') || 'No effects configured';
 }
 
-function evaluateRuleClauses(rule) {
-    const expression = extractConditionExpression(rule.condition);
-    const clauses = splitTopLevelAndClauses(expression);
+function reportRuleCard(item, status) {
+    const rule = item.rule;
+    const source = rule.condition ? rule.condition.toString().replace(/^condition\s*\(\)\s*\{/, '').replace(/\}\s*$/, '').trim() : '';
+    const checklist = typeof getRuleConditionChecklist === 'function' ? getRuleConditionChecklist(rule, source) : [];
+    const met = checklist.filter(clause => clause.met && !clause.error).length;
+    const fields = [...new Set([...source.matchAll(/userSelections\.([a-zA-Z0-9_]+)/g)].map(match => match[1]))];
+    const usedCategories = new Set(fields.map(id => traits.find(trait => trait.id === id)?.category).filter(Boolean));
+    const mixed = usedCategories.size > 1;
+    return `<details class="report-rule-card"><summary><span><strong>${escapeReportHtml(rule.name || rule.id || 'Unnamed Rule')}</strong><small>${escapeReportHtml(item.groupTitle)}${mixed ? ' · Mixed-category condition' : ''}</small></span><span class="report-rule-count">${status === 'triggered' ? 'Triggered' : status === 'disabled' ? 'Disabled' : `${met}/${checklist.length} met`}</span></summary><div class="report-rule-detail"><p><strong>Effects:</strong> ${escapeReportHtml(reportRuleEffects(rule))}</p><p><strong>Condition:</strong> <code>${escapeReportHtml(source || 'No condition supplied')}</code></p>${checklist.length ? `<ul>${checklist.map(clause => `<li class="${clause.met ? 'met' : 'missing'}"><strong>${clause.met ? 'Met' : 'Missing'}:</strong> <code>${escapeReportHtml(clause.clause)}</code>${clause.currentValues?.length ? `<small>${clause.currentValues.map(value => `${escapeReportHtml(value.title)}: ${escapeReportHtml(value.label)}`).join(' · ')}</small>` : ''}</li>`).join('')}</ul>` : '<p>No condition checklist available.</p>'}</div></details>`;
+}
 
-    const statuses = clauses.map(clause => {
-        try {
-            return {
-                clause,
-                met: Boolean(Function('userSelections', `return (${clause});`)(userSelections))
-            };
-        } catch (_) {
-            return {
-                clause,
-                met: false
-            };
+function renderReportRules() {
+    const rules = typeof getAllEngineRules === 'function' ? getAllEngineRules() : [];
+    const triggered = [], near = [], disabled = [];
+    rules.forEach(item => {
+        if (!item.rule.enabled) { disabled.push(item); return; }
+        let active = false;
+        try { active = Boolean(item.rule.condition?.()); } catch (_) { active = false; }
+        if (active) triggered.push(item);
+        else {
+            const source = item.rule.condition?.toString().replace(/^condition\s*\(\)\s*\{/, '').replace(/\}\s*$/, '').trim() || '';
+            const checklist = typeof getRuleConditionChecklist === 'function' ? getRuleConditionChecklist(item.rule, source) : [];
+            const met = checklist.filter(clause => clause.met && !clause.error).length;
+            near.push({ ...item, ratio: checklist.length ? met / checklist.length : 0, missing: checklist.length - met });
         }
     });
+    near.sort((a, b) => b.ratio - a.ratio || a.missing - b.missing);
+    return `<div class="report-section-heading"><h2>Rules & Diagnostics</h2><p>Existing rule conditions, effects, and activation details</p></div><div class="report-rule-columns"><div><h3>Triggered Rules (${triggered.length})</h3>${triggered.map(item => reportRuleCard(item, 'triggered')).join('') || '<p class="report-empty">No rules triggered.</p>'}</div><div><h3>Closest Untriggered Rules (${near.length})</h3>${near.map(item => reportRuleCard(item, 'near')).join('') || '<p class="report-empty">No near misses.</p>'}</div></div>${disabled.length ? `<details class="report-disabled-rules"><summary>Disabled rules (${disabled.length})</summary>${disabled.map(item => reportRuleCard(item, 'disabled')).join('')}</details>` : ''}`;
+}
 
-    const metCount = statuses.filter(x => x.met).length;
-    const total = statuses.length;
-
-    return {
-        statuses,
-        metCount,
-        total,
-        missingCount: Math.max(0, total - metCount),
-        ratio: total > 0 ? metCount / total : 0
+function renderReportMarkup() {
+    const sections = {
+        overview: renderReportOverview(),
+        categories: renderReportCategories(),
+        rankings: renderReportRankings(),
+        contributions: renderReportContributions(),
+        selections: renderReportSelections(),
+        rules: renderReportRules()
     };
+    return `<div class="report-workspace-header"><div class="report-heading"><h1>Historical Anthropometric Reconstruction Report</h1><p>Simulated classification · circa 1880–1940 typological framework</p></div><div class="report-header-controls"><div class="report-view-switch"><button type="button" id="analysisTab" class="report-tab" onclick="showReportAnalysis()">Analysis</button><button type="button" id="mapTab" class="report-tab" onclick="showReportMap()">Map</button></div><div class="report-mode-switch" role="group" aria-label="Ranking mode"><button type="button" id="reportGroupMode" onclick="setReportMode('group')">Group Mode</button><button type="button" id="reportSubtypeMode" onclick="setReportMode('subtype')">Subtype Mode</button></div><button type="button" onclick="printFullReport()">Print</button><details class="report-export-menu"><summary>Export</summary><div><button type="button" onclick="exportFullReportAs('png')">PNG image</button><button type="button" onclick="exportFullReportAs('jpg')">JPG image</button></div></details><button type="button" onclick="closeReport()" aria-label="Close Full Report">Close</button></div></div>
+        <div class="report-workspace-body"><nav class="report-sidebar" aria-label="Report sections">${REPORT_SECTIONS.map(([key, label]) => `<button type="button" data-report-section="${key}" onclick="showReportSection('${key}')">${label}</button>`).join('')}</nav><main class="report-main" id="reportMain"><div id="reportAnalysisView">${REPORT_SECTIONS.filter(([key]) => key !== 'map').map(([key]) => `<section class="report-workspace-section" id="reportSection-${key}" aria-labelledby="reportSectionLabel-${key}"><span class="report-print-section-label" id="reportSectionLabel-${key}">${REPORT_SECTIONS.find(item => item[0] === key)[1]}</span>${sections[key]}</section>`).join('')}</div><section class="report-workspace-section" id="reportMapView"><div class="report-section-heading"><h2>Map</h2><p>Existing geographic visualization of subtype scores</p></div><div class="report-map-card" id="anthropologicalMapContainer"><iframe id="anthropologicalMapFrame" title="Historical anthropological map" src="map/anthropologicalMap.html"></iframe><div id="reportMapSnapshot" aria-hidden="true"></div></div><p class="report-footnote">The map retains its existing subtype-score display in both report modes.</p></section><div class="report-disclaimer"><strong>Historical reconstruction disclaimer:</strong> These obsolete classification methods do not represent modern genetics, scientific ancestry estimation, ethnicity prediction, race determination, or biological reality.</div></main></div>`;
 }
 
-function getAllRulesWithGroups() {
-    const groups = [
-        { key: 'combinations', label: 'Combinations' },
-        { key: 'contradictions', label: 'Contradictions' },
-        { key: 'modifiers', label: 'Modifiers' },
-        { key: 'macros', label: 'Macros' }
-    ];
-
-    const all = [];
-
-    groups.forEach(group => {
-        const rules = ENGINE_RULES[group.key];
-        if (!Array.isArray(rules)) return;
-
-        rules.forEach(rule => {
-            all.push({
-                groupLabel: group.label,
-                rule
-            });
-        });
-    });
-
-    return all;
-}
-
-function getRuleEffectsText(rule) {
-    const effects = Array.isArray(rule.effects) ? rule.effects : [];
-    if (!effects.length) {
-        return 'No effects';
+function updateReportRankings() {
+    const query = document.getElementById('reportRankingSearch');
+    const sort = document.getElementById('reportRankingSort');
+    if (query) reportState.rankingQuery = query.value;
+    if (sort) reportState.rankingSort = sort.value;
+    const filtered = reportRanking().filter(item => item.name.toLowerCase().includes(reportState.rankingQuery.trim().toLowerCase()));
+    if (reportState.rankingSort === 'score-asc') filtered.sort((a, b) => a.score - b.score);
+    if (reportState.rankingSort === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
+    const table = document.getElementById('reportRankingTable');
+    if (table) table.innerHTML = reportScoreTable(filtered, reportState.rankingExpanded ? filtered.length : 8);
+    const expand = document.getElementById('reportRankingExpand');
+    if (expand) {
+        expand.hidden = filtered.length <= 8;
+        expand.textContent = reportState.rankingExpanded ? 'Show top 8' : `Show all ${filtered.length} results`;
     }
-
-    return effects
-        .map(effect => {
-            const typeName = getSubtypeName(effect.type);
-            const value = Number(effect.value) || 0;
-            return `${escapeReportHtml(typeName)}: ${value > 0 ? '+' : ''}${Math.round(value)}`;
-        })
-        .join(' | ');
 }
 
-function buildRulesContributionMarkup() {
-    const allRules = getAllRulesWithGroups();
+function toggleReportRankings() {
+    reportState.rankingExpanded = !reportState.rankingExpanded;
+    updateReportRankings();
+}
 
-    const triggered = [];
-    const nearMiss = [];
+function updateContributionAnalysis() {
+    const target = document.getElementById('contributionTypeSelect');
+    const direction = document.getElementById('reportContributionSign');
+    const category = document.getElementById('reportContributionCategory');
+    const sort = document.getElementById('reportContributionSort');
+    const output = document.getElementById('contributionAnalysisContainer');
+    if (!target || !direction || !category || !output || !currentReportAnalysis) return;
+    if (sort) reportState.contributionSort = sort.value;
+    output.innerHTML = renderContributionTable(target.value, direction.value, category.value, reportState.contributionSort);
+}
 
-    allRules.forEach(entry => {
-        const rule = entry.rule;
-        if (!rule.enabled) return;
+function sortReportContributionRows(rows, sort) {
+    const sorted = [...rows];
+    if (sort === 'positive-first') return sorted.sort((a, b) => b.value - a.value);
+    if (sort === 'negative-first') return sorted.sort((a, b) => a.value - b.value);
+    return sorted.sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
+}
 
-        let isTriggered = false;
-        try {
-            isTriggered = Boolean(rule.condition?.());
-        } catch (_) {
-            isTriggered = false;
-        }
+function renderContributionTable(targetKey, direction, category, sort = 'magnitude') {
+    const rows = getReportTargetEntries(currentReportAnalysis, reportState.mode, targetKey)
+        .filter(item => direction === 'all' || (direction === 'positive' ? item.value > 0 : item.value < 0))
+        .filter(item => category === 'all' || item.category === category);
+    const sortedRows = sortReportContributionRows(rows, sort);
+    return sortedRows.length ? `<div class="report-table-scroll"><table class="report-data-table"><thead><tr><th>Trait / source</th><th>Selected variant</th><th>Category</th><th>Contribution</th></tr></thead><tbody>${sortedRows.map(item => `<tr><td>${escapeReportHtml(item.traitName)}</td><td>${escapeReportHtml(item.selection || '—')}</td><td>${item.category === 'morphological' ? 'Morphology' : item.category === 'pigmentation' ? 'Pigmentation' : item.category === 'rule' ? 'Rule / mixed' : 'Unattributed'}</td><td class="report-number ${item.value < 0 ? 'negative' : 'positive'}">${escapeReportHtml(reportSignedScore(item.value))}</td></tr>`).join('')}</tbody></table></div>` : '<p class="report-empty">No contributions match these filters.</p>';
+}
 
-        const evalData = evaluateRuleClauses(rule);
+function sendReportMapScores() {
+    const frame = document.getElementById('anthropologicalMapFrame');
+    if (frame?.contentWindow && currentReportResult) {
+        frame.contentWindow.postMessage({ scores: currentReportResult.scores, colors: TYPE_COLORS }, '*');
+    }
+}
 
-        if (isTriggered) {
-            triggered.push({
-                groupLabel: entry.groupLabel,
-                rule
-            });
-            return;
-        }
-
-        if (evalData.total > 0) {
-            nearMiss.push({
-                groupLabel: entry.groupLabel,
-                rule,
-                evalData
-            });
-        }
+function showReportSection(section) {
+    if (!REPORT_SECTIONS.some(([key]) => key === section)) section = 'overview';
+    reportState.section = section;
+    const isMap = section === 'map';
+    const analysis = document.getElementById('reportAnalysisView');
+    const map = document.getElementById('reportMapView');
+    if (analysis) analysis.hidden = isMap;
+    if (map) map.hidden = !isMap;
+    document.querySelectorAll('#reportInner .report-workspace-section').forEach(panel => {
+        if (panel.id !== 'reportMapView') panel.hidden = panel.id !== `reportSection-${section}`;
     });
-
-    nearMiss.sort((a, b) => {
-        if (b.evalData.ratio !== a.evalData.ratio) {
-            return b.evalData.ratio - a.evalData.ratio;
-        }
-        if (a.evalData.missingCount !== b.evalData.missingCount) {
-            return a.evalData.missingCount - b.evalData.missingCount;
-        }
-        return a.evalData.total - b.evalData.total;
+    document.querySelectorAll('#reportInner [data-report-section]').forEach(button => {
+        const active = button.dataset.reportSection === section;
+        button.classList.toggle('active', active);
+        if (active) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
     });
-
-    const topNearMiss = nearMiss.slice(0, 10);
-
-    const triggeredHtml = triggered.length === 0
-        ? '<div style="padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: rgba(196, 154, 60, 0.06); color: var(--text-light);">No rules were triggered for the current profile.</div>'
-        : triggered.map(item => `
-            <div style="padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: rgba(45, 107, 30, 0.08); margin-bottom: 8px;">
-                <div style="font-weight: bold; color: var(--accent); margin-bottom: 4px;">${escapeReportHtml(item.rule.name || item.rule.id || 'Unnamed Rule')}</div>
-                <div style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 6px;">${escapeReportHtml(item.groupLabel)}</div>
-                <div style="font-size: 0.88rem; color: var(--text);"><strong>Effect:</strong> ${getRuleEffectsText(item.rule)}</div>
-            </div>
-        `).join('');
-
-    const nearMissHtml = topNearMiss.length === 0
-        ? '<div style="padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: rgba(196, 154, 60, 0.06); color: var(--text-light);">No near-miss rules available.</div>'
-        : topNearMiss.map(item => {
-            const unmet = item.evalData.statuses
-                .filter(x => !x.met)
-                .slice(0, 3)
-                .map(x => escapeReportHtml(x.clause))
-                .join(' | ');
-
-            return `
-                <div style="padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: rgba(196, 154, 60, 0.08); margin-bottom: 8px;">
-                    <div style="font-weight: bold; color: var(--accent); margin-bottom: 4px;">${escapeReportHtml(item.rule.name || item.rule.id || 'Unnamed Rule')}</div>
-                    <div style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 6px;">${escapeReportHtml(item.groupLabel)}</div>
-                    <div style="font-size: 0.86rem; color: var(--text); margin-bottom: 4px;"><strong>Progress:</strong> ${item.evalData.metCount}/${item.evalData.total} conditions met</div>
-                    <div style="font-size: 0.82rem; color: var(--text-light);"><strong>Missing:</strong> ${unmet || 'n/a'}</div>
-                </div>
-            `;
-        }).join('');
-
-    return `
-        <div class="contribution-grid" style="margin-top: 12px;">
-            <div class="contribution-box">
-                <div class="contribution-header positive">✓ Triggered Rules (${triggered.length})</div>
-                <div class="contribution-list">${triggeredHtml}</div>
-            </div>
-            <div class="contribution-box">
-                <div class="contribution-header">⏳ Closest Rules To Being Met (${topNearMiss.length})</div>
-                <div class="contribution-list">${nearMissHtml}</div>
-            </div>
-        </div>
-    `;
-}
-
-
-function createTypeScorePie(sorted) {
-            const pieData = sorted.filter(item => item.score > 0);
-            const size = 280;
-            const radius = 130;
-            const innerRadius = 80;
-            const center = size / 2;
-
-            // Calculate total score for percentage
-            const totalScore = pieData.reduce( (sum, item) => sum + Math.max(item.score, 0),  0  ) || 1;
-
-            let svgHTML = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15)); cursor: pointer;">`;
-
-            let currentAngle = -90; // Start from top
-
-            pieData.forEach((item, idx) => {
-                const visualScore =Math.max(0, item.score);
-                const percentage = (visualScore / totalScore) * 100;
-                const sliceAngle = (percentage / 100) * 360;
-
-                const startAngle = currentAngle * Math.PI / 180;
-                const endAngle = (currentAngle + sliceAngle) * Math.PI / 180;
-
-                const x1 = center + radius * Math.cos(startAngle);
-                const y1 = center + radius * Math.sin(startAngle);
-                const x2 = center + radius * Math.cos(endAngle);
-                const y2 = center + radius * Math.sin(endAngle);
-
-                const x3 = center + innerRadius * Math.cos(endAngle);
-                const y3 = center + innerRadius * Math.sin(endAngle);
-                const x4 = center + innerRadius * Math.cos(startAngle);
-                const y4 = center + innerRadius * Math.sin(startAngle);
-
-                const largeArc = sliceAngle > 180 ? 1 : 0;
-                const largeArcInner = sliceAngle > 180 ? 1 : 0;
-
-                const color = TYPE_COLORS[item.key];
-
-                const pathData = `
-                    M ${x1} ${y1}
-                    A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}
-                    L ${x3} ${y3}
-                    A ${innerRadius} ${innerRadius} 0 ${largeArcInner} 0 ${x4} ${y4}
-                    Z
-                `;
-
-                svgHTML += `<path
-                    d="${pathData}"
-                    fill="${color}"
-                    stroke="#fff"
-                    stroke-width="2"
-                    opacity="0.85"
-                    data-type="${item.name}"
-                    data-score="${Math.round(item.score)}"
-                    data-percentage="${percentage.toFixed(1)}"
-                    onmouseover="showTypeTooltip(event, '${item.name}', ${Math.round(item.score)}, ${percentage.toFixed(1)})"
-                    onmouseout="hideTypeTooltip()"
-                    style="transition: opacity 0.2s; cursor: pointer;"
-                />`;
-
-                currentAngle += sliceAngle;
-            });
-
-            // Center circle
-            svgHTML += `<circle cx="${center}" cy="${center}" r="${innerRadius}" fill="#fefdf9" stroke="none"/>`;
-
-            svgHTML += `</svg>`;
-
-            return svgHTML;
+    for (const [id, active] of [['analysisTab', !isMap], ['mapTab', isMap]]) {
+        const tab = document.getElementById(id);
+        if (tab) {
+            tab.classList.toggle('active', active);
+            tab.setAttribute('aria-pressed', String(active));
         }
-
-        function updateContributionAnalysis() {
-
-    const select =
-        document.getElementById(
-            'contributionTypeSelect'
-        );
-
-    const container =
-        document.getElementById(
-            'contributionAnalysisContainer'
-        );
-
-    if (!select || !container) return;
-
-    const typeKey = select.value;
-
-    const positives =
-        getTopContributors(currentReportResult.scoreBreakdown, typeKey);
-
-    const negatives =
-        getTopNegatives(currentReportResult.scoreBreakdown, typeKey);
-
-    container.innerHTML = `
-
-<div class="contribution-grid">
-
-    <div class="contribution-box">
-
-        <div class="contribution-header positive">
-            ▲ Top Positive Contributors (${positives.length} Traits)
-        </div>
-
-        <div class="contribution-list">
-
-            ${positives.map(x => `
-                <div class="contribution-item">
-                    <span class="contribution-trait">
-                        ${x.trait}
-                    </span>
-
-                    <span class="contribution-value positive">
-                        +${Math.round(x.value)}
-                    </span>
-                </div>
-            `).join('')}
-
-        </div>
-
-    </div>
-
-    <div class="contribution-box">
-
-        <div class="contribution-header negative">
-            ▼ Top Negative Contributors (${negatives.length} Traits)
-        </div>
-
-        <div class="contribution-list">
-
-            ${negatives.map(x => `
-                <div class="contribution-item">
-                    <span class="contribution-trait">
-                        ${x.trait}
-                    </span>
-
-                    <span class="contribution-value negative">
-                        ${Math.round(x.value)}
-                    </span>
-                </div>
-            `).join('')}
-
-        </div>
-
-    </div>
-
-</div>
-`;
-
+    }
+    const main = document.getElementById('reportMain');
+    if (main) main.scrollTop = 0;
+    if (isMap) sendReportMapScores();
 }
 
+function showReportAnalysis() { showReportSection('overview'); }
+function showReportMap() { showReportSection('map'); }
 
+function setReportMode(mode) {
+    if (!currentReportResult || !['group', 'subtype'].includes(mode)) return;
+    reportState.mode = mode;
+    const reportInner = document.getElementById('reportInner');
+    reportInner.innerHTML = renderReportMarkup();
+    document.getElementById('reportRankingSort').value = reportState.rankingSort;
+    document.getElementById('reportContributionSort').value = reportState.contributionSort;
+    document.getElementById(mode === 'group' ? 'reportGroupMode' : 'reportSubtypeMode').focus();
+    for (const [id, active] of [['reportGroupMode', mode === 'group'], ['reportSubtypeMode', mode === 'subtype']]) {
+        const button = document.getElementById(id);
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+    }
+    updateReportRankings();
+    updateContributionAnalysis();
+    showReportSection(reportState.section);
+    attachReportMapFrame();
+}
+
+function toggleSubtypeBreakdown() {
+    setReportMode(reportState.mode === 'group' ? 'subtype' : 'group');
+}
+
+function attachReportMapFrame() {
+    const frame = document.getElementById('anthropologicalMapFrame');
+    if (!frame) return;
+    frame.addEventListener('load', sendReportMapScores);
+    setTimeout(sendReportMapScores, 300);
+}
 
 function generateReport() {
+    currentReportResult = calculateProfile();
+    currentReportAnalysis = buildReportAnalysis(currentReportResult);
+    reportReturnFocus = document.activeElement;
+    reportState.mode = 'group';
+    reportState.section = 'overview';
+    reportState.rankingQuery = '';
+    reportState.rankingSort = 'score-desc';
+    reportState.rankingExpanded = false;
+    reportState.contributionSort = 'magnitude';
     const overlay = document.getElementById('reportOverlay');
-    const reportInner = document.getElementById('reportInner');
-
-    const result = calculateProfile();
-    currentReportResult = result;
-
-    const sorted = result.ranking;
-    const groupSorted = result.groupRanking;
-    const primarySubtype = sorted[0];
-    const primaryGroup = groupSorted[0];
-    const maxSubtypeScore = Math.max(...sorted.map(x => x.score), 1);
-    const maxGroupScore = Math.max(...groupSorted.map(x => x.score), 1);
-
-    let traitTableRows = '';
-
-    traits.forEach(trait => {
-        let selectionText = '';
-        let contribSummary = '';
-
-        if (trait.type === 'select' || trait.type === 'cephalic' || trait.type === 'nasal' || trait.type === 'index') {
-            const selVal = userSelections[trait.id] || '';
-
-            if (selVal) {
-                const opt = trait.options.find(o => o.value === selVal);
-                selectionText = opt ? opt.label : selVal;
-
-                const contributions = getOptionContributions(opt);
-                if (Object.keys(contributions).length > 0) {
-                    contribSummary = Object.entries(contributions)
-                        .filter(([, v]) => v !== 0)
-                        .map(([k, v]) => {
-                            const name = getSubtypeName(k);
-                            return `<span style="color: ${v > 0 ? '#2d6b1e' : '#8b2020'}; font-weight: bold;">${name}: ${v > 0 ? '+' : ''}${v}</span>`;
-                        }).join(' ');
-                }
-            }
-
-            if (userMeasurements[trait.id]) {
-                const m = userMeasurements[trait.id];
-                selectionText += ` [Index: ${m.index}]`;
-            }
-        } else if (trait.type === 'composite' && trait.subTraits) {
-            const parts = [];
-            const allContribs = {};
-
-            trait.subTraits.forEach(sub => {
-                const subVal = userSubSelections[sub.id] || '';
-
-                if (subVal) {
-                    const opt = sub.options.find(o => o.value === subVal);
-                    parts.push(`${sub.label}: ${opt ? opt.label : subVal}`);
-
-                    const contributions = getOptionContributions(opt);
-                    for (const [k, v] of Object.entries(contributions)) {
-                        allContribs[k] = (allContribs[k] || 0) + v;
-                    }
-                }
-            });
-
-            selectionText = parts.join('; ') || '—';
-            contribSummary = Object.entries(allContribs)
-                .filter(([, v]) => v !== 0)
-                .map(([k, v]) => {
-                    const name = getSubtypeName(k);
-                    return `<span style="color: ${v > 0 ? '#2d6b1e' : '#8b2020'}; font-weight: bold;">${name}: ${v > 0 ? '+' : ''}${v}</span>`;
-                }).join(' ');
-        }
-
-        if (!selectionText) {
-            selectionText = '— Not selected —';
-        }
-
-        traitTableRows += `<tr><td>${trait.number}</td><td><strong>${trait.title}</strong></td><td>${selectionText}</td><td style="font-size:0.75rem;">${contribSummary || '—'}</td></tr>`;
-    });
-
-    const groupRankingRows = groupSorted.map((item, i) => {
-        const ratio = item.score / maxGroupScore;
-        const alignment =
-            ratio >= 0.85
-                ? '🟢 Strong'
-                : ratio >= 0.65
-                    ? '🟡 Moderate'
-                    : ratio >= 0.40
-                        ? '⚪ Neutral'
-                        : '⚫ Weak';
-
-        return `<tr><td style="font-weight: bold;">${i + 1}</td><td><strong>${renderTypeBadge(item.key, item.name)}</strong></td><td>${renderTypeBadge(item.leadSubtypeKey, item.leadSubtypeName)}</td><td style="font-weight: bold; font-size: 1.1rem;">${Math.round(item.score)}</td><td>${alignment}</td></tr>`;
-    }).join('');
-
-    const subtypeRankingRows = sorted.map((item, i) => {
-        const ratio = item.score / maxSubtypeScore;
-        const alignment =
-            ratio >= 0.85
-                ? '🟢 Strong'
-                : ratio >= 0.65
-                    ? '🟡 Moderate'
-                    : ratio >= 0.40
-                        ? '⚪ Neutral'
-                        : '⚫ Weak';
-
-        return `<tr><td style="font-weight: bold;">${i + 1}</td><td><strong>${renderTypeBadge(item.key, item.name)}</strong></td><td style="font-weight: bold; font-size: 1.1rem;">${Math.round(item.score)}</td><td>${alignment}</td></tr>`;
-    }).join('');
-
-    const analysisHtml = `
-        <div class="subtype-toggle-wrap">
-            <div class="subtype-toggle-copy">
-                <div class="subtype-toggle-kicker" id="subtypeToggleKicker">Group Mode</div>
-                <h3 id="subtypeToggleTitle">Need the fine-grained subtype view?</h3>
-                <p id="subtypeToggleDescription">Switch the report into subtype mode to inspect the fine-grained ranking and contribution detail in-place.</p>
-            </div>
-            <button
-                id="subtypeBreakdownButton"
-                class="subtype-toggle-button"
-                type="button"
-                aria-pressed="false"
-                onclick="toggleSubtypeBreakdown()">
-                <span class="subtype-toggle-icon">🧬</span>
-                <span id="subtypeBreakdownLabel">Switch to Subtype Mode</span>
-            </button>
-        </div>
-
-        <div class="report-section" id="groupModePanel">
-            <h3>📊 Group Score Analysis</h3>
-            <div class="report-visualization">
-                <div style="display: flex; justify-content: center; align-items: center; position: relative;">
-                    <div style="position: relative; display: flex; align-items: center; justify-content: center;">
-                        ${createTypeScorePie(groupSorted)}
-                        <div class="type-circle-center" style="position: absolute; text-align: center;">
-                            <div class="top-type-name">${primaryGroup.name}</div>
-                            <div class="top-type-score">${Math.round(primaryGroup.score)}</div>
-                            <div class="score-label">Average Group Alignment</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="score-breakdown">
-                    ${groupSorted.slice(0, 7).map(item => {
-                        const pct = Math.max(0, Math.min(100, (item.score / maxGroupScore) * 100));
-                        return `
-                            <div class="score-item" style="border-left-color: ${TYPE_COLORS[item.key]};">
-                                <div class="score-item-color" style="background: ${TYPE_COLORS[item.key]};"></div>
-                                <div class="score-item-info">
-                                    <div class="score-item-name">${item.name}</div>
-                                    <div style="font-size: 0.8rem; color: #7a6f64; margin-top: 2px;">Lead subtype: ${item.leadSubtypeName}</div>
-                                    <div class="score-item-bar">
-                                        <div class="score-item-fill" style="width: ${pct}%; background: linear-gradient(90deg, ${TYPE_COLORS[item.key]}, ${TYPE_COLORS[item.key]}dd);"></div>
-                                    </div>
-                                </div>
-                                <div class="score-item-value">${Math.round(item.score)}</div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
-        </div>
-
-        <div class="report-highlights" id="groupHighlightsPanel">
-            <div class="highlight-box">
-                <div class="highlight-label">🏆 Primary Group Classification</div>
-                <div class="highlight-value">${primaryGroup.name}</div>
-                <div style="font-size: 0.9rem; color: #5c5240; margin-top: 6px;">Score: ${Math.round(primaryGroup.score)} | Lead subtype: <span style="color: ${TYPE_COLORS[primaryGroup.leadSubtypeKey]}; font-weight: bold;">${primaryGroup.leadSubtypeName}</span></div>
-            </div>
-            <div class="highlight-box">
-                <div class="highlight-label">🔗 Secondary Groups</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
-                    ${groupSorted.slice(1, 4).map(item => renderTypeBadge(item.key, item.name, ` (${Math.round(item.score)})`)).join('')}
-                </div>
-            </div>
-        </div>
-
-        <div class="report-section" id="subtypeBreakdownPanel" style="display:none;">
-            <h3>📊 Subtype Score Analysis</h3>
-            <div class="report-visualization">
-                <div style="display: flex; justify-content: center; align-items: center; position: relative;">
-                    <div style="position: relative; display: flex; align-items: center; justify-content: center;">
-                        ${createTypeScorePie(sorted)}
-                        <div class="type-circle-center" style="position: absolute; text-align: center;">
-                            <div class="top-type-name">${primarySubtype.name}</div>
-                            <div class="top-type-score">${Math.round(primarySubtype.score)}</div>
-                            <div class="score-label">Top Subtype</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="score-breakdown">
-                    ${sorted.slice(0, 10).map(item => {
-                        const pct = Math.max(0, Math.min(100, (item.score / maxSubtypeScore) * 100));
-                        return `
-                            <div class="score-item" style="border-left-color: ${TYPE_COLORS[item.key]};">
-                                <div class="score-item-color" style="background: ${TYPE_COLORS[item.key]};"></div>
-                                <div class="score-item-info">
-                                    <div class="score-item-name">${item.name}</div>
-                                    <div class="score-item-bar">
-                                        <div class="score-item-fill" style="width: ${pct}%; background: linear-gradient(90deg, ${TYPE_COLORS[item.key]}, ${TYPE_COLORS[item.key]}dd);"></div>
-                                    </div>
-                                </div>
-                                <div class="score-item-value">${Math.round(item.score)}</div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
-        </div>
-
-        <div id="subtypeRankingPanel" style="display:none; margin-top: 24px;">
-            <h3 style="margin-top: 24px;">🧬 Complete Subtype Rankings</h3>
-            <table><tr><th>Rank</th><th>Subtype</th><th>Score</th><th>Alignment</th></tr>${subtypeRankingRows}</table>
-        </div>
-
-        <div class="report-section" id="subtypeContributionPanel" style="display:none;">
-            <h3>🔍 Trait Contribution Analysis</h3>
-            <div style="font-size: 0.88rem; color: #7a6f64; margin-bottom: 10px;">Subtype-level contribution detail for the currently selected subtype.</div>
-            <select
-                id="contributionTypeSelect"
-                class="contribution-select"
-                onchange="updateContributionAnalysis()">
-                ${sorted.map(item => `<option value="${item.key}">${item.name || item.key}</option>`).join('')}
-            </select>
-            <div id="contributionAnalysisContainer"></div>
-            <div style="display: flex; gap: 10px; margin-top: 12px; margin-bottom: 12px;">
-                <button onclick="exportReportAs('png')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as PNG</button>
-                <button onclick="exportReportAs('jpg')" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: inherit;">📥 Export as JPG</button>
-            </div>
-        </div>
-
-        <h3 style="margin-top: 24px;">📋 Trait Selections</h3>
-        <table>
-            <tr><th>Trait #</th><th>Trait</th><th>Selection</th><th>Key Contributions</th></tr>
-            ${traitTableRows}
-        </table>
-
-        <div id="groupRankingPanel">
-            <h3 style="margin-top: 24px;">📈 Complete Group Rankings</h3>
-            <table><tr><th>Rank</th><th>Historical Group</th><th>Lead Subtype</th><th>Score</th><th>Alignment</th></tr>${groupRankingRows}</table>
-        </div>
-
-        <div class="report-section" id="rulesContributionSection">
-            <h3>🧩 Rules Contribution Summary</h3>
-            ${buildRulesContributionMarkup()}
-        </div>
-
-        <div class="report-disclaimer" style="margin-top: 24px;">
-            ⚠️ <strong>REPEAT DISCLAIMER:</strong> This is a <u>historical reconstruction</u> of obsolete
-            anthropological classification methods. It does NOT represent modern genetics, scientific
-            ancestry estimation, ethnicity prediction, race determination, or biological reality.
-        </div>
-    `;
-
-    const html = `
-        <h2>📜 Historical Anthropometric Reconstruction Report</h2>
-        <p style="text-align:center;font-size:0.8rem;color:#5c5240;">Simulated Classification — circa 1880–1940 Typological Framework</p>
-        <div class="report-view-switch">
-            <button id="analysisTab" class="report-tab active" onclick="showReportAnalysis()">📊 Analysis</button>
-            <button id="mapTab" class="report-tab" onclick="showReportMap()">🌍 Map</button>
-        </div>
-        <div id="reportAnalysisView">${analysisHtml}</div>
-        <div id="reportMapView" style="display:none;">
-            <div class="report-section">
-                <h3>🌍 Anthropological Map</h3>
-                <div id="anthropologicalMapContainer">
-                    <iframe
-                        id="anthropologicalMapFrame"
-                        src="map/anthropologicalMap.html"
-                        style="width:100%; height:600px; border:none;">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    `;
-
-    reportInner.innerHTML = html;
-
-    setTimeout(() => {
-        const frame = document.getElementById('anthropologicalMapFrame');
-
-        if (!frame) return;
-
-        frame.contentWindow.postMessage(
-            {
-                scores: result.scores,
-                colors: TYPE_COLORS
-            },
-            '*'
-        );
-    }, 300);
-
+    document.getElementById('reportInner').innerHTML = renderReportMarkup();
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-        updateContributionAnalysis();
-    }, 0);
+    document.getElementById('reportGroupMode').classList.add('active');
+    document.getElementById('reportGroupMode').setAttribute('aria-pressed', 'true');
+    document.getElementById('reportSubtypeMode').setAttribute('aria-pressed', 'false');
+    updateReportRankings();
+    updateContributionAnalysis();
+    showReportSection('overview');
+    attachReportMapFrame();
+    overlay.querySelector('.report-workspace-header button')?.focus();
 }
+
+function closeReport() {
+    document.getElementById('reportOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    reportReturnFocus?.focus?.();
+}
+
+function prepareReportMapSnapshot() {
+    const frame = document.getElementById('anthropologicalMapFrame');
+    const snapshot = document.getElementById('reportMapSnapshot');
+    try {
+        const mapSvg = frame?.contentDocument?.querySelector('svg');
+        if (snapshot && mapSvg) snapshot.replaceChildren(mapSvg.cloneNode(true));
+    } catch (_) {
+        // The live iframe remains available if the browser blocks document access.
+    }
+}
+
+function printFullReport() {
+    prepareReportMapSnapshot();
+    window.print();
+}
+
+function exportFullReportAs(format) {
+    if (!['png', 'jpg'].includes(format)) return;
+    if (typeof html2canvas !== 'function') {
+        alert('Image export is unavailable right now. Please reload the page and try again.');
+        return;
+    }
+    prepareReportMapSnapshot();
+    const report = document.getElementById('reportContent');
+    html2canvas(report, {
+        scale: 1.5,
+        backgroundColor: '#211f1d',
+        logging: false,
+        onclone: clonedDocument => {
+            const clone = clonedDocument.getElementById('reportContent');
+            const cloneOverlay = clonedDocument.getElementById('reportOverlay');
+            clone.classList.add('report-exporting');
+            clone.style.width = '1100px';
+            clone.style.maxWidth = 'none';
+            clone.style.maxHeight = 'none';
+            clone.style.overflow = 'visible';
+            if (cloneOverlay) {
+                cloneOverlay.style.display = 'block';
+                cloneOverlay.style.position = 'static';
+                cloneOverlay.style.overflow = 'visible';
+                cloneOverlay.style.padding = '0';
+            }
+            clonedDocument.body.style.overflow = 'visible';
+            clonedDocument.querySelectorAll('#reportInner [hidden]').forEach(element => element.hidden = false);
+            clonedDocument.querySelectorAll('#reportInner details').forEach(element => element.open = true);
+            const fullRankings = clonedDocument.getElementById('reportRankingTable');
+            if (fullRankings) fullRankings.innerHTML = reportScoreTable(reportRanking());
+            const fullContributions = clonedDocument.getElementById('contributionAnalysisContainer');
+            const selectedTarget = document.getElementById('contributionTypeSelect')?.value || reportRanking()[0]?.key;
+            if (fullContributions && selectedTarget) fullContributions.innerHTML = renderContributionTable(selectedTarget, 'all', 'all', reportState.contributionSort);
+        }
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.href = format === 'png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.95);
+        link.download = `hars-full-report-${new Date().toISOString().slice(0, 10)}.${format}`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        alert(`Full report exported as ${format.toUpperCase()}.`);
+    }).catch(error => {
+        console.error('Report export error:', error);
+        alert('Could not export the report image. Please try printing the report instead.');
+    });
+}
+
+window.addEventListener('beforeprint', () => {
+    if (!document.getElementById('reportOverlay')?.classList.contains('active')) return;
+    reportPrintState = {
+        query: reportState.rankingQuery,
+        sort: reportState.rankingSort,
+        expanded: reportState.rankingExpanded,
+        sign: document.getElementById('reportContributionSign')?.value,
+        category: document.getElementById('reportContributionCategory')?.value,
+        openDetails: [...document.querySelectorAll('#reportInner details[open]')]
+    };
+    reportState.rankingQuery = '';
+    reportState.rankingSort = 'score-desc';
+    reportState.rankingExpanded = true;
+    const search = document.getElementById('reportRankingSearch');
+    const sort = document.getElementById('reportRankingSort');
+    if (search) search.value = '';
+    if (sort) sort.value = 'score-desc';
+    updateReportRankings();
+    const contributionSign = document.getElementById('reportContributionSign');
+    const contributionCategory = document.getElementById('reportContributionCategory');
+    if (contributionSign) contributionSign.value = 'all';
+    if (contributionCategory) contributionCategory.value = 'all';
+    updateContributionAnalysis();
+    document.querySelectorAll('#reportInner details').forEach(element => element.open = true);
+    prepareReportMapSnapshot();
+});
+window.addEventListener('afterprint', () => {
+    if (!reportPrintState) return;
+    reportState.rankingQuery = reportPrintState.query;
+    reportState.rankingSort = reportPrintState.sort;
+    reportState.rankingExpanded = reportPrintState.expanded;
+    const search = document.getElementById('reportRankingSearch');
+    const sort = document.getElementById('reportRankingSort');
+    if (search) search.value = reportPrintState.query;
+    if (sort) sort.value = reportPrintState.sort;
+    updateReportRankings();
+    const contributionSign = document.getElementById('reportContributionSign');
+    const contributionCategory = document.getElementById('reportContributionCategory');
+    if (contributionSign) contributionSign.value = reportPrintState.sign;
+    if (contributionCategory) contributionCategory.value = reportPrintState.category;
+    updateContributionAnalysis();
+    document.querySelectorAll('#reportInner details').forEach(element => element.open = reportPrintState.openDetails.includes(element));
+    reportPrintState = null;
+});
+document.addEventListener('keydown', event => {
+    if (!document.getElementById('reportOverlay')?.classList.contains('active')) return;
+    if (event.key === 'Escape') { closeReport(); return; }
+    if (event.key !== 'Tab') return;
+    const dialog = document.getElementById('reportContent');
+    const focusable = [...dialog.querySelectorAll('button, input, select, summary, a[href], [tabindex]:not([tabindex="-1"])')]
+        .filter(element => !element.disabled && element.getClientRects().length > 0);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});

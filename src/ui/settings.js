@@ -59,6 +59,7 @@
         document.documentElement.lang = LOCALE.current;
         const languageSelect = document.getElementById('languageSelect');
         if (languageSelect) languageSelect.value = LOCALE.current;
+        updateTraitAutoCollapseControl();
     }
 
     function changeLanguage(language) {
@@ -84,7 +85,9 @@
             }
 
             openCards.forEach(traitId => {
-                document.getElementById(`traitCard-${traitId}`)?.classList.add('open', 'active');
+                const card = document.getElementById(`traitCard-${traitId}`);
+                card?.classList.add('open', 'active');
+                card?.querySelector('.trait-toggle')?.setAttribute('aria-expanded', 'true');
             });
 
             if (typeof updateAllScores === 'function') updateAllScores();
@@ -113,6 +116,24 @@
 
     const RESET_ON_RELOAD_KEY = 'raceCalcResetOnReload';
     const DEV_TOOLS_VISIBLE_KEY = 'raceCalcDeveloperToolsVisible';
+    const TRAIT_AUTO_COLLAPSE_KEY = 'harsTraitAutoCollapse';
+    const TRAIT_AUTO_COLLAPSE_MODES = new Set(['never', 'on-open', 'after-selection']);
+
+    function getTraitAutoCollapseMode() {
+        const stored = localStorage.getItem(TRAIT_AUTO_COLLAPSE_KEY);
+        return TRAIT_AUTO_COLLAPSE_MODES.has(stored) ? stored : 'never';
+    }
+
+    function updateTraitAutoCollapseControl() {
+        const control = document.getElementById('traitAutoCollapseSelect');
+        if (control) control.value = getTraitAutoCollapseMode();
+    }
+
+    function setTraitAutoCollapseMode(mode) {
+        if (!TRAIT_AUTO_COLLAPSE_MODES.has(mode)) return;
+        localStorage.setItem(TRAIT_AUTO_COLLAPSE_KEY, mode);
+        updateTraitAutoCollapseControl();
+    }
 
     function rgbToHex(str) {
         if (!str) return '#000000';
@@ -169,7 +190,10 @@
 
     function updateThemeButtons() {
         document.querySelectorAll('.theme-toggle, .settings-theme-toggle').forEach(button => {
-            button.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            const icon = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            const iconSlot = button.querySelector('.control-icon');
+            if (iconSlot) iconSlot.textContent = icon;
+            else button.textContent = icon;
         });
     }
 
@@ -312,6 +336,7 @@
         updateColorInputs();
         updateResetOnReloadControls();
         updateDeveloperToolsVisibilityControls();
+        updateTraitAutoCollapseControl();
     }
 
     function closeSettings() {
@@ -326,6 +351,7 @@
         loadTheme();
         updateResetOnReloadControls();
         updateDeveloperToolsVisibilityControls();
+        updateTraitAutoCollapseControl();
         applyDeveloperToolsVisibility();
         initializeSettingsTabs();
         applyTestTranslations();
@@ -345,6 +371,8 @@
     window.setResetOnReloadEnabled = setResetOnReloadEnabled;
     window.updateResetOnReloadControls = updateResetOnReloadControls;
     window.toggleResetOnReload = toggleResetOnReload;
+    window.getTraitAutoCollapseMode = getTraitAutoCollapseMode;
+    window.setTraitAutoCollapseMode = setTraitAutoCollapseMode;
     window.isDeveloperToolsVisible = isDeveloperToolsVisible;
     window.setDeveloperToolsVisible = setDeveloperToolsVisible;
     window.applyDeveloperToolsVisibility = applyDeveloperToolsVisibility;

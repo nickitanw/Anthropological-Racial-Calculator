@@ -580,9 +580,9 @@ function devUpdateTraitDiagnostics() {
             const color = contribution > 0 ? '#2d6b1e' : contribution < 0 ? '#c94a3b' : '#7a6f64';
             const bgColor = contribution > 0 ? 'rgba(45, 107, 30, 0.12)' : contribution < 0 ? 'rgba(201, 74, 59, 0.12)' : 'rgba(122, 111, 100, 0.08)';
 
-            const weight = WEIGHT_CLASSES[diagnostics.weightClass] || 1;
-            const weightedValue = contribution * weight;
-            const displayValue = contribution === 0 ? '0' : `${contribution > 0 ? '+' : ''}${contribution}${weight !== 1 ? `(${weightedValue > 0 ? '+' : ''}${Math.round(weightedValue)})` : ''}`;
+            const weight = 1;
+            const weightedValue = contribution;
+            const displayValue = contribution === 0 ? '0' : `${contribution > 0 ? '+' : ''}${formatDisplayValue(contribution)}`;
 
             html += `
                 <div style="padding: 6px 8px; background: ${bgColor}; border-radius: 3px; border-left: 2px solid ${color};">
@@ -845,9 +845,9 @@ function updateTraitDiagnostics() {
                     const color = contribution > 0 ? '#2d6b1e' : contribution < 0 ? '#c94a3b' : '#7a6f64';
                     const bgColor = contribution > 0 ? 'rgba(45, 107, 30, 0.15)' : contribution < 0 ? 'rgba(201, 74, 59, 0.15)' : 'rgba(122, 111, 100, 0.1)';
                     
-                    const weight = WEIGHT_CLASSES[diagnostics.weightClass] || 1;
-                    const weightedValue = contribution * weight;
-                    const displayValue = contribution === 0 ? '0' : `${contribution > 0 ? '+' : ''}${contribution}${weight !== 1 ? `(${weightedValue > 0 ? '+' : ''}${Math.round(weightedValue)})` : ''}`;
+                    const weight = 1;
+                    const weightedValue = contribution;
+                    const displayValue = contribution === 0 ? '0' : `${contribution > 0 ? '+' : ''}${formatDisplayValue(contribution)}`;
 
                     html += `
                         <div style="padding: 8px 10px; background: ${bgColor}; border-radius: 4px; border-left: 3px solid ${color};">

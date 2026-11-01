@@ -594,24 +594,26 @@
 }
 
     </style>
+    <link rel="stylesheet" href="src/ui/hars-modern.css">
 </head>
-<body>
+<body class="hars-page hars-landing">
 
-    <!-- ============ STICKY DISCLAIMER BANNER ============ -->
-    <div class="disclaimer-banner">
-        <span class="icon">⚠</span>
-        <strong data-i18n="pageTitle">HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> —
-        <span data-i18n="disclaimerBanner">This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
-        It does <u>NOT</u> represent modern scientific ancestry analysis, genetics, ethnicity prediction,
-        race determination, or biological reality. For educational and historical study purposes only.</span>
-        <span class="icon">⚠</span>
-    </div>
+   
 
     <div class="main-container">
         <!-- HEADER -->
         <header>
-            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings">⚙️</button>
-            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+            <nav class="hars-nav" aria-label="Application navigation">
+                <div class="hars-nav-group" aria-label="Pages">
+                <a class="header-control hars-nav-link is-current" href="index.html" aria-current="page"><span class="control-icon" aria-hidden="true">⌂</span><span data-i18n="navigation.menu">Main Menu</span></a>
+                <a class="header-control hars-nav-link" href="raceResCalc.html"><span class="control-icon" aria-hidden="true">▦</span><span data-i18n="navigation.calculator">Calculator</span></a>
+                <a class="header-control hars-nav-link" href="myProfile.html"><span class="control-icon" aria-hidden="true">◉</span><span data-i18n="navigation.profile">Profile</span></a>
+                </div>
+                <div class="hars-nav-group" aria-label="Controls">
+                <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings"><span class="control-icon" aria-hidden="true">⚙</span><span data-i18n="navigation.settings">Settings</span></button>
+                <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="control-icon" aria-hidden="true">🌙</span><span data-i18n="navigation.theme">Theme</span></button>
+                </div>
+            </nav>
             <h1 data-i18n="menu.title">Main Menu</h1>
             <p class="subtitle" data-i18n="menu.subtitle">Historical Anthropometric Reconstruction Simulator</p>
             <span class="era-badge" data-i18n="eraBadge">📜 circa 1880–1940 · Educational & Historical Reference</span>
@@ -631,14 +633,14 @@
             <div class="menu-card" onclick="openCalculator()">
                <div class="icon">🧮</div>
                <h2 data-i18n="menu.calculator">Calculator</h2>
-               <p data-i18n="menu.calculatorDescription">Enter anthropometric measurements and traits to generate type classifications and scores.</p>
+               <p data-i18n="menu.calculatorDescription">Select traits and optional measurements to explore historical group scores and a detailed report.</p>
                <span class="btn-link" data-i18n="menu.openCalculator">Open Calculator →</span>
             </div>
 
             <div class="menu-card" onclick="openProfile()">
                 <div class="icon">👤</div>
                 <h2 data-i18n="menu.profile">My Profile</h2>
-                <p data-i18n="menu.profileDescription">Choose and save your profile name for this simulator.</p>
+                <p data-i18n="menu.profileDescription">Set your display name and manage your local profile library.</p>
                 <span class="btn-link" data-i18n="menu.openProfile">Open Profile →</span>
             </div>
 
@@ -659,7 +661,7 @@
             <div class="menu-card" onclick="scrollToInfo('methodology')">
                <div class="icon">🧠</div>
                <h2 data-i18n="menu.methodology">Methodology</h2>
-               <p data-i18n="menu.methodologyDescription">Learn how trait weights, scoring matrices, indices and contribution analysis work.</p>
+               <p data-i18n="menu.methodologyDescription">Learn how trait selections, indices, score contributions, and rules shape the results.</p>
                <span class="btn-link" data-i18n="menu.viewMethodology">View Methodology →</span>
             </div>
 
@@ -700,33 +702,31 @@
         <div class="info-section" id="guide">
             <h3 data-i18n="menu.guide">📖 User Guide</h3>
             <p>
-                <strong>Getting Started:</strong> Click the "Calculator" button to access the main measurement interface. You will see
-                a series of expandable trait cards, each corresponding to a different anthropometric measurement.
+                <strong>Getting Started:</strong> Open the Calculator to find expandable trait cards. Search or filter the cards by
+                completion status, or load a reference preset to explore a historical model.
             </p>
             <p>
-                <strong>Entering Data:</strong> For each trait, select from the available options based on visual assessment or measurement.
-                Some traits require actual measurements (in millimeters) that will be automatically converted to anthropometric indices.
+                <strong>Entering Data:</strong> Choose the available option for each trait you want to include. Where measurement fields
+                are available, enter the requested values to calculate anthropometric indices automatically.
             </p>
             <p>
-                <strong>Live Scoring:</strong> As you make selections, the simulator calculates compatibility scores for each historical
-                type. The scoring panel on the right shows:
+                <strong>Live Scoring:</strong> As you make selections, the Live Type Scores panel updates the historical group rankings
+                and shows:
             </p>
             <ul>
-                <li><strong>Individual Type Scores:</strong> How well your selections align with each historical type</li>
-                <li><strong>Score Bars:</strong> Visual representation of relative alignment</li>
-                <li><strong>Closest Type:</strong> The historical type with the highest alignment score</li>
-                <li><strong>Secondary Components:</strong> Secondary types showing moderate alignment</li>
-                <li><strong>Trait Contribution Analysis:</strong> Shows which traits contributed most positively and negatively to each historical type</li>
-                <li><strong>Type Presets:</strong> Built-in reference profiles allow calibration and testing of historical type models</li>
-                <li><strong>Automatic Index Calculation:</strong> Cephalic, Facial, Orbital and Nasal indices are calculated from entered measurements</li>
+                <li><strong>Completion Progress:</strong> The number and percentage of traits selected</li>
+                <li><strong>Ranked Group Scores:</strong> Leading groups and compact rows for the remaining results</li>
+                <li><strong>Score Bars:</strong> Signed scores shown around a visible zero point</li>
+                <li><strong>Closest Historical Group:</strong> The leading group and secondary matches</li>
             </ul>
             <p>
-                <strong>Generating Reports:</strong> Click "Generate Full Report" to create a detailed summary of your selections,
-                measurements, and the resulting type classifications. This report can be printed or saved.
+                <strong>Generating Reports:</strong> Click "Generate Full Report" for group and subtype views, rankings, pigmentation
+                and morphology analysis, trait contributions, selections, rule diagnostics, and a map. The report supports printing
+                and image export. The panel's More Actions menu contains profile and reset controls.
             </p>
             <p>
-                <strong>Customization:</strong> Use the settings icon (⚙️) to customize the color scheme, and the theme toggle button (🌙/☀️)
-                to switch between light and dark modes. Your preferences will be saved automatically.
+                <strong>Customization:</strong> Use Settings for appearance preferences and Theme to switch between light and dark modes.
+                Your preferences are saved automatically.
             </p>
         </div>
 
@@ -742,9 +742,9 @@
     </p>
 
     <p>
-        Traits are not weighted equally. Core morphological traits such as
-        cranial indices, facial proportions, nasal morphology, pigmentation,
-        and orbital measurements carry greater influence than minor features.
+        Each selected option supplies its configured score contributions. The
+        calculator also applies its existing interaction effects and enabled
+        rules. Trait weighting classes do not currently scale these contributions.
     </p>
 
     <ul>
@@ -752,16 +752,16 @@
 
         <li><strong>Morphological Traits:</strong> Face shape, nose profile, forehead morphology, eye morphology, chin structure and other visible features contribute to the final score.</li>
 
-        <li><strong>Pigmentation Traits:</strong> Skin, eye and hair pigmentation are evaluated separately.</li>
+        <li><strong>Pigmentation Traits:</strong> Skin, eye and hair color traits are marked for separate analysis in the report; their category does not change the scoring formula.</li>
 
-        <li><strong>Weighted Scoring:</strong> Each trait belongs to a weighting class (A, B, C, etc.) that determines its influence on the final classification.</li>
+        <li><strong>Score Contributions and Rules:</strong> Selected options contribute their configured values, while existing interactions and enabled rules can adjust the result.</li>
 
         <li><strong>Positive & Negative Contributions:</strong> Traits may increase compatibility with some types while reducing compatibility with others.</li>
     </ul>
 
     <p>
-        Final scores represent morphological similarity to reconstructed
-        historical type models and should not be interpreted as ancestry,
+        Final scores show alignment with reconstructed historical type models
+        and should not be interpreted as ancestry,
         ethnicity, genetics, or biological classification.
     </p>
 
@@ -775,8 +775,9 @@
     <li>Historical type reconstruction presets</li>
     <li>Anthropometric index calculation</li>
     <li>Live scoring engine</li>
-    <li>Trait contribution analysis</li>
-    <li>Full classification reports</li>
+    <li>Group and subtype rankings with trait contribution analysis</li>
+    <li>Full reports with category analysis, rule diagnostics, and map</li>
+    <li>Local profile library, report printing, and image export</li>
     <li>Dark mode and theme customization</li>
 </ul>
 

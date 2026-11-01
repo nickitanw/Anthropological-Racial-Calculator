@@ -156,6 +156,11 @@
     cursor: pointer;
 }
 
+.settings-shared .trait-auto-collapse-select {
+    max-width: 100%;
+    min-width: 0;
+}
+
 .settings-shared .settings-theme-toggle {
     width: 56px;
     height: 48px;
@@ -211,4 +216,82 @@
     .settings-shared .settings-content {
         padding: 18px;
     }
+}
+
+/* Shared HARS settings surface. Keep this palette independent of page variables. */
+body.hars-page .settings-modal.settings-shared {
+    --settings-edge: #78694f;
+    --settings-text: #eee2cd;
+    --settings-muted: #bfb19b;
+    width: 920px;
+    max-width: 95vw;
+    height: 620px;
+    max-height: 88vh;
+    background: linear-gradient(rgba(35, 33, 30, .93), rgba(35, 33, 30, .93)), url('../../assets/textures/2.png') center / 480px;
+    color: var(--settings-text);
+    border: 1px solid var(--settings-edge);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, .54);
+}
+body.hars-page .settings-shared .settings-sidebar {
+    background: linear-gradient(rgba(23, 23, 23, .94), rgba(23, 23, 23, .94)), url('../../assets/textures/7.png') center / 360px;
+    border-right-color: #60584a;
+}
+body.hars-page .settings-shared .settings-content { background: rgba(33, 32, 30, .72); }
+body.hars-page .settings-shared .settings-tab {
+    width: 100%;
+    margin: 0 0 8px;
+    padding: 11px 13px;
+    color: var(--settings-muted);
+    background: rgba(255, 244, 217, .03);
+    border: 1px solid transparent;
+    border-radius: 7px;
+    box-shadow: none;
+    font: 700 .88rem/1.25 Georgia, serif;
+}
+body.hars-page .settings-shared .settings-tab:hover,
+body.hars-page .settings-shared .settings-tab.active {
+    color: #f3dfb3;
+    border-color: #8e7650;
+    background: rgba(183, 143, 75, .16);
+}
+body.hars-page .settings-shared h2,
+body.hars-page.dark-mode .settings-shared h2 { color: #e9d7b0; }
+body.hars-page .settings-shared :is(p, label, .toggle-label) { color: var(--settings-text); }
+body.hars-page .settings-shared .toggle-status { color: var(--settings-muted); }
+body.hars-page .settings-shared .toggle-switch input:checked + .toggle-slider { background: #b99a61; }
+body.hars-page .settings-shared .toggle-input-group {
+    background: rgba(255, 247, 222, .035);
+    border: 1px solid #5e5649;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .04);
+}
+body.hars-page .settings-shared .settings-theme-toggle,
+body.hars-page .settings-shared .settings-language-select,
+body.hars-page .settings-shared .settings-page > button {
+    background: linear-gradient(rgba(32, 29, 25, .36), rgba(32, 29, 25, .36)), url('../../assets/textures/9.png') center / 220px;
+    color: #ecd9b4;
+    border: 1px solid #8b7753;
+    border-radius: 5px;
+    box-shadow: inset 0 1px rgba(255, 236, 196, .08);
+}
+body.hars-page .settings-shared .settings-page > button { width: auto; min-width: 120px; margin: 8px 8px 0 0; padding: 9px 14px; }
+body.hars-page .settings-shared .settings-page > button:hover,
+body.hars-page .settings-shared .settings-theme-toggle:hover {
+    background: linear-gradient(rgba(65, 47, 24, .55), rgba(65, 47, 24, .55)), url('../../assets/textures/10.png') center / 220px;
+    border-color: #c3a465;
+    color: #fff0ce;
+}
+body.hars-page .settings-shared .color-input-group input[type="text"] {
+    background: #171818;
+    color: var(--settings-text);
+    border: 1px solid #736854;
+}
+body.hars-page .settings-shared .color-input-group input[type="color"] { border-color: #736854; }
+body.hars-page .settings-shared .close-settings { color: #d8c8aa; background: transparent; border: 0; box-shadow: none; }
+body.hars-page .settings-shared .close-settings:hover { color: #fff0cc; background: transparent; }
+body.hars-page .settings-shared :is(button, select, input):focus-visible { outline: 2px solid #d2b676; outline-offset: 2px; }
+
+@media (max-width: 640px) {
+    body.hars-page .settings-modal.settings-shared { width: calc(100vw - 20px); height: calc(100vh - 20px); max-height: calc(100vh - 20px); }
+    body.hars-page .settings-shared .settings-sidebar { width: 100%; flex-basis: auto; border-right: 0; border-bottom: 1px solid #60584a; }
+    body.hars-page .settings-shared .settings-tab { width: auto; flex: 0 0 auto; margin: 0; }
 }

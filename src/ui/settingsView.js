@@ -1,4 +1,5 @@
 (function () {
+    // Single settings markup source for every HARS page, including local file browsing.
     const SETTINGS_TEMPLATE = `
         <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
         <div class="settings-modal settings-shared" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
@@ -23,6 +24,14 @@
                             <select class="settings-language-select" id="languageSelect" onchange="changeLanguage(this.value)">
                                 <option value="en" aria-label="English">🇬🇧 English</option>
                                 <option value="ru" aria-label="Russian">🇷🇺 Russian</option>
+                            </select>
+                        </div>
+                        <div class="toggle-input-group">
+                            <label class="toggle-label" for="traitAutoCollapseSelect" data-i18n="settings.traitAutoCollapse">Trait Auto-Collapse</label>
+                            <select class="settings-language-select trait-auto-collapse-select" id="traitAutoCollapseSelect" onchange="setTraitAutoCollapseMode(this.value)">
+                                <option value="never" data-i18n="settings.traitAutoCollapseNever">Never Auto-Close</option>
+                                <option value="on-open" data-i18n="settings.traitAutoCollapseOnOpen">Close When Opening Another Trait</option>
+                                <option value="after-selection" data-i18n="settings.traitAutoCollapseAfterSelection">Close After Selecting an Answer</option>
                             </select>
                         </div>
                     </section>
@@ -63,22 +72,7 @@
 
     function renderSettingsView() {
         const root = document.querySelector('[data-settings-root]');
-        const legacyModal = document.getElementById('settingsModal');
-        const legacyOverlay = document.getElementById('settingsOverlay');
-
-        if (root && !root.querySelector('#settingsModal')) {
-            root.innerHTML = SETTINGS_TEMPLATE;
-        } else if (!root && legacyModal) {
-            const settingsRoot = document.createElement('div');
-            settingsRoot.setAttribute('data-settings-root', '');
-            legacyModal.parentNode.insertBefore(settingsRoot, legacyModal);
-            settingsRoot.innerHTML = SETTINGS_TEMPLATE;
-            legacyModal.remove();
-
-            if (legacyOverlay) {
-                legacyOverlay.remove();
-            }
-        }
+        if (root && !root.querySelector('#settingsModal')) root.innerHTML = SETTINGS_TEMPLATE;
     }
 
     window.renderSettingsView = renderSettingsView;

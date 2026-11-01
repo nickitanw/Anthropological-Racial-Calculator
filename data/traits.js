@@ -44,7 +44,8 @@
                                 alpine: -2,
                         
                                 dinaric: -1,
-                        westernMediterranean: -4, centralMediterranean: -5, easternMediterranean: -6, southernMediterranean: -7,
+                        westernMediterranean: -4, centralMediterranean: -5,
+                easternMediterranean: -6, southernMediterranean: -7,
                         levantine: -6,iranoAfghan: -7, armenoid: -7,
                         
                                 northAsian: -5, centralAsian: -5,
@@ -68,7 +69,8 @@
                         northernSlavic: +4, centralSlavic: +3, ponticSlavic: -1, 
                         
                                 eastBaltic: +4,
-                        westernMediterranean: -3, centralMediterranean: -4, easternMediterranean: -5, southernMediterranean: -6,
+                        westernMediterranean: -3, centralMediterranean: -4,
+                easternMediterranean: -5, southernMediterranean: -6,
                         levantine: -5,iranoAfghan: -5, armenoid: -6,
                         
                                 northAsian: -5, centralAsian: -5,
@@ -90,7 +92,8 @@
                         northernSlavic: +5, centralSlavic: +3, ponticSlavic: +1, 
                         
                                 eastBaltic: +5.5,
-                        westernMediterranean: -2, centralMediterranean: -3, easternMediterranean: -4, southernMediterranean: -5,
+                        westernMediterranean: -2, centralMediterranean: -3,
+                easternMediterranean: -4, southernMediterranean: -5,
                         levantine: -3,iranoAfghan: -4, armenoid: -4,
                         
                                 northAsian: -3, centralAsian: -2,
@@ -112,7 +115,8 @@
                         northernSlavic: +3, centralSlavic: +4, ponticSlavic: +3, 
                         
                                 eastBaltic: +2,
-                        westernMediterranean: +1, centralMediterranean: 0, easternMediterranean: -1, southernMediterranean: -2,
+                        westernMediterranean: +1, centralMediterranean: 0,
+                easternMediterranean: -1, southernMediterranean: -2,
                         levantine: 0,iranoAfghan: -1, armenoid: -1,
                         
                                 northAsian: -2, centralAsian: -1,
@@ -134,7 +138,8 @@
                         northernSlavic: +2, centralSlavic: +3, ponticSlavic: +3, 
                         
                                 eastBaltic: 0,
-                        westernMediterranean: +2, centralMediterranean: +2, easternMediterranean: +1, southernMediterranean: 0,
+                        westernMediterranean: +2, centralMediterranean: +2,
+                easternMediterranean: +1, southernMediterranean: 0,
                         levantine: +1,iranoAfghan: 0, armenoid: +1,
                         
                                 northAsian: -1, centralAsian: 0,
@@ -157,7 +162,8 @@
                         northernSlavic: -1, centralSlavic: 0.5, ponticSlavic: +1,
                         
                                 alpine: +1,
-                        westernMediterranean: +3, centralMediterranean: +4, easternMediterranean: +3, southernMediterranean: +2,
+                        westernMediterranean: +3, centralMediterranean: +4,
+                easternMediterranean: +3, southernMediterranean: +2,
                         
                                 nearEastern: +2, 
                                 dinaric: +2, 
@@ -178,7 +184,8 @@
                         northernSlavic: -1, centralSlavic: 0, ponticSlavic: +1, 
                         
                                 alpine: 0,
-                        westernMediterranean: +4, centralMediterranean: +5, easternMediterranean: +4, southernMediterranean: +3,
+                        westernMediterranean: +4, centralMediterranean: +5,
+                easternMediterranean: +4, southernMediterranean: +3,
                         levantine: +4,iranoAfghan: +5, armenoid: +4,
                         
                                 dinaric: +2, 
@@ -221,7 +228,8 @@
                         northernSlavic: -3, centralSlavic: -2, ponticSlavic: 0,
                         
                                 alpine: -3,
-                        westernMediterranean: +1, centralMediterranean: +2, easternMediterranean: +5, southernMediterranean: +6,
+                        westernMediterranean: +1, centralMediterranean: +2,
+                easternMediterranean: +5, southernMediterranean: +6,
                         levantine: +6,iranoAfghan: +6, armenoid: +5,
                         
                                 dinaric: -2, 
@@ -6015,49 +6023,70 @@ subSaharan: -2
 
 const OPTION_CUSTOM_WEIGHT_CLASSES = {
         eyeColor: {
-                veryLightBlue: { hallstatt: 'A+', eastNordic: 'A', tronder: 'A', eastBaltic: 'A', ladogan: 'A' },
-                lightBlue: { hallstatt: 'A+', eastNordic: 'A+', tronder: 'A', eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A' },
+                veryLightBlue: { hallstatt: 'A+',
+                eastNordic: 'A', tronder: 'A',
+                eastBaltic: 'A', ladogan: 'A' },
+                lightBlue: { hallstatt: 'A+',
+                eastNordic: 'A+', tronder: 'A',
+                eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A' },
                 grey: { eastBaltic: 'A+', ladogan: 'A+', northernSlavic: 'A', centralSlavic: 'A' },
-                greyGreen: { eastNordic: 'A', eastBaltic: 'A', centralSlavic: 'A' },
+                greyGreen: { eastNordic: 'A',
+                eastBaltic: 'A', centralSlavic: 'A' },
                 darkBrown: {
-                        westernMediterranean: 'B+', centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+',
+                        westernMediterranean: 'B+', centralMediterranean: 'B+',
+                easternMediterranean: 'B+', southernMediterranean: 'B+',
                         levantine: 'B+', iranoAfghan: 'B+', armenoid: 'B+'
                 },
                 blackBrown: {
-                        westernMediterranean: 'B', centralMediterranean: 'B', easternMediterranean: 'B', southernMediterranean: 'B',
-                        levantine: 'B', iranoAfghan: 'B', armenoid: 'B', northAsian: 'B', centralAsian: 'B', eastAsian: 'B',
+                        westernMediterranean: 'B', centralMediterranean: 'B',
+                easternMediterranean: 'B', southernMediterranean: 'B',
+                        levantine: 'B', iranoAfghan: 'B', armenoid: 'B', northAsian: 'B', centralAsian: 'B',
+                eastAsian: 'B',
                         malay: 'B', amerindian: 'B', subSaharan: 'B', ethiopian: 'B'
                 }
         },
         hairColor: {
-                platinumBlonde: { hallstatt: 'A+', eastNordic: 'A', eastBaltic: 'A', ladogan: 'A' },
-                lightBlonde: { hallstatt: 'A+', eastNordic: 'A', eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', centralSlavic: 'A' },
-                goldenBlonde: { tronder: 'A+', hallstatt: 'A', eastNordic: 'A' },
-                darkBlonde: { eastNordic: 'A', tronder: 'A', eastBaltic: 'A', northernSlavic: 'A', centralSlavic: 'A' },
+                platinumBlonde: { hallstatt: 'A+',
+                eastNordic: 'A',
+                eastBaltic: 'A', ladogan: 'A' },
+                lightBlonde: { hallstatt: 'A+',
+                eastNordic: 'A',
+                eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', centralSlavic: 'A' },
+                goldenBlonde: { tronder: 'A+', hallstatt: 'A',
+                eastNordic: 'A' },
+                darkBlonde: { eastNordic: 'A', tronder: 'A',
+                eastBaltic: 'A', northernSlavic: 'A', centralSlavic: 'A' },
                 brown: {
-                        westernMediterranean: 'B+', centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+',
+                        westernMediterranean: 'B+', centralMediterranean: 'B+',
+                easternMediterranean: 'B+', southernMediterranean: 'B+',
                         levantine: 'B+', iranoAfghan: 'B+', armenoid: 'B+'
                 },
                 darkBrown: {
-                        westernMediterranean: 'B', centralMediterranean: 'B', easternMediterranean: 'B', southernMediterranean: 'B',
+                        westernMediterranean: 'B', centralMediterranean: 'B',
+                easternMediterranean: 'B', southernMediterranean: 'B',
                         levantine: 'B', iranoAfghan: 'B', armenoid: 'B'
                 },
                 black: {
                         easternMediterranean: 'B', southernMediterranean: 'B', levantine: 'B', iranoAfghan: 'B', armenoid: 'B',
-                        northAsian: 'B', centralAsian: 'B', eastAsian: 'B', malay: 'B', amerindian: 'B', subSaharan: 'B', ethiopian: 'B'
+                        northAsian: 'B', centralAsian: 'B',
+                eastAsian: 'B', malay: 'B', amerindian: 'B', subSaharan: 'B', ethiopian: 'B'
                 },
                 red: { tronder: 'A' }
         },
         hairForm: {
-                straight: { northAsian: 'A-', eastAsian: 'A-', amerindian: 'A-' },
+                straight: { northAsian: 'A-',
+                eastAsian: 'A-', amerindian: 'A-' },
                 wavy: { tronder: 'A-' },
                 curly: { ethiopian: 'A-', subSaharan: 'A' },
                 tightlyCurled: { ethiopian: 'A', subSaharan: 'A+' }
         },
         skinColor: {
-                typeI: { hallstatt: 'A+', eastNordic: 'A', eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', northCaucasian: 'A' },
+                typeI: { hallstatt: 'A+',
+                eastNordic: 'A',
+                eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', northCaucasian: 'A' },
                 typeIV: {
-                        westernMediterranean: 'B', centralMediterranean: 'B', easternMediterranean: 'B', southernMediterranean: 'B',
+                        westernMediterranean: 'B', centralMediterranean: 'B',
+                easternMediterranean: 'B', southernMediterranean: 'B',
                         levantine: 'B+', iranoAfghan: 'B+', armenoid: 'B+', ethiopian: 'B'
                 },
                 typeV: { malay: 'A-', ethiopian: 'A-', subSaharan: 'A' },
@@ -6082,7 +6111,9 @@ subDolichocephalic: {
 },
 
 mesocephalic: {
-    hallstatt: 'B+', eastNordic: 'B+', tronder: 'A', eastBaltic: 'B+', ladogan: 'B+',
+    hallstatt: 'B+',
+                eastNordic: 'B+', tronder: 'A',
+                eastBaltic: 'B+', ladogan: 'B+',
     northernSlavic: 'B+', centralSlavic: 'B+', ponticSlavic: 'B+', alpine: 'B+',
     dinaric: 'B+', westernMediterranean: 'B+', centralMediterranean: 'B+',
     easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
@@ -6116,37 +6147,52 @@ hyperbrachycephalic: {
         faceShape: {
                 veryNarrow: { hallstatt: 'A-', southernMediterranean: 'A', iranoAfghan: 'A', caspian: 'A-', caucasion: 'B+' },
                 round: { eastBaltic: 'A-', centralSlavic: 'A-', alpine: 'A' },
-                broad: { northAsian: 'A', eastAsian: 'A-', amerindian: 'A-', caspian: 'A-', caucasion: 'A' },
-                veryBroad: { northAsian: 'A+', eastAsian: 'A', amerindian: 'A',caspian: 'A-', caucasion: 'A' }
+                broad: { northAsian: 'A',
+                eastAsian: 'A-', amerindian: 'A-', caspian: 'A-', caucasion: 'A' },
+                veryBroad: { northAsian: 'A+',
+                eastAsian: 'A', amerindian: 'A',caspian: 'A-', caucasion: 'A' }
         },
         cheekbones: {
-                low: { northAsian: 'A-', eastAsian: 'A-', amerindian: 'A-' },
-                high: { eastNordic: 'A', eastBaltic: 'A-', ladogan: 'A', northAsian: 'A', eastAsian: 'A+', centralAsian: 'A-', amerindian: 'A' },
-                veryHigh: { eastBaltic: 'A-', ladogan: 'A', northAsian: 'A+', eastAsian: 'A+', centralAsian: 'A', malay: 'A-', amerindian: 'A+' }
+                low: { northAsian: 'A-',
+                eastAsian: 'A-', amerindian: 'A-' },
+                high: { eastNordic: 'A',
+                eastBaltic: 'A-', ladogan: 'A', northAsian: 'A',
+                eastAsian: 'A+', centralAsian: 'A-', amerindian: 'A' },
+                veryHigh: { eastBaltic: 'A-', ladogan: 'A', northAsian: 'A+',
+                eastAsian: 'A+', centralAsian: 'A', malay: 'A-', amerindian: 'A+' }
         },
         epicanthus: {
                 absent: {
-                        hallstatt: 'C+', eastNordic: 'C+', tronder: 'C+', northernSlavic: 'C+', centralSlavic: 'C+', ponticSlavic: 'C+',
-                        alpine: 'C+', dinaric: 'C+', westernMediterranean: 'C+', centralMediterranean: 'C+', easternMediterranean: 'C+',
+                        hallstatt: 'C+',
+                eastNordic: 'C+', tronder: 'C+', northernSlavic: 'C+', centralSlavic: 'C+', ponticSlavic: 'C+',
+                        alpine: 'C+', dinaric: 'C+', westernMediterranean: 'C+', centralMediterranean: 'C+',
+                easternMediterranean: 'C+',
                         southernMediterranean: 'C+', levantine: 'C+', iranoAfghan: 'C+', armenoid: 'C+', ethiopian: 'C+', subSaharan: 'C+'
                 },
-                slight: { northAsian: 'A', centralAsian: 'A', eastAsian: 'A', malay: 'A-', amerindian: 'A-' },
+                slight: { northAsian: 'A', centralAsian: 'A',
+                eastAsian: 'A', malay: 'A-', amerindian: 'A-' },
                 moderate: { malay: 'A', amerindian: 'A' },
                 strong: { centralAsian: 'A', malay: 'A', amerindian: 'A' }
         },
         eyeShape: {
-                horizontal: { northAsian: 'B+', centralAsian: 'B', eastAsian: 'B+', malay: 'B', amerindian: 'B' }
+                horizontal: { northAsian: 'B+', centralAsian: 'B',
+                eastAsian: 'B+', malay: 'B', amerindian: 'B' }
         },
         noseType: {
                 leptorrhine: {
-                        westernMediterranean: 'A', centralMediterranean: 'A', easternMediterranean: 'A', southernMediterranean: 'A',
+                        westernMediterranean: 'A', centralMediterranean: 'A',
+                easternMediterranean: 'A', southernMediterranean: 'A',
                         levantine: 'A', iranoAfghan: 'A+', armenoid: 'A-', dinaric: 'A-'
                 },
                 mesorrhine: {
-                        hallstatt: 'B+', eastNordic: 'B+', tronder: 'B+', eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
+                        hallstatt: 'B+',
+                eastNordic: 'B+', tronder: 'B+',
+                eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
                         centralSlavic: 'B+', ponticSlavic: 'B+', alpine: 'B+', dinaric: 'B+', westernMediterranean: 'B+',
-                        centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
-                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B', eastAsian: 'B+', malay: 'B+',
+                        centralMediterranean: 'B+',
+                easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
+                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B',
+                eastAsian: 'B+', malay: 'B+',
                         amerindian: 'B+', subSaharan: 'B+', ethiopian: 'B+'
                 },
                 platyrrhine: { malay: 'A', ethiopian: 'A', subSaharan: 'A+' }
@@ -6154,7 +6200,8 @@ hyperbrachycephalic: {
         nasalProfile: {
                 straight: { hallstatt: 'A', westernMediterranean: 'A-' },
                 concave: { eastBaltic: 'A', ladogan: 'A', northernSlavic: 'A', alpine: 'A-' },
-                convex: { dinaric: 'A+', easternMediterranean: 'A', levantine: 'A', iranoAfghan: 'A', armenoid: 'A+' }
+                convex: { dinaric: 'A+',
+                easternMediterranean: 'A', levantine: 'A', iranoAfghan: 'A', armenoid: 'A+' }
         },
         chinProjection: {
                 strong: { hallstatt: 'B+', dinaric: 'B+', armenoid: 'B+' }
@@ -6173,38 +6220,52 @@ hyperbrachycephalic: {
                 prognathous: { ethiopian: 'A', subSaharan: 'A+' }
         },
         occipitalContour: {
-                flat: { eastBaltic: 'A-', alpine: 'A-', dinaric: 'A', northAsian: 'A+', eastAsian: 'A', amerindian: 'A' },
+                flat: { eastBaltic: 'A-', alpine: 'A-', dinaric: 'A', northAsian: 'A+',
+                eastAsian: 'A', amerindian: 'A' },
                 rounded: { alpine: 'A-' },
                 projecting: { hallstatt: 'A', westernMediterranean: 'A-', ethiopian: 'A-' }
         },
         eyeDepth: {
                 deepSet: { hallstatt: 'A-' },
-                prominent: { northAsian: 'A-', eastAsian: 'A-' }
+                prominent: { northAsian: 'A-',
+                eastAsian: 'A-' }
         },
         nasalBridgeHeight: {
-                low: { northAsian: 'A+', eastAsian: 'A', centralAsian: 'A-', malay: 'A-', amerindian: 'A-' },
-                high: { hallstatt: 'A-', dinaric: 'A+', easternMediterranean: 'A-', levantine: 'A', iranoAfghan: 'A', armenoid: 'A+' }
+                low: { northAsian: 'A+',
+                eastAsian: 'A', centralAsian: 'A-', malay: 'A-', amerindian: 'A-' },
+                high: { hallstatt: 'A-', dinaric: 'A+',
+                easternMediterranean: 'A-', levantine: 'A', iranoAfghan: 'A', armenoid: 'A+' }
         },
         facialIndex: {
-                hypereuryprosopic: { eastBaltic: 'A', ladogan: 'A', alpine: 'A', northAsian: 'A+', eastAsian: 'A', amerindian: 'A' },
+                hypereuryprosopic: { eastBaltic: 'A', ladogan: 'A', alpine: 'A', northAsian: 'A+',
+                eastAsian: 'A', amerindian: 'A' },
                 euryprosopic: { eastBaltic: 'A', ladogan: 'A', alpine: 'A', northAsian: 'A', amerindian: 'A' },
                 mesoprosopic: {
-                        hallstatt: 'B+', eastNordic: 'B+', tronder: 'B+', eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
+                        hallstatt: 'B+',
+                eastNordic: 'B+', tronder: 'B+',
+                eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
                         centralSlavic: 'B+', ponticSlavic: 'B+', alpine: 'B+', dinaric: 'B+', westernMediterranean: 'B+',
-                        centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
-                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B+', eastAsian: 'B+', malay: 'B+',
+                        centralMediterranean: 'B+',
+                easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
+                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B+',
+                eastAsian: 'B+', malay: 'B+',
                         amerindian: 'B+', subSaharan: 'B+', ethiopian: 'B+',caspian: 'B+', caucasion: 'B+'
                 },
                 leptoprosopic: { hallstatt: 'A', dinaric: 'A', westernMediterranean: 'A', southernMediterranean: 'A', levantine: 'A', iranoAfghan: 'A',caspian: 'A+' },
                 hyperleptoprosopic: { hallstatt: 'A+', dinaric: 'A', southernMediterranean: 'A+', levantine: 'A', iranoAfghan: 'A+', ethiopian: 'A' }
         },
         orbitalIndex: {
-                chamaeconch: { northAsian: 'A+', eastAsian: 'A', subSaharan: 'A' },
+                chamaeconch: { northAsian: 'A+',
+                eastAsian: 'A', subSaharan: 'A' },
                 mesoconch: {
-                        hallstatt: 'B+', eastNordic: 'B+', tronder: 'B+', eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
+                        hallstatt: 'B+',
+                eastNordic: 'B+', tronder: 'B+',
+                eastBaltic: 'B+', ladogan: 'B+', northernSlavic: 'B+',
                         centralSlavic: 'B+', ponticSlavic: 'B+', alpine: 'B+', dinaric: 'B+', westernMediterranean: 'B+',
-                        centralMediterranean: 'B+', easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
-                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B+', eastAsian: 'B+', malay: 'B+',
+                        centralMediterranean: 'B+',
+                easternMediterranean: 'B+', southernMediterranean: 'B+', levantine: 'B+',
+                        iranoAfghan: 'B+', armenoid: 'B+', northAsian: 'B+', centralAsian: 'B+',
+                eastAsian: 'B+', malay: 'B+',
                         amerindian: 'B+', subSaharan: 'B+', ethiopian: 'B+'
                 },
                 hypsiconch: { hallstatt: 'A', dinaric: 'A', levantine: 'A', iranoAfghan: 'A+', armenoid: 'A' }

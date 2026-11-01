@@ -1,0 +1,228 @@
+/* Full Report workspace. All rules stay inside the calculator report modal. */
+body.hars-calculator .report-modal-overlay.active {
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 2vw;
+    overflow: hidden;
+    background: rgba(10, 9, 8, .82);
+}
+body.hars-calculator #reportContent {
+    width: 88vw;
+    max-width: 1600px;
+    height: 92vh;
+    max-height: 1050px;
+    padding: 0;
+    overflow: hidden;
+    color: #e8decf;
+    background: linear-gradient(rgba(29, 28, 27, .94), rgba(23, 23, 23, .97)), url('../../assets/textures/1.png') center / 550px;
+    border: 1px solid #846f4e;
+    border-radius: 6px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, .55);
+    font-size: .9rem;
+}
+body.hars-calculator #reportInner { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+body.hars-calculator #reportContent .report-workspace-header {
+    flex: none;
+    padding: 16px 20px 12px;
+    background: linear-gradient(rgba(41, 38, 34, .94), rgba(28, 27, 26, .97)), url('../../assets/textures/2.png') center / 500px;
+    border-bottom: 1px solid #786444;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .22);
+}
+body.hars-calculator #reportContent .report-heading { text-align: center; }
+body.hars-calculator #reportContent .report-heading h1 { margin: 0; color: #e5d3ac; font: 700 clamp(1.25rem, 2vw, 1.8rem)/1.2 Georgia, serif; font-variant: small-caps; letter-spacing: .035em; }
+body.hars-calculator #reportContent .report-heading p { margin: 3px 0 0; color: #b9aa8e; font-size: .77rem; }
+body.hars-calculator #reportContent .report-header-controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+body.hars-calculator #reportContent .report-header-controls button,
+body.hars-calculator #reportContent .report-header-controls summary,
+body.hars-calculator #reportContent .report-secondary-button,
+body.hars-calculator #reportContent .report-inline-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 6px 12px;
+    color: #eadbbb;
+    background: linear-gradient(rgba(28, 26, 23, .48), rgba(28, 26, 23, .48)), url('../../assets/textures/7.png') center / 250px;
+    border: 1px solid #8d7752;
+    border-radius: 5px;
+    font: 700 .82rem/1.2 Georgia, serif;
+    cursor: pointer;
+    transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+body.hars-calculator #reportContent .report-header-controls button:hover,
+body.hars-calculator #reportContent .report-header-controls summary:hover,
+body.hars-calculator #reportContent .report-secondary-button:hover,
+body.hars-calculator #reportContent .report-inline-actions button:hover { border-color: #d2ac6d; color: #f7e7bf; }
+body.hars-calculator #reportContent .report-header-controls .active { color: #241b10; background: linear-gradient(rgba(208, 175, 111, .9), rgba(171, 132, 69, .88)), url('../../assets/textures/3.png') center / 260px; border-color: #d0ae74; }
+body.hars-calculator #reportContent .report-view-switch,
+body.hars-calculator #reportContent .report-mode-switch { display: inline-flex; gap: 0; margin: 0; overflow: hidden; background: none; border: 0; border-radius: 5px; box-shadow: none; }
+body.hars-calculator #reportContent .report-view-switch button + button,
+body.hars-calculator #reportContent .report-mode-switch button + button { border-left: 0; border-radius: 0 5px 5px 0; }
+body.hars-calculator #reportContent .report-view-switch button:first-child,
+body.hars-calculator #reportContent .report-mode-switch button:first-child { border-radius: 5px 0 0 5px; }
+body.hars-calculator #reportContent .report-export-menu { position: relative; }
+body.hars-calculator #reportContent .report-export-menu summary { list-style: none; }
+body.hars-calculator #reportContent .report-export-menu summary::-webkit-details-marker { display: none; }
+body.hars-calculator #reportContent .report-export-menu > div { position: absolute; z-index: 20; right: 0; top: calc(100% + 5px); display: grid; gap: 4px; min-width: 130px; padding: 5px; background: #282724; border: 1px solid #917b56; border-radius: 5px; box-shadow: 0 8px 20px rgba(0, 0, 0, .4); }
+body.hars-calculator #reportContent .report-workspace-body { display: grid; grid-template-columns: 205px minmax(0, 1fr); flex: 1; min-height: 0; }
+body.hars-calculator #reportContent .report-sidebar { display: flex; flex-direction: column; gap: 4px; padding: 16px 10px; overflow-y: auto; background: linear-gradient(rgba(30, 29, 27, .95), rgba(25, 25, 25, .96)), url('../../assets/textures/2.png') center / 450px; border-right: 1px solid #655744; }
+body.hars-calculator #reportContent .report-sidebar button { width: 100%; padding: 9px 10px; color: #c9bba3; background: transparent; border: 1px solid transparent; border-radius: 5px; font: 600 .85rem/1.3 Georgia, serif; text-align: left; cursor: pointer; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+body.hars-calculator #reportContent .report-sidebar button:hover { color: #efddb8; background: rgba(155, 121, 73, .14); }
+body.hars-calculator #reportContent .report-sidebar button.active { color: #efdcb0; background: rgba(157, 121, 67, .2); border-color: #806944; }
+body.hars-calculator #reportContent .report-main { min-width: 0; min-height: 0; padding: 22px clamp(18px, 3vw, 36px) 35px; overflow-y: auto; overscroll-behavior: contain; }
+body.hars-calculator #reportContent [hidden] { display: none !important; }
+body.hars-calculator #reportContent .report-print-section-label { display: none; }
+body.hars-calculator #reportContent .report-section-heading { margin-bottom: 18px; padding-bottom: 12px; }
+body.hars-calculator #reportContent .report-section-heading h2 { margin: 0; padding: 0; border: 0; color: #e8d5a9; font: 700 1.35rem/1.25 Georgia, serif; text-align: left; }
+body.hars-calculator #reportContent .report-section-heading p { margin: 4px 0 0; color: #b7aa97; font-size: .82rem; }
+body.hars-calculator #reportContent .report-summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+body.hars-calculator #reportContent .report-summary-card,
+body.hars-calculator #reportContent .report-category-card,
+body.hars-calculator #reportContent .report-comparison,
+body.hars-calculator #reportContent .report-map-card {
+    background: linear-gradient(rgba(39, 37, 34, .94), rgba(27, 27, 26, .96)), url('../../assets/textures/2.png') center / 460px;
+    border: 1px solid #74654f;
+    border-radius: 5px;
+    box-shadow: 0 5px 13px rgba(0, 0, 0, .18);
+}
+body.hars-calculator #reportContent .report-summary-card { min-height: 112px; padding: 15px; border-top-color: #ae8e58; }
+body.hars-calculator #reportContent .report-card-label { color: #bdab86; font-size: .69rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+body.hars-calculator #reportContent .report-card-value { margin-top: 7px; color: #f0e3cb; font: 700 1.15rem/1.3 Georgia, serif; overflow-wrap: anywhere; }
+body.hars-calculator #reportContent .report-card-detail { margin-top: 6px; color: #c2b49c; font-size: .82rem; font-variant-numeric: tabular-nums; }
+body.hars-calculator #reportContent .report-progress { height: 6px; margin-top: 11px; overflow: hidden; background: #171717; border: 1px solid #67583e; border-radius: 9px; }
+body.hars-calculator #reportContent .report-progress span { display: block; height: 100%; background: #bb9a60; }
+body.hars-calculator #reportContent .report-explainer,
+body.hars-calculator #reportContent .report-footnote { color: #c1b5a4; font-size: .82rem; line-height: 1.5; }
+body.hars-calculator #reportContent .report-explainer { margin: 16px 0; }
+body.hars-calculator #reportContent .report-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+body.hars-calculator #reportContent .report-category-card { min-width: 0; padding: 16px; }
+body.hars-calculator #reportContent .report-category-card h3 { margin: 8px 0 3px; color: #ecd7ab; font-size: 1.22rem; }
+body.hars-calculator #reportContent .report-category-card h4 { margin: 18px 0 7px; color: #cdbb95; font-size: .88rem; }
+body.hars-calculator #reportContent .report-category-score { color: #d0c0a2; font-size: .82rem; }
+body.hars-calculator #reportContent .report-category-ranking { margin: 0; padding-left: 22px; color: #b69a6d; }
+body.hars-calculator #reportContent .report-category-ranking li { display: list-item; padding: 6px 0 6px 2px; border-bottom: 1px solid #4d483f; font-size: .84rem; }
+body.hars-calculator #reportContent .report-category-ranking li span { display: inline-block; max-width: calc(100% - 75px); color: #e4d9c5; }
+body.hars-calculator #reportContent .report-category-ranking li strong { float: right; color: #e5cd9e; font-variant-numeric: tabular-nums; }
+body.hars-calculator #reportContent .report-driver-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+body.hars-calculator #reportContent .report-driver-list { margin: 0; padding: 0; list-style: none; }
+body.hars-calculator #reportContent .report-driver-list li { display: flex; justify-content: space-between; gap: 7px; padding: 6px 0; border-bottom: 1px solid #4b463d; font-size: .84rem; }
+body.hars-calculator #reportContent .report-driver-list li small { display: block; color: #a99d8d; }
+body.hars-calculator #reportContent .positive { color: #a6c29b; }
+body.hars-calculator #reportContent .negative { color: #d99a90; }
+body.hars-calculator #reportContent .report-comparison { margin-top: 12px; padding: 13px 16px; background: linear-gradient(rgba(38, 36, 32, .94), rgba(29, 29, 28, .97)), url('../../assets/textures/7.png') center / 320px; }
+body.hars-calculator #reportContent .report-comparison strong { color: #ddc494; }
+body.hars-calculator #reportContent .report-comparison p { margin: 5px 0; }
+body.hars-calculator #reportContent .report-comparison small { color: #b9ac99; line-height: 1.5; }
+body.hars-calculator #reportContent .report-controls { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+body.hars-calculator #reportContent .report-controls label { display: grid; gap: 5px; color: #cdbb99; font-size: .77rem; font-weight: 700; }
+body.hars-calculator #reportContent .report-controls :is(input, select) { min-width: 145px; max-width: 100%; padding: 8px 10px; color: #eee1ca; background: #1c1d1d; border: 1px solid #807154; border-radius: 5px; font: inherit; }
+body.hars-calculator #reportContent .report-table-scroll { max-width: 100%; overflow-x: auto; }
+body.hars-calculator #reportContent .report-data-table { width: 100%; margin: 0 0 10px; border-collapse: collapse; color: #e7dcc9; font-size: .85rem; background: transparent; }
+body.hars-calculator #reportContent .report-data-table th { color: #cfb988; background: #302e2a; font-size: .72rem; text-transform: uppercase; letter-spacing: .055em; }
+body.hars-calculator #reportContent .report-data-table th,
+body.hars-calculator #reportContent .report-data-table td { padding: 8px 10px; border: 1px solid #514a3f; vertical-align: top; }
+body.hars-calculator #reportContent .report-data-table td { color: #e2d8c8; background: rgba(33, 33, 32, .7); }
+body.hars-calculator #reportContent .report-data-table tr.report-leading-row td { background: rgba(94, 72, 43, .3); }
+body.hars-calculator #reportContent .report-data-table small { display: block; margin-top: 3px; color: #a99d8a; }
+body.hars-calculator #reportContent .report-data-table .report-number { color: #ebd6ad; font-weight: 700; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+body.hars-calculator #reportContent .report-data-table .report-number.negative { color: #d99a90; }
+body.hars-calculator #reportContent .report-score-bar { position: relative; width: min(200px, 100%); min-width: 90px; height: 8px; margin: 5px 0; background: #17191a; border: 1px solid #6b5e47; border-radius: 8px; }
+body.hars-calculator #reportContent .report-score-bar::after { content: ''; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: #d8bc88; }
+body.hars-calculator #reportContent .report-score-fill { position: absolute; top: 0; height: 100%; border-radius: 8px; }
+body.hars-calculator #reportContent .report-empty { margin: 10px 0; color: #ab9f8b; font-style: italic; }
+body.hars-calculator #reportContent .report-trait-details summary { color: #d9bc84; cursor: pointer; }
+body.hars-calculator #reportContent .report-trait-details .report-data-table { margin-top: 9px; }
+body.hars-calculator #reportContent .report-inline-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+body.hars-calculator #reportContent .report-rule-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+body.hars-calculator #reportContent .report-rule-columns h3 { margin: 0 0 10px; color: #d8c49d; font-size: 1rem; }
+body.hars-calculator #reportContent .report-rule-card { margin: 0 0 7px; background: #2a2927; border: 1px solid #625746; border-radius: 5px; }
+body.hars-calculator #reportContent .report-rule-card summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; cursor: pointer; list-style: none; }
+body.hars-calculator #reportContent .report-rule-card summary::-webkit-details-marker { display: none; }
+body.hars-calculator #reportContent .report-rule-card summary strong { color: #e4d6ba; font-size: .83rem; }
+body.hars-calculator #reportContent .report-rule-card summary small { display: block; margin-top: 3px; color: #a99e8c; }
+body.hars-calculator #reportContent .report-rule-count { color: #cbaa71; white-space: nowrap; font-size: .73rem; }
+body.hars-calculator #reportContent .report-rule-detail { padding: 0 12px 12px; color: #cfc2ac; font-size: .78rem; line-height: 1.45; overflow-wrap: anywhere; }
+body.hars-calculator #reportContent .report-rule-detail code { white-space: pre-wrap; }
+body.hars-calculator #reportContent .report-rule-detail ul { padding-left: 18px; }
+body.hars-calculator #reportContent .report-rule-detail li { margin: 6px 0; }
+body.hars-calculator #reportContent .report-rule-detail li small { display: block; color: #aaa093; }
+body.hars-calculator #reportContent .report-rule-detail li.met { color: #a8c397; }
+body.hars-calculator #reportContent .report-rule-detail li.missing { color: #d0a399; }
+body.hars-calculator #reportContent .report-disabled-rules { margin-top: 15px; color: #b7aa94; }
+body.hars-calculator #reportContent .report-map-card { padding: 10px; }
+body.hars-calculator #reportContent #anthropologicalMapFrame { display: block; width: 100%; height: min(66vh, 690px); background: #252525; border: 0; }
+body.hars-calculator #reportContent #reportMapSnapshot { display: none; }
+body.hars-calculator #reportContent #reportMapSnapshot svg { display: block; width: 100%; height: auto; max-height: 630px; }
+body.hars-calculator #reportContent .report-disclaimer { margin: 18px 0 0; padding: 12px 15px; color: #d6bb9b; background: rgba(87, 40, 36, .2); border: 1px solid #805e53; border-radius: 5px; font-size: .77rem; font-weight: 400; text-align: left; line-height: 1.5; }
+body.hars-calculator #reportContent :is(button, summary, input, select):focus-visible { outline: 2px solid #dbbb7b; outline-offset: 2px; }
+
+@media (max-width: 1050px) {
+    body.hars-calculator #reportContent { width: 94vw; }
+    body.hars-calculator #reportContent .report-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    body.hars-calculator #reportContent .report-category-grid,
+    body.hars-calculator #reportContent .report-rule-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+    body.hars-calculator .report-modal-overlay.active { padding: 0; }
+    body.hars-calculator #reportContent { width: 100vw; height: 100dvh; max-height: none; border-radius: 0; }
+    body.hars-calculator #reportContent .report-workspace-header { padding: 10px; }
+    body.hars-calculator #reportContent .report-workspace-body { display: flex; flex-direction: column; }
+    body.hars-calculator #reportContent .report-sidebar { flex: none; flex-direction: row; overflow-x: auto; overflow-y: hidden; padding: 7px; border-right: 0; border-bottom: 1px solid #655744; }
+    body.hars-calculator #reportContent .report-sidebar button { flex: 0 0 auto; width: auto; white-space: nowrap; }
+    body.hars-calculator #reportContent .report-main { flex: 1; padding: 18px 14px 32px; }
+}
+@media (max-width: 540px) {
+    body.hars-calculator #reportContent .report-summary-grid,
+    body.hars-calculator #reportContent .report-driver-grid { grid-template-columns: 1fr; }
+    body.hars-calculator #reportContent .report-header-controls { justify-content: flex-start; }
+    body.hars-calculator #reportContent .report-controls label { flex: 1 1 140px; }
+    body.hars-calculator #reportContent .report-controls :is(input, select) { width: 100%; min-width: 0; }
+}
+
+/* Print and image exports reveal every report section in document order. */
+@media print {
+    body.hars-calculator .report-modal-overlay.active { display: block !important; position: static; padding: 0; overflow: visible; background: #fff; }
+    body.hars-calculator #reportContent { display: block; position: static; width: 100%; max-width: none; height: auto; max-height: none; overflow: visible; color: #161616; background: #fff; border: 0; box-shadow: none; }
+    body.hars-calculator #reportInner,
+    body.hars-calculator #reportContent .report-workspace-body { display: block; height: auto; overflow: visible; }
+    body.hars-calculator #reportContent .report-workspace-header { position: static; padding: 0 0 12px; background: #fff; box-shadow: none; border-bottom: 1px solid #777; }
+    body.hars-calculator #reportContent .report-heading h1,
+    body.hars-calculator #reportContent .report-section-heading h2 { color: #222; }
+    body.hars-calculator #reportContent .report-sidebar,
+    body.hars-calculator #reportContent .report-header-controls,
+    body.hars-calculator #reportContent .report-controls,
+    body.hars-calculator #reportContent .report-inline-actions,
+    body.hars-calculator #reportContent #reportRankingExpand { display: none !important; }
+    body.hars-calculator #reportContent .report-main { display: block; padding: 0; overflow: visible; }
+    body.hars-calculator #reportContent #reportAnalysisView[hidden],
+    body.hars-calculator #reportContent #reportMapView[hidden],
+    body.hars-calculator #reportContent .report-workspace-section[hidden] { display: block !important; }
+    body.hars-calculator #reportContent .report-workspace-section { display: block; margin: 18px 0; padding-top: 12px; border-top: 1px solid #888; break-inside: auto; }
+    body.hars-calculator #reportContent .report-summary-card,
+    body.hars-calculator #reportContent .report-category-card,
+    body.hars-calculator #reportContent .report-comparison,
+    body.hars-calculator #reportContent .report-map-card,
+    body.hars-calculator #reportContent .report-rule-card { color: #111; background: #fff; border-color: #777; box-shadow: none; break-inside: avoid; }
+    body.hars-calculator #reportContent :is(.report-card-label, .report-card-value, .report-card-detail, .report-section-heading p, .report-explainer, .report-footnote, .report-category-score, .report-category-card h3, .report-category-card h4, .report-category-ranking li span, .report-category-ranking li strong, .report-comparison p, .report-comparison small, .report-rule-columns h3, .report-rule-card summary strong, .report-rule-detail) { color: #222; }
+    body.hars-calculator #reportContent .report-data-table td,
+    body.hars-calculator #reportContent .report-data-table th { color: #111; background: #fff; border-color: #777; }
+    body.hars-calculator #reportContent .report-data-table tr { break-inside: avoid; }
+    body.hars-calculator #reportContent .report-rule-card:not([open]) .report-rule-detail,
+    body.hars-calculator #reportContent .report-trait-details:not([open]) > :not(summary) { display: block !important; }
+    body.hars-calculator #reportContent #reportMapSnapshot:not(:empty) { display: block; }
+    body.hars-calculator #reportContent .report-map-card:has(#reportMapSnapshot svg) iframe { display: none; }
+    body.hars-calculator #reportContent .report-disclaimer { color: #421d17; background: #fff; border-color: #777; }
+}
+body.hars-calculator #reportContent.report-exporting { height: auto; }
+body.hars-calculator #reportContent.report-exporting #reportInner,
+body.hars-calculator #reportContent.report-exporting .report-workspace-body { display: block; height: auto; }
+body.hars-calculator #reportContent.report-exporting .report-sidebar,
+body.hars-calculator #reportContent.report-exporting .report-header-controls,
+body.hars-calculator #reportContent.report-exporting .report-controls,
+body.hars-calculator #reportContent.report-exporting .report-inline-actions { display: none !important; }
+body.hars-calculator #reportContent.report-exporting .report-main { padding: 25px; overflow: visible; }
+body.hars-calculator #reportContent.report-exporting .report-workspace-section { display: block !important; margin-bottom: 25px; }
+body.hars-calculator #reportContent.report-exporting .report-rule-card:not([open]) .report-rule-detail,
+body.hars-calculator #reportContent.report-exporting .report-trait-details:not([open]) > :not(summary) { display: block !important; }
+body.hars-calculator #reportContent.report-exporting #reportMapSnapshot:not(:empty) { display: block; }
+body.hars-calculator #reportContent.report-exporting .report-map-card:has(#reportMapSnapshot svg) iframe { display: none; }

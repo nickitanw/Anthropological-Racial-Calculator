@@ -483,25 +483,30 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="src/ui/hars-modern.css">
 </head>
-<body>
+<body class="hars-page hars-profile">
     <div class="disclaimer-banner">
         <strong>HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR</strong> - Educational and historical reference only.
     </div>
 
     <div class="main-container">
         <header>
-            <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">⚙️</button>
-            <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+            <nav class="hars-nav" aria-label="Application navigation">
+                <div class="hars-nav-group" aria-label="Pages">
+                <a class="header-control hars-nav-link" href="index.html"><span class="control-icon" aria-hidden="true">⌂</span><span data-i18n="navigation.menu">Main Menu</span></a>
+                <a class="header-control hars-nav-link" href="raceResCalc.html"><span class="control-icon" aria-hidden="true">▦</span><span data-i18n="navigation.calculator">Calculator</span></a>
+                <a class="header-control hars-nav-link is-current" href="myProfile.html" aria-current="page"><span class="control-icon" aria-hidden="true">◉</span><span data-i18n="navigation.profile">Profile</span></a>
+                </div>
+                <div class="hars-nav-group" aria-label="Controls">
+                <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings"><span class="control-icon" aria-hidden="true">⚙</span><span data-i18n="navigation.settings">Settings</span></button>
+                <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="control-icon" aria-hidden="true">🌙</span><span data-i18n="navigation.theme">Theme</span></button>
+                </div>
+            </nav>
             <h1>My Profile</h1>
             <p class="subtitle">Set your display name for this simulator</p>
             <span class="era-badge">User Information</span>
         </header>
-
-        <div class="quick-links">
-            <a class="quick-link" href="index.html">Main Menu</a>
-            <a class="quick-link" href="raceResCalc.html">Calculator</a>
-        </div>
 
         <div class="disclaimer-inline">
             Profile names are stored locally in your browser on this device.

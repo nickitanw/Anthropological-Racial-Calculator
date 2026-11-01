@@ -1,0 +1,490 @@
+/* HARS visual layer. No scoring or result-panel selectors are changed here. */
+:where(body.hars-page) {
+    --hars-ink: #eee4d1;
+    --hars-muted: #b7aa94;
+    --hars-gold: #d5b977;
+    --hars-edge: #706754;
+    background-color: #191715;
+    background-image:
+        linear-gradient(135deg, rgba(13, 13, 14, .76), rgba(35, 29, 24, .62) 48%, rgba(15, 15, 15, .79)),
+        url('../../assets/textures/1.png');
+    background-size: auto, 540px 540px;
+    background-attachment: fixed;
+}
+
+body.hars-page.dark-mode {
+    background-image:
+        linear-gradient(135deg, rgba(8, 9, 10, .88), rgba(25, 22, 20, .76) 50%, rgba(8, 9, 10, .9)),
+        url('../../assets/textures/1.png');
+}
+
+body.hars-page .main-container {
+    max-width: 1320px;
+    padding-inline: clamp(16px, 3vw, 42px);
+}
+
+body.hars-page .disclaimer-banner {
+    background-color: #5c2425;
+    background-image: linear-gradient(90deg, rgba(40, 8, 12, .56), rgba(88, 28, 32, .42), rgba(40, 8, 12, .56)), url('../../assets/textures/4.png');
+    background-size: auto, 390px 390px;
+    border-bottom: 1px solid #aa6b65;
+    color: #f5dfd7;
+    font-size: .8rem;
+    line-height: 1.45;
+    padding: 9px max(16px, calc((100vw - 1260px) / 2));
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .26);
+}
+
+body.hars-page header {
+    position: relative;
+    isolation: isolate;
+    border: 0;
+    margin-bottom: 20px;
+    padding: 76px 18px 58px;
+}
+
+body.hars-page header::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 104px;
+    height: 104px;
+    left: calc(50% - 52px);
+    top: 82px;
+    background: url('../../assets/textures/8.png') center / contain no-repeat;
+    opacity: .12;
+    pointer-events: none;
+}
+
+body.hars-page header::after {
+    content: '';
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 45px;
+    background: url('../../assets/textures/5.png') center / contain no-repeat;
+    opacity: .66;
+    pointer-events: none;
+}
+
+body.hars-page header h1,
+body.hars-page.dark-mode header h1 {
+    color: #f2e7d2;
+    font-size: clamp(1.7rem, 3.2vw, 2.65rem);
+    line-height: 1.18;
+    letter-spacing: .035em;
+    text-wrap: balance;
+    text-shadow: 0 2px 14px #0b0908;
+}
+
+body.hars-page header .subtitle {
+    color: #c9bda8;
+    max-width: 740px;
+    margin-inline: auto;
+    line-height: 1.5;
+}
+
+body.hars-page header .era-badge {
+    color: #d5bd84;
+    background: linear-gradient(rgba(30, 25, 21, .93), rgba(30, 25, 21, .93)), url('../../assets/textures/3.png') center / 300px;
+    border: 1px solid #706041;
+    border-radius: 999px;
+    padding: 5px 16px;
+    box-shadow: inset 0 1px rgba(255, 234, 184, .08);
+}
+
+body.hars-page .header-control,
+body.hars-page .settings-btn,
+body.hars-page .theme-toggle,
+body.hars-page .quick-link {
+    background: linear-gradient(rgba(27, 25, 23, .34), rgba(27, 25, 23, .34)), url('../../assets/textures/9.png') center / 220px;
+    color: #e2ce9e;
+    border: 1px solid #76684d;
+    box-shadow: inset 0 1px rgba(255, 234, 189, .1), 0 5px 14px rgba(0, 0, 0, .25);
+}
+
+body.hars-page .header-control:hover,
+body.hars-page .settings-btn:hover,
+body.hars-page .theme-toggle:hover,
+body.hars-page .quick-link:hover {
+    color: #fff2cf;
+    border-color: #caa963;
+    background: linear-gradient(rgba(65, 45, 20, .65), rgba(65, 45, 20, .65)), url('../../assets/textures/10.png') center / 220px;
+    transform: translateY(-2px);
+}
+
+/* One compact bronze button system for all page navigation. */
+body.hars-page header .hars-nav {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    pointer-events: auto;
+}
+body.hars-page header .hars-nav-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+}
+body.hars-page header .hars-nav-group:last-child { margin-left: auto; }
+body.hars-page header .hars-nav .header-control {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: auto;
+    min-width: 0;
+    height: 36px;
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    border: 1px solid #7b6a4d;
+    border-radius: 5px;
+    color: #f2dfb3;
+    background: linear-gradient(rgba(34, 31, 27, .38), rgba(34, 31, 27, .38)), url('../../assets/textures/9.png') center / 210px;
+    box-shadow: inset 0 1px rgba(255, 236, 196, .09), 0 3px 9px rgba(0, 0, 0, .2);
+    font: 700 .81rem/1 Georgia, serif;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+body.hars-page header .hars-nav .header-control:hover {
+    color: #fff1ce;
+    border-color: #c2a367;
+    background: linear-gradient(rgba(55, 42, 26, .56), rgba(55, 42, 26, .56)), url('../../assets/textures/10.png') center / 210px;
+    box-shadow: inset 0 1px rgba(255, 236, 196, .16), 0 5px 13px rgba(0, 0, 0, .28);
+}
+body.hars-page header .hars-nav .header-control.is-current {
+    border-color: #b99a61;
+    box-shadow: inset 0 0 0 1px rgba(211, 177, 111, .24), 0 3px 9px rgba(0, 0, 0, .2);
+}
+body.hars-page header .hars-nav .control-icon { font-size: .94rem; line-height: 1; }
+body.hars-page header .hars-nav .header-control:focus-visible { outline: 2px solid #dfc079; outline-offset: 2px; }
+
+body.hars-page .disclaimer-inline,
+body.hars-page.dark-mode .disclaimer-inline {
+    background: linear-gradient(100deg, rgba(29, 27, 24, .95), rgba(44, 37, 30, .94));
+    border: 1px solid #655b48;
+    border-left: 3px solid #b28e4b;
+    color: #c9b686;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .16);
+    padding: 10px 16px;
+    margin: 10px 0 22px;
+    font-size: .8rem;
+    line-height: 1.5;
+    font-weight: 500;
+    text-align: left;
+}
+
+body.hars-page .disclaimer-inline .warn-icon { color: #d2ad65; font-size: 1rem; }
+body.hars-page .disclaimer-inline strong { color: #e0c891; }
+
+/* Calculator workspace; the adjacent Live Type Scores panel keeps its old CSS. */
+body.hars-calculator .layout { grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; }
+
+.hars-calculator .traits-workspace {
+    min-width: 0;
+    position: relative;
+    isolation: isolate;
+    color: var(--hars-ink);
+    background: linear-gradient(160deg, rgba(30, 29, 27, .92), rgba(23, 22, 22, .96)), url('../../assets/textures/2.png') center / 550px;
+    border: 1px solid #796e5a;
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .34), inset 0 1px rgba(255, 240, 205, .08);
+    padding: clamp(16px, 2vw, 26px);
+}
+
+.hars-calculator .traits-workspace::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 8px auto auto 8px;
+    width: 80px;
+    height: 80px;
+    background: url('../../assets/textures/6.png') top left / contain no-repeat;
+    opacity: .32;
+    pointer-events: none;
+}
+
+.hars-calculator .traits-workspace-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 3px 2px 17px 22px;
+    border-bottom: 1px solid rgba(180, 154, 110, .4);
+}
+
+.hars-calculator .traits-eyebrow,
+.hars-calculator .traits-toolbar-label,
+.hars-calculator .traits-list-heading {
+    color: #bca573;
+    font: 700 .68rem/1.2 Georgia, serif;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.hars-calculator .traits-workspace h2 {
+    margin: 3px 0 0;
+    color: #f4e8d4;
+    font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+    line-height: 1.15;
+    font-variant: small-caps;
+    letter-spacing: .055em;
+}
+
+.hars-calculator .traits-toolbar {
+    padding: 16px 0 13px;
+    border-bottom: 1px solid rgba(180, 154, 110, .33);
+}
+
+.hars-calculator .traits-toolbar-label { margin-bottom: 10px; }
+.hars-calculator .preset-panel { margin: 0 0 15px; padding: 0; border: 0; gap: 8px; }
+.hars-calculator.dark-mode .preset-panel { border: 0; padding: 0; }
+
+.hars-calculator .preset-btn,
+.hars-calculator.dark-mode .preset-panel button {
+    border: 1px solid var(--chip-color) !important;
+    border: 1px solid color-mix(in srgb, var(--chip-color) 72%, #c9b69b) !important;
+    border-radius: 5px;
+    background: #282523 !important;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--chip-color) 17%, #2a2724), color-mix(in srgb, var(--chip-color) 8%, #1d1d1d)) !important;
+    color: #e9d5ba !important;
+    color: color-mix(in srgb, var(--chip-color) 55%, #f1dfc3) !important;
+    box-shadow: inset 0 1px rgba(255, 244, 220, .07), 0 2px 5px rgba(0, 0, 0, .2);
+    font: 700 .7rem/1.15 Georgia, serif;
+    letter-spacing: 0;
+    min-height: 27px;
+    padding: 5px 11px;
+    white-space: nowrap;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.hars-calculator .preset-btn { --chip-color: #a89068; }
+
+.hars-calculator .preset-btn[data-badge="nordic"] { --chip-color: #6b4c9f; }
+.hars-calculator .preset-btn[data-badge="eastBaltic"] { --chip-color: #0f5b70; }
+.hars-calculator .preset-btn[data-badge="slavic"] { --chip-color: #4a9f8b; }
+.hars-calculator .preset-btn[data-badge="alpine"] { --chip-color: #8b6b3b; }
+.hars-calculator .preset-btn[data-badge="dinaric"] { --chip-color: #8b4a6b; }
+.hars-calculator .preset-btn[data-badge="mediterranean"] { --chip-color: #9f6b3b; }
+.hars-calculator .preset-btn[data-badge="nearEastern"] { --chip-color: #9f5a3b; }
+.hars-calculator .preset-btn[data-badge="eastAsian"] { --chip-color: #9f6b4a; }
+.hars-calculator .preset-btn[data-badge="mongolian"] { --chip-color: #9f7a4a; }
+.hars-calculator .preset-btn[data-badge="malay"] { --chip-color: #bd7e59; }
+.hars-calculator .preset-btn[data-badge="ethiopian"] { --chip-color: #8b5a3b; }
+.hars-calculator .preset-btn[data-badge="subSaharan"] { --chip-color: #7a4a28; }
+.hars-calculator .preset-btn[data-badge="amerindian"] { --chip-color: #8b4a3a; }
+.hars-calculator .preset-btn[data-badge="ladogan"] { --chip-color: #8aafec; }
+
+.hars-calculator .preset-btn:hover,
+.hars-calculator.dark-mode .preset-panel button:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--chip-color) 62%, #f5d99e) !important;
+    box-shadow: inset 0 1px rgba(255, 244, 220, .12), 0 4px 9px rgba(0, 0, 0, .26);
+    filter: brightness(1.12);
+}
+
+.hars-calculator .preset-btn.is-active,
+.hars-calculator.dark-mode .preset-panel button.is-active {
+    color: #fff4dc !important;
+    border-color: color-mix(in srgb, var(--chip-color) 72%, #f4d495) !important;
+    background: linear-gradient(rgba(66, 47, 23, .55), rgba(66, 47, 23, .55)), url('../../assets/textures/10.png') center / 200px !important;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--chip-color) 65%, #e3c18a), 0 3px 8px rgba(0, 0, 0, .3);
+}
+
+.hars-calculator .traits-find-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 12px;
+    border: 1px solid #4d4c4a;
+    border-radius: 8px;
+    background: linear-gradient(rgba(22, 23, 24, .87), rgba(22, 23, 24, .87)), url('../../assets/textures/7.png') center / 360px;
+}
+
+.hars-calculator .traits-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hars-calculator #traitSearch {
+    flex: 1 1 170px;
+    min-width: 0;
+    background: #151616;
+    color: #f2e8d6;
+    border: 1px solid #696354;
+    border-radius: 5px;
+    padding: 9px 11px;
+    font: inherit;
+    font-size: .83rem;
+}
+.hars-calculator #traitSearch::placeholder { color: #a69c8b; }
+.hars-calculator .traits-filter-group { display: flex; gap: 4px; }
+
+.hars-calculator .traits-tool-button,
+.hars-calculator .traits-filter {
+    background: linear-gradient(rgba(31, 29, 26, .36), rgba(31, 29, 26, .36)), url('../../assets/textures/9.png') center / 200px;
+    border: 1px solid #766a53;
+    border-radius: 5px;
+    color: #e7d7b9;
+    cursor: pointer;
+    font: 700 .78rem/1.2 Georgia, serif;
+    padding: 9px 11px;
+    white-space: nowrap;
+    transition: transform .18s ease, border-color .18s ease, filter .18s ease;
+}
+
+.hars-calculator .traits-tool-button:hover,
+.hars-calculator .traits-filter:hover { border-color: #c7a865; filter: brightness(1.2); transform: translateY(-1px); }
+.hars-calculator .traits-filter.is-active {
+    background: linear-gradient(rgba(74, 52, 24, .48), rgba(74, 52, 24, .48)), url('../../assets/textures/10.png') center / 200px;
+    color: #fff4d7;
+    border-color: #c6a460;
+}
+.hars-calculator .traits-reset { color: #e8c5ae; }
+.hars-calculator .traits-list-heading { display: flex; justify-content: space-between; gap: 8px; margin: 19px 0 11px; }
+.hars-calculator #traitFilterCount { color: #c9bdab; letter-spacing: .05em; text-transform: none; }
+.hars-calculator .traits-empty-state { margin: 16px 0 5px; padding: 18px; text-align: center; color: #c7b99e; border: 1px dashed #6e6555; border-radius: 6px; }
+
+.hars-calculator .trait-card,
+.hars-calculator.dark-mode .trait-card {
+    background: linear-gradient(135deg, rgba(41, 40, 38, .95), rgba(30, 30, 30, .96)), url('../../assets/textures/2.png') center / 420px;
+    border: 1px solid #656158;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .23), inset 0 1px rgba(255, 244, 216, .04);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.hars-calculator .trait-card:hover { transform: translateY(-2px); border-color: #95866a; box-shadow: 0 8px 18px rgba(0, 0, 0, .34); }
+.hars-calculator .trait-card.active,
+.hars-calculator.dark-mode .trait-card.active { border-color: #bd9d60; box-shadow: 0 0 0 1px rgba(188, 157, 96, .35), 0 8px 20px rgba(0, 0, 0, .32); }
+.hars-calculator .trait-header,
+.hars-calculator.dark-mode .trait-header {
+    color: #eee4d3;
+    background: linear-gradient(100deg, rgba(75, 67, 55, .3), rgba(22, 22, 22, .32));
+    border-bottom: 1px solid rgba(148, 133, 106, .25);
+    padding: 13px 15px;
+}
+.hars-calculator .trait-header:hover,
+.hars-calculator.dark-mode .trait-header:hover { background: linear-gradient(100deg, rgba(91, 76, 53, .42), rgba(40, 36, 30, .4)); }
+.hars-calculator .trait-header .trait-number { background: #665339; color: #f7e9c7; border: 1px solid #ac8e5b; }
+.hars-calculator .trait-header .trait-title,
+.hars-calculator.dark-mode .trait-header .trait-title { color: #eee4d3; }
+.hars-calculator .trait-header .trait-arrow,
+.hars-calculator.dark-mode .trait-header .trait-arrow { color: #c6aa70; }
+.hars-calculator .weight-label { color: #bda36c; font-size: .65rem; letter-spacing: .08em; }
+.hars-calculator .trait-body .definition,
+.hars-calculator .trait-body .measurement-note,
+.hars-calculator.dark-mode .trait-body .definition,
+.hars-calculator.dark-mode .trait-body .measurement-note { color: #bfb4a3; }
+.hars-calculator .trait-body select,
+.hars-calculator .trait-body input,
+.hars-calculator.dark-mode .trait-body select,
+.hars-calculator.dark-mode .trait-body input { background: #191a1b; color: #efe6d7; border-color: #766b58; }
+.hars-calculator .trait-body label,
+.hars-calculator.dark-mode .trait-body label { color: #d7c9b3; }
+.hars-calculator .trait-body .contributions-preview span,
+.hars-calculator.dark-mode .trait-body .contributions-preview span { background: #30302f; border: 1px solid #545149; }
+.hars-calculator .guide-btn { border-color: #9e885f; color: #d8be87; }
+.hars-calculator :is(button, input, select):focus-visible { outline: 2px solid #d4b576; outline-offset: 2px; }
+
+.hars-calculator .dev-tools-section,
+.hars-calculator.dark-mode .dev-tools-section {
+    background: linear-gradient(rgba(27, 27, 27, .93), rgba(27, 27, 27, .93)), url('../../assets/textures/2.png') center / 500px;
+    border: 1px solid #756951;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .28);
+}
+.hars-calculator .dev-tools-header,
+.hars-calculator.dark-mode .dev-tools-header { background: #2d2924; border-bottom-color: #756951; }
+.hars-calculator .dev-tools-title,
+.hars-calculator.dark-mode .dev-tools-title { color: #dcc58d; }
+.hars-calculator .dev-tools-content,
+.hars-calculator.dark-mode .dev-tools-content { background: transparent; }
+.hars-calculator .dev-tool-card,
+.hars-calculator.dark-mode .dev-tool-card { background: #242423; border: 1px solid #666053; color: #e6dccb; }
+.hars-calculator .dev-tool-card h3,
+.hars-calculator.dark-mode .dev-tool-card h3 { color: #e9d7b1; border-bottom-color: #635b4c; }
+.hars-calculator .dev-tool-card label,
+.hars-calculator.dark-mode .dev-tool-card label { color: #d8cbb5; }
+.hars-calculator .dev-tool-card :is(select, input),
+.hars-calculator.dark-mode .dev-tool-card :is(select, input) { background: #18191a; color: #f0e4d0; border-color: #6c6456; }
+.hars-calculator .nav-tab,
+.hars-calculator.dark-mode .nav-tab { color: #c4b69e; }
+.hars-calculator .nav-tab.active,
+.hars-calculator.dark-mode .nav-tab.active { color: #e4c780; border-bottom-color: #bb9858; }
+
+/* Other pages share the same material palette without changing their actions. */
+body.hars-landing,
+body.hars-profile { --panel-bg: #242321; --border: #6b6254; --text: #eee4d1; --text-light: #c3b7a4; --accent: #c3a66d; --highlight: #dfc582; }
+body.hars-landing .menu-card,
+body.hars-landing .info-section,
+body.hars-profile .profile-card {
+    color: #eee4d1;
+    background: linear-gradient(150deg, rgba(35, 34, 32, .94), rgba(25, 25, 25, .97)), url('../../assets/textures/2.png') center / 500px;
+    border: 1px solid #706757;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .25);
+}
+body.hars-landing .menu-card h2,
+body.hars-landing .info-section h3,
+body.hars-profile .profile-card h2,
+body.hars-landing.dark-mode .menu-card h2,
+body.hars-landing.dark-mode .info-section h3 { color: #e8d8b8; }
+body.hars-landing .menu-card p,
+body.hars-landing .info-section :is(p, li),
+body.hars-profile .profile-card p { color: #c7bdad; }
+body.hars-landing .menu-card .btn-link,
+body.hars-profile .actions button,
+body.hars-profile.dark-mode .actions button {
+    background: linear-gradient(rgba(33, 30, 26, .25), rgba(33, 30, 26, .25)), url('../../assets/textures/9.png') center / 220px;
+    color: #e9d9b6;
+    border: 1px solid #8c784f;
+}
+body.hars-landing .menu-card:hover { border-color: #c5a568; }
+body.hars-profile .upload-controls,
+body.hars-profile .profile-values,
+body.hars-profile #currentName { background: #1d1d1d; color: #e7dcc9; border-color: #615d55; }
+body.hars-profile .field-row input,
+body.hars-profile .upload-controls input[type="text"],
+body.hars-profile .upload-controls input[type="file"],
+body.hars-profile .profile-values input { background: #171819; color: #eee4d1; border-color: #706757; }
+
+@media (max-width: 900px) {
+    body.hars-calculator .layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+    body.hars-page { background-attachment: scroll; }
+    body.hars-page header { padding-top: 128px; }
+    body.hars-page header::before { width: 75px; height: 75px; left: calc(50% - 37px); top: 128px; }
+    body.hars-page header::after { left: 0; right: 0; height: 30px; }
+    body.hars-page header .hars-nav { top: 12px; left: 12px; right: 12px; gap: 6px; }
+    body.hars-page header .hars-nav-group { gap: 6px; }
+    body.hars-page header .hars-nav .header-control { height: 34px; padding: 6px 9px; font-size: .74rem; }
+    .hars-calculator .traits-workspace-heading { padding-left: 12px; }
+    .hars-calculator .traits-find-row { display: grid; grid-template-columns: 1fr; }
+    .hars-calculator .traits-filter-group { flex-wrap: wrap; }
+    .hars-calculator .traits-filter { flex: 1; }
+}
+@media (max-width: 420px) {
+    body.hars-page header { padding-top: 166px; }
+    body.hars-page header::before { top: 166px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hars-calculator .trait-card,
+    .hars-calculator .preset-btn,
+    .hars-calculator .traits-tool-button,
+    .hars-calculator .traits-filter { transition: none; }
+}
+@media print {
+    body.hars-page { background: white; }
+    .hars-calculator .traits-workspace { background: white; border: 0; box-shadow: none; }
+}

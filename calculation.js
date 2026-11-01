@@ -151,6 +151,7 @@ function getTypeBadgeStyle(typeKey) {
 function resetAll() {
             resetAllScores();
             updateAllScores();
+            refreshTraitPresentation();
             closestTypeName.textContent = t('scorePanel.closestDefault', '—');
             secondaryTypes.textContent = t('scorePanel.noTraitsSelected', 'No traits selected');
         }
@@ -177,6 +178,7 @@ function loadPreset(presetName) {
     });
     
     updateAllScores();
+    refreshTraitPresentation();
 }
 
         // ============================================================
@@ -363,7 +365,10 @@ const score = own - rival;
 
             // Open first trait card by default
             const firstCard = document.getElementById('traitCard-eyeColor');
-            if (firstCard) firstCard.classList.add('open', 'active');
+            if (firstCard) {
+                firstCard.classList.add('open', 'active');
+                firstCard.querySelector('.trait-toggle')?.setAttribute('aria-expanded', 'true');
+            }
         }
 
 

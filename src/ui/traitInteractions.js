@@ -136,7 +136,12 @@ function generatePreviewHTML(contributions) {
             const typeName = getSubtypeName(key);
             const cls = value > 0 ? 'pos' : 'neg';
             const sign = value > 0 ? '+' : '';
-            items.push(`<span class="${cls}">${typeName}: ${sign}${value}</span>`);
+            items.push(`<span class="${cls}">${typeName}: ${sign}${formatDisplayValue(value)}</span>`);
         });
     return items.join(' ');
+}
+
+// Rounds only for display; the underlying value used in scoring is untouched.
+function formatDisplayValue(value) {
+    return Math.round(value * 100) / 100;
 }

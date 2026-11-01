@@ -2903,32 +2903,29 @@ body.dark-mode .preset-panel {
     }
 
     </style>
+    <link rel="stylesheet" href="src/ui/hars-modern.css">
+    <link rel="stylesheet" href="src/ui/traitCards.css">
+    <link rel="stylesheet" href="src/ui/scorePanel.css">
+    <link rel="stylesheet" href="src/ui/reportWorkspace.css">
 </head>
-<body>
+<body class="hars-page hars-calculator">
     
 
-    <!-- ============ STICKY DISCLAIMER BANNER ============ -->
-    <div class="disclaimer-banner">
-        <span class="icon">⚠</span>
-        <span data-i18n="disclaimerBanner">This simulator reconstructs historical anthropological classification systems (c. 1880–1940).
-        It does <u>NOT</u> represent modern scientific ancestry analysis, genetics, ethnicity prediction,
-        race determination, or biological reality. For educational and historical study purposes only.</span>
-        <span class="icon">⚠</span>
-    </div>
 
     <div class="main-container">
         <!-- HEADER -->
         <header>
-            <div class="header-controls">
-                <div class="header-control-group" aria-label="Navigation">
-                        <a href="index.html" class="header-control menu-btn" data-i18n-title="buttons.backToMenu" title="Back to Main Menu" aria-label="Back to Main Menu">📍</a>
-                            <a href="myProfile.html" class="header-control profile-btn" data-i18n-title="buttons.profile" title="My Profile" aria-label="My Profile">👤</a>
+            <nav class="hars-nav" aria-label="Application navigation">
+                <div class="hars-nav-group" aria-label="Pages">
+                <a class="header-control hars-nav-link" href="index.html"><span class="control-icon" aria-hidden="true">⌂</span><span data-i18n="navigation.menu">Main Menu</span></a>
+                <a class="header-control hars-nav-link is-current" href="raceResCalc.html" aria-current="page"><span class="control-icon" aria-hidden="true">▦</span><span data-i18n="navigation.calculator">Calculator</span></a>
+                <a class="header-control hars-nav-link" href="myProfile.html"><span class="control-icon" aria-hidden="true">◉</span><span data-i18n="navigation.profile">Profile</span></a>
                 </div>
-                <div class="header-control-group" aria-label="Application controls">
-                    <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings">⚙️</button>
-                    <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+                <div class="hars-nav-group" aria-label="Controls">
+                <button class="header-control settings-btn" id="settingsBtn" onclick="openSettings()" data-i18n-title="buttons.settings" title="Settings" aria-label="Settings"><span class="control-icon" aria-hidden="true">⚙</span><span data-i18n="navigation.settings">Settings</span></button>
+                <button class="header-control theme-toggle" id="themeToggle" onclick="toggleTheme()" data-i18n-title="buttons.toggleTheme" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="control-icon" aria-hidden="true">🌙</span><span data-i18n="navigation.theme">Theme</span></button>
                 </div>
-            </div>
+            </nav>
             <h1 data-i18n="pageTitle">Historical Anthropometric Reconstruction Simulator</h1>
             <p class="subtitle" data-i18n="pageSubtitle">Reconstructing Late 19th &amp; Early 20th Century Morphological Classification Systems</p>
             <span class="era-badge" data-i18n="eraBadge">📜 circa 1880–1940 · Physical Anthropology · Racial Typology · Craniometry</span>
@@ -2944,6 +2941,18 @@ body.dark-mode .preset-panel {
         </div>
 
 
+        <!-- MAIN LAYOUT -->
+        <div class="layout">
+        <!-- Visual trait workspace; existing preset and card controls remain in place. -->
+        <section class="traits-workspace" aria-labelledby="traitsHeading">
+            <div class="traits-workspace-heading">
+                <div class="traits-heading-copy">
+                    <span class="traits-eyebrow">Historical record</span>
+                    <h2 id="traitsHeading">Traits</h2>
+                </div>
+            </div>
+            <div class="traits-toolbar">
+                <div class="traits-toolbar-label">Reference presets</div>
        <div class="preset-panel">
 
     <button class="preset-btn"
@@ -3032,39 +3041,61 @@ body.dark-mode .preset-panel {
 </button>
 
 </div>
-
-
-        <!-- MAIN LAYOUT -->
-        <div class="layout">
-            <!-- TRAITS COLUMN -->
+                <div class="traits-find-row">
+                    <label class="traits-search-label" for="traitSearch">Search traits</label>
+                    <input id="traitSearch" type="search" placeholder="Search by trait name" autocomplete="off">
+                    <div class="traits-filter-group" role="group" aria-label="Filter traits">
+                        <button type="button" class="traits-filter is-active" data-trait-filter="all" aria-pressed="true">All</button>
+                        <button type="button" class="traits-filter" data-trait-filter="completed" aria-pressed="false">Completed</button>
+                        <button type="button" class="traits-filter" data-trait-filter="missing" aria-pressed="false">Missing</button>
+                    </div>
+                    <button type="button" class="traits-tool-button traits-reset" onclick="resetAll()">Reset traits</button>
+                </div>
+            </div>
+            <div class="traits-list-heading"><span>Trait catalogue</span><span id="traitFilterCount" aria-live="polite"></span></div>
             <div class="traits-section" id="traitsContainer">
                 <!-- Traits are dynamically generated by JavaScript -->
             </div>
+            <p id="traitsEmptyState" class="traits-empty-state" hidden>No traits match this view.</p>
+        </section>
+
 
             <!-- SCORE PANEL -->
             <div class="score-panel" id="scorePanel">
-                <h2 data-i18n="scorePanel.title">📊 Live Type Scores</h2>
-                <p class="score-disclaimer" data-i18n="scorePanel.disclaimer">Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group.
-                    <br>Higher score = greater morphological alignment in this historical framework.</p>
-                <div class="imported-profile-badge" id="importedProfileBadge" data-i18n="scorePanel.importedBadge">✓ Imported profile loaded</div>
-                <div id="progressContainer" style="margin-bottom: 12px; padding: 10px; background: #f5f0e5; border-radius: 6px; text-align: center; font-size: 0.9rem; color: #4a3828; font-weight: bold;">
-                    <span id="progressText" data-i18n="scorePanel.progressText">0% (0/0)</span>
+                <div class="score-panel-heading">
+                    <h2 data-i18n="scorePanel.title">Live Type Scores</h2>
+                    <details class="score-info">
+                        <summary aria-label="About Live Type Scores" title="About Live Type Scores" data-i18n-title="scorePanel.aboutScores">ⓘ</summary>
+                        <p class="score-disclaimer" data-i18n="scorePanel.disclaimer">Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group. Higher score = greater morphological alignment in this historical framework.</p>
+                    </details>
                 </div>
+                <div class="imported-profile-badge" id="importedProfileBadge" data-i18n="scorePanel.importedBadge">✓ Imported profile loaded</div>
+                <div id="progressContainer" class="score-progress">
+                    <span id="progressText" data-i18n="scorePanel.progressText">0/0 traits · 0%</span>
+                    <div class="score-progress-track" id="progressBar" role="progressbar" aria-label="Completed traits" data-i18n-title="scorePanel.completedTraits" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><span id="progressFill"></span></div>
+                </div>
+                <div class="score-scale-guide" aria-hidden="true"><span></span><div class="score-scale-labels"><span id="scoreScaleMin">−1</span><span>0</span><span id="scoreScaleMax">+1</span></div><span></span></div>
                 <div id="scoreRows"></div>
                 <div class="closest-type-box" id="closestTypeBox">
                     <div class="closest-label" data-i18n="scorePanel.closestLabel">Closest Historical Group</div>
                     <div class="closest-type" id="closestTypeName" data-i18n="scorePanel.closestDefault">—</div>
                     <div class="secondary" id="secondaryTypes" data-i18n="scorePanel.secondaryDefault">Select traits to begin</div>
                 </div>
-                <div class="btn-row">
-                    <button class="btn primary" onclick="generateReport()" data-i18n="buttons.generateReport">📋 Generate Full Report</button>
-                    <button class="btn" id="openDevPanelButton" onclick="openDevPanel()" data-i18n="buttons.openDevPanel">🔧 Open Developer Panel</button>
-                    <button class="btn" onclick="exportProfile()" data-i18n="buttons.exportProfile">💾 Export Profile</button>
-                    <button class="btn" onclick="openSaveProfileAsDialog()" data-i18n="buttons.saveProfileAs">🗂️ Save Profile As...</button>
-                    <button class="btn" onclick="importProfile()" data-i18n="buttons.importProfile">📂 Import Profile</button>
-                    <button class="btn" onclick="resetAll()" data-i18n="buttons.resetAll">🔄 Reset All Traits</button>
+                <div class="btn-row score-actions">
+                    <button type="button" class="btn primary score-report-action" onclick="generateReport()"><span aria-hidden="true">▤</span> <span data-i18n="scorePanel.generateReport">Generate Full Report</span></button>
+                    <div class="score-actions-wrap">
+                        <button type="button" class="btn score-more-trigger" id="scoreMoreTrigger" aria-haspopup="true" aria-controls="scoreMoreMenu" aria-expanded="false"><span data-i18n="scorePanel.moreActions">More Actions</span></button>
+                        <div class="score-more-menu" id="scoreMoreMenu" role="group" aria-label="More Actions" data-i18n-title="scorePanel.moreActions" hidden>
+                            <button type="button" class="score-menu-item" onclick="openSaveProfileAsDialog()"><span aria-hidden="true">▣</span><span data-i18n="scorePanel.saveProfileAs">Save Profile As...</span></button>
+                            <button type="button" class="score-menu-item" onclick="importProfile()"><span aria-hidden="true">↥</span><span data-i18n="scorePanel.importProfile">Import Profile</span></button>
+                            <button type="button" class="score-menu-item" onclick="exportProfile()"><span aria-hidden="true">↧</span><span data-i18n="scorePanel.exportProfile">Export Profile</span></button>
+                            <div class="score-menu-separator" role="separator"></div>
+                            <button type="button" class="score-menu-item" id="openDevPanelButton" onclick="openDevPanel()"><span aria-hidden="true">⚙</span><span data-i18n="scorePanel.developerPanel">Developer Panel</span></button>
+                            <div class="score-menu-separator" role="separator"></div>
+                            <button type="button" class="score-menu-item score-menu-reset" onclick="resetAll()"><span aria-hidden="true">↺</span><span data-i18n="scorePanel.resetAll">Reset All Traits</span></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="reset-link" onclick="resetAll()" data-i18n="buttons.clearAll">Clear all selections and start over</div>
             </div>
         </div>
 
@@ -3165,216 +3196,12 @@ body.dark-mode .preset-panel {
             </div>
         </div>
 
-    <!-- SETTINGS MODAL -->
-    <div class="settings-modal" id="settingsModal">
-
-    <button class="close-settings"
-            onclick="closeSettings()">
-
-        ✕
-
-    </button>
-
-    <div class="settings-layout">
-
-        <div class="settings-sidebar">
-
-            <button class="settings-tab active"
-                    data-page="appearancePage"
-                    data-i18n="settings.appearance">
-
-                🎨 Appearance
-
-            </button>
-
-            <button class="settings-tab"
-                    data-page="enginePage"
-                    data-i18n="settings.engine">
-
-                ⚙ Engine
-
-            </button>
-
-            <button class="settings-tab"
-                    data-page="themePage"
-                    data-i18n="settings.theme">
-
-                🎛 Theme
-
-            </button>
-
-            <button class="settings-tab"
-                    data-page="developerPage"
-                    data-i18n="settings.developer">
-
-                🧪 Developer
-
-            </button>
-
-            <button class="settings-tab"
-                    data-page="storagePage"
-                    data-i18n="settings.storage">
-
-                💾 Storage
-
-            </button>
-
-        </div>
-
-        <div class="settings-content">
-
-            <!-- ================= Appearance ================= -->
-
-            <div class="settings-page active"
-                 id="appearancePage">
-
-                <h2 data-i18n="settings.appearance">🎨 Appearance</h2>
-
-                <div class="toggle-input-group">
-
-                    <div class="toggle-label" data-i18n="settings.darkTheme">
-
-                        Dark Theme
-
-                    </div>
-
-                    <button
-                        id="themeToggle"
-                        onclick="toggleTheme()">
-
-                        ☀️
-
-                    </button>
-
-                </div>
-
-                <div class="toggle-input-group">
-                    <label class="toggle-label" for="languageSelect" data-i18n="settings.language">Language</label>
-                    <select class="settings-language-select" id="languageSelect" onchange="changeLanguage(this.value)">
-                        <option value="en">English</option>
-                        <option value="ru">Русский</option>
-                    </select>
-                </div>
-
-            </div>
-
-
-            <!-- ================= Engine ================= -->
-
-            <div class="settings-page"
-                 id="enginePage">
-
-                <h2 data-i18n="settings.engine">⚙ Engine</h2>
-
-                <p data-i18n="common.info">
-
-                    Engine settings will appear here.
-
-                </p>
-
-            </div>
-
-
-            <!-- ================= Theme ================= -->
-
-            <div class="settings-page"
-                 id="themePage">
-
-                <h2 data-i18n="settings.themeEditor">🎛 Theme Editor</h2>
-
-                <!-- ВСТАВИ СЮДА ВСЕ Color Picker -->
-
-            </div>
-
-
-            <!-- ================= Developer ================= -->
-
-            <div class="settings-page"
-                 id="developerPage">
-
-                <h2 data-i18n="settings.developer">🧪 Developer</h2>
-
-                <!-- ВСТАВИ СЮДА -->
-
-                <div class="toggle-input-group">
-
-                    <div class="toggle-label" data-i18n="settings.showDevTools">
-
-                        Show Developer Tools
-
-                    </div>
-
-                    <label class="toggle-switch">
-
-                        <input
-                            type="checkbox"
-                            id="developerToolsVisibilityToggle"
-                            onchange="toggleDeveloperToolsVisibility(this.checked)">
-
-                        <span class="toggle-slider"></span>
-
-                    </label>
-
-                    <div class="toggle-status"
-                         id="developerToolsVisibilityStatus">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= Storage ================= -->
-
-            <div class="settings-page"
-                 id="storagePage">
-
-                <h2 data-i18n="settings.storage">💾 Storage</h2>
-
-                <div class="toggle-input-group">
-
-                    <div class="toggle-label" data-i18n="settings.resetOnReload">
-
-                        Reset Data On Reload
-
-                    </div>
-
-                    <label class="toggle-switch">
-
-                        <input
-                            type="checkbox"
-                            id="resetOnReloadToggle"
-                            onchange="toggleResetOnReload(this.checked)">
-
-                        <span class="toggle-slider"></span>
-
-                    </label>
-
-                    <div class="toggle-status"
-                         id="resetOnReloadStatus">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+    <div data-settings-root></div>
 
     <!-- REPORT MODAL -->
     <div class="report-modal-overlay" id="reportOverlay">
-        <div class="report-modal" id="reportContent">
-            <button class="close-btn" onclick="closeReport()">✕</button>
+        <div class="report-modal" id="reportContent" role="dialog" aria-modal="true" aria-label="Historical Anthropometric Reconstruction Report">
             <div id="reportInner"></div>
-            <div class="btn-row" style="margin-top:16px;">
-                <button class="btn primary" onclick="window.print()">🖨️ Print Report</button>
-                <button class="btn" onclick="closeReport()">Close</button>
-            </div>
         </div>
     </div>
 
@@ -3388,12 +3215,14 @@ body.dark-mode .preset-panel {
     <link rel="stylesheet" href="src/ui/settings.css">
     <script src="src/ui/settingsView.js"></script>
     <script src="data/taxonomy.js"></script>
-    <script src="data/traits.js"></script>
+    <script src="data/traits copy 2.js"></script>
     <script src="data/engineRules.js"></script>
     <script src="advisor.js"></script>
     <script src="src/core/scoreEngine.js"></script>
     <script src="src/ui/guideTooltip.js"></script>
+    <script src="src/ui/scorePanelPresentation.js"></script>
     <script src="src/ui/scorePanel.js"></script>
+    <script src="src/ui/scorePanelControls.js"></script>
     <script src="src/storage/localStorage.js"></script>
     <script src="src/storage/profileIO.js"></script>
     <script src="User Information/anthropometricProfiles.js"></script>
@@ -3401,6 +3230,7 @@ body.dark-mode .preset-panel {
     <script src="src/ui/traitCards.js"></script>
     <script src="src/ui/devTools.js"></script>
     <script src="src/ui/settings.js"></script>
+    <script src="src/ui/reportAnalysis.js"></script>
     <script src="report.js"></script>
     <script src="calculation.js"></script>
 
@@ -3673,6 +3503,7 @@ async function confirmSaveProfileAs() {
         console.log('DISCLAIMER: This simulates obsolete historical classification systems only.');
         console.log('It does NOT represent modern genetics, ancestry, ethnicity, race, or biological reality.');
     </script>
+    <script src="src/ui/traitToolbar.js"></script>
 
 
 

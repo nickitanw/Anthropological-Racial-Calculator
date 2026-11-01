@@ -8,15 +8,17 @@ window.APP_LOCALES.en = {
     disclaimerBanner: 'HISTORICAL ANTHROPOMETRIC RECONSTRUCTION SIMULATOR — This simulator reconstructs historical anthropological classification systems (c. 1880–1940). It does NOT represent modern scientific ancestry analysis, genetics, ethnicity prediction, race determination, or biological reality. For educational and historical study purposes only.',
     disclaimerInline: 'IMPORTANT HISTORICAL NOTICE: This simulator reconstructs historical anthropological classification methods. It does NOT constitute modern genetics, scientific ancestry estimation, ethnicity prediction, race determination, or any statement of biological reality. The categories and scoring reflect obsolete typological frameworks studied here solely for their historical and educational value.',
 
+    navigation: { menu: 'Main Menu', calculator: 'Calculator', profile: 'Profile', theme: 'Theme', settings: 'Settings' },
+
     // ========== Меню и навигация ==========
     menu: {
         title: 'Main Menu',
         subtitle: 'Historical Anthropometric Reconstruction Simulator',
         calculator: 'Calculator',
-        calculatorDescription: 'Enter anthropometric measurements and traits to generate type classifications and scores.',
+        calculatorDescription: 'Select traits and optional measurements to explore historical group scores and a detailed report.',
         openCalculator: 'Open Calculator →',
         profile: 'My Profile',
-        profileDescription: 'Choose and save your profile name for this simulator.',
+        profileDescription: 'Set your display name and manage your local profile library.',
         openProfile: 'Open Profile →',
         about: 'About This Project',
         aboutDescription: 'Learn about the historical context and educational purpose of this simulator.',
@@ -25,7 +27,7 @@ window.APP_LOCALES.en = {
         guideDescription: 'Instructions on how to use the calculator and interpret the results.',
         viewGuide: 'View Guide →',
         methodology: 'Methodology',
-        methodologyDescription: 'Learn how trait weights, scoring matrices, indices and contribution analysis work.',
+        methodologyDescription: 'Learn how trait selections, indices, score contributions, and rules shape the results.',
         viewMethodology: 'View Methodology →',
         disclaimers: 'Important Disclaimers',
         disclaimersDescription: 'Critical information about what this simulator does and does not represent.',
@@ -55,6 +57,10 @@ window.APP_LOCALES.en = {
     settings: {
         appearance: 'Appearance',
         language: 'Language',
+        traitAutoCollapse: 'Trait Auto-Collapse',
+        traitAutoCollapseNever: 'Never Auto-Close',
+        traitAutoCollapseOnOpen: 'Close When Opening Another Trait',
+        traitAutoCollapseAfterSelection: 'Close After Selecting an Answer',
         engine: 'Engine',
         theme: 'Theme',
         themeEditor: 'Theme Editor',
@@ -73,9 +79,18 @@ window.APP_LOCALES.en = {
 
     // ========== Панель результатов ==========
     scorePanel: {
-        title: '📊 Live Type Scores',
-        disclaimer: 'Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group.<br>Higher score = greater morphological alignment in this historical framework.',
-        progressText: '{percent}% ({filled}/{total})',
+        title: 'Live Type Scores',
+        disclaimer: 'Historical anthropological group affinity scores (baseline: 0), using the highest subtype score within each group. Higher score = greater morphological alignment in this historical framework.',
+        progressText: '{filled}/{total} traits · {percent}%',
+        aboutScores: 'About Live Type Scores',
+        completedTraits: 'Completed traits',
+        generateReport: 'Generate Full Report',
+        moreActions: 'More Actions',
+        saveProfileAs: 'Save Profile As...',
+        importProfile: 'Import Profile',
+        exportProfile: 'Export Profile',
+        developerPanel: 'Developer Panel',
+        resetAll: 'Reset All Traits',
         closestLabel: 'Closest Historical Group',
         closestDefault: '—',
         secondaryDefault: 'Select traits to begin',
@@ -606,6 +621,11 @@ window.APP_LOCALES.en = {
     },
 
     traitsLabels: {
+        none: 'None',
+        pigmentation: 'Pigmentation',
+        morphological: 'Morphological',
+        completed: 'Completed',
+        missing: 'Missing',
         definition: 'Definition:',
         measurement: 'Measurement:',
         unit: 'Unit:'
